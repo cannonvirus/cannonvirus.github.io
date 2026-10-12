@@ -45,7 +45,7 @@ http://localhost:1313 에서 확인합니다.
 python tools/import_weekly.py D:/coding/VISER/dataset/reports/2026-W41.md
 ```
 
-- 기사마다 글 1편을 `content/weekly/<주차>-<이름>/`에 초안(`draft: true`)으로 만듭니다. 같은 주차를 다시 실행하면 덮어씁니다.
+- 기사마다 글 1편을 `content/news/<주차>-<이름>/`에 초안(`draft: true`)으로 만듭니다. 같은 주차를 다시 실행하면 덮어씁니다.
 - 머리말 문단, 항목 ID, 요약 상자의 `숫자:` 줄, 부록은 옮기지 않습니다.
 - 그래프(SVG)는 어두운 바탕 색으로 바꿔 복사합니다. 색 대응표는 스크립트의 `SHAPE_COLORS`입니다.
 - 원문 사진은 `--photos omit`(기본, 제외) · `link`(원문 링크로 대체) · `keep`(그대로 게시) 중에서 고릅니다.

@@ -66,9 +66,9 @@ languages:
         logoHomeLink: /
     menu:
       main:
-        - identifier: weekly
-          name: Weekly
-          url: /weekly/
+        - identifier: news
+          name: News
+          url: /news/
           weight: 10
         - identifier: projects
           name: Projects

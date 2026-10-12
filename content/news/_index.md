@@ -1,5 +1,5 @@
 ---
-title: Weekly
+title: News
 cascade:
   type: posts
 ---
