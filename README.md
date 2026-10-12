@@ -35,6 +35,6 @@ http://localhost:1313 에서 확인합니다.
 
 ## 테마 보완 사항
 
-- `static/style.css`: 한글 고정폭 글꼴(Nanum Gothic Coding)과 줄 간격을 지정합니다.
+- `static/style.css`: 한글 글꼴(Noto Sans KR)과 줄 간격을 지정합니다.
 - `layouts/partials/extended_head.html`: 글꼴 불러오기와 검색 등록 인증 태그를 출력합니다.
 - `layouts/robots.txt`: 사이트맵 주소를 포함합니다.
