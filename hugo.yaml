@@ -41,7 +41,7 @@ params:
 
   # 서치 콘솔·서치어드바이저에서 발급받은 값을 넣는다. 비어 있으면 태그를 출력하지 않는다.
   verification:
-    google: ""
+    google: "MVsafGi0jkblN4BI8ft7iG-OLPuL6Lj08ZKTVycw21E"
     naver: ""
 
 languages:
