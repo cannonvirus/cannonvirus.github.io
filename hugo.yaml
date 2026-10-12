@@ -1,0 +1,80 @@
+# 자체 도메인을 연결하면 baseURL만 바꾼다.
+baseURL: https://cannonvirus.github.io/
+locale: ko
+defaultContentLanguage: ko
+hasCJKLanguage: true
+title: cannonvirus 기술 블로그
+theme: PaperMod
+
+enableRobotsTXT: true
+enableGitInfo: false
+
+pagination:
+  pagerSize: 10
+
+taxonomies:
+  tag: tags
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # 검색 페이지가 사용한다.
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true # md 안의 HTML을 그대로 출력한다.
+  highlight:
+    noClasses: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+
+params:
+  env: production
+  description: 개발 기록과 기술 정리
+  author: cannonvirus
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: false
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  TocOpen: false
+  ShowRssButtonInSectionTermList: true
+
+  homeInfoParams:
+    Title: cannonvirus 기술 블로그
+    Content: 개발 기록과 기술 정리를 게시합니다.
+
+  socialIcons:
+    - name: github
+      url: https://github.com/cannonvirus
+    - name: rss
+      url: /index.xml
+
+  # 서치 콘솔·서치어드바이저에서 발급받은 값을 넣는다. 비어 있으면 태그를 출력하지 않는다.
+  analytics:
+    google:
+      SiteVerificationTag: ""
+    naver:
+      SiteVerificationTag: ""
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    threshold: 0.4
+    keys: ["title", "summary", "content"]
+
+menu:
+  main:
+    - name: 글
+      url: /posts/
+      weight: 10
+    - name: 태그
+      url: /tags/
+      weight: 20
+    - name: 검색
+      url: /search/
+      weight: 30
