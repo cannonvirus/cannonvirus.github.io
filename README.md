@@ -4,7 +4,7 @@ Hugo와 Terminal 테마로 만든 GitHub Pages 블로그입니다.
 
 ## 글 작성
 
-1. 사이드 프로젝트 글은 `content/projects/글-이름/index.md`에 만듭니다. `hugo new content projects/글-이름/index.md`로 머리말이 포함된 파일을 만들 수 있습니다. 주간 글은 아래 "VISER 주간 보고서 가져오기"로 만듭니다.
+1. 사이드 프로젝트 글은 `content/projects/글-이름/index.md`에 만듭니다. `hugo new content projects/글-이름/index.md`로 머리말이 포함된 파일을 만들 수 있습니다. News 글은 아래 "News 글" 절의 방식으로 만듭니다.
 2. 작성한 md 본문을 머리말(`---` 구역) 아래에 붙여넣습니다.
 3. 이미지는 같은 폴더에 두고 `![설명](파일명.png)`으로 참조합니다.
 4. 게시할 때 `draft: false`로 바꿉니다.
@@ -39,14 +39,17 @@ http://localhost:1313 에서 확인합니다.
 - `layouts/partials/extended_head.html`: 글꼴 불러오기와 검색 등록 인증 태그를 출력합니다.
 - `layouts/robots.txt`: 사이트맵 주소를 포함합니다.
 
-## VISER 주간 보고서 가져오기
+## News 글 (VISER 주간 보고서)
+
+News 구역의 글은 VISER가 만든다. 이 저장소에서 손으로 고치지 않는다. 고칠 것이 있으면 VISER에 피드백을 주고
+다시 만든다. 절차와 규칙은 VISER 저장소의 `docs/weekly.md` "블로그 게시"에 있다.
 
 ```powershell
-python tools/import_weekly.py D:/coding/VISER/dataset/reports/2026-W41.md
+# VISER 저장소에서 실행한다
+uv run python -m src.tasks.weekly --week 2026-W41 --blog           # 초안을 다시 쓴다 (커밋하지 않는다)
+uv run python -m src.tasks.weekly --week 2026-W41 --blog-publish   # 게시 상태로 바꾸고 커밋·푸시한다
 ```
 
-- 기사마다 글 1편을 `content/news/<주차>-<이름>/`에 초안(`draft: true`)으로 만듭니다. 같은 주차를 다시 실행하면 덮어씁니다.
-- 머리말 문단, 항목 ID, 요약 상자의 `숫자:` 줄, 부록은 옮기지 않습니다.
-- 그래프(SVG)는 어두운 바탕 색으로 바꿔 복사합니다. 색 대응표는 스크립트의 `SHAPE_COLORS`입니다.
-- 원문 사진은 `--photos omit`(기본, 제외) · `link`(원문 링크로 대체) · `keep`(그대로 게시) 중에서 고릅니다.
-- 분야 태그(영문 소문자)는 `tools/topics.json`의 낱말 규칙으로 붙입니다. 초안에서 확인하고 틀린 태그는 글의 머리말에서 직접 고칩니다.
+- 주간 `--run`이 끝나면 `content/news/<주차>-<이름>/`에 초안(`draft: true`)이 생긴다.
+- 미리보기로 확인한 뒤 `--blog-publish`로 게시한다. 그 주의 글 폴더만 커밋된다.
+- 분야 태그는 VISER가 붙인다. 목록은 VISER의 `src/tasks/blog_tags.py`에 있다.
