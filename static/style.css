@@ -59,8 +59,6 @@ kbd {
 }
 
 .post-figure img {
-  color-scheme: dark;
-  forced-color-adjust: none;
   display: block;
   max-width: 100%;
   height: auto;
