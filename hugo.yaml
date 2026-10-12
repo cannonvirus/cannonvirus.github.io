@@ -3,7 +3,7 @@ baseURL: https://cannonvirus.github.io/
 locale: ko
 defaultContentLanguage: ko
 hasCJKLanguage: true
-title: cannonvirus 기술 블로그
+title: cannonvirus.log
 theme: terminal
 
 enableRobotsTXT: true
@@ -42,7 +42,7 @@ params:
 
 languages:
   ko:
-    title: cannonvirus 기술 블로그
+    title: cannonvirus.log
     params:
       subtitle: 개발 기록과 기술 정리
       owner: cannonvirus
@@ -58,7 +58,7 @@ languages:
       minuteReadingTime: 분
       words: 단어
       logo:
-        logoText: cannonvirus
+        logoText: "~/cannonvirus"
         logoHomeLink: /
     menu:
       main:
