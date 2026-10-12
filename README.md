@@ -1,6 +1,6 @@
 # 블로그
 
-Hugo와 PaperMod 테마로 만든 GitHub Pages 블로그입니다.
+Hugo와 Terminal 테마로 만든 GitHub Pages 블로그입니다.
 
 ## 글 작성
 
@@ -26,9 +26,15 @@ http://localhost:1313 에서 확인합니다.
 
 ## 검색 등록
 
-`hugo.yaml`의 `params.analytics`에 구글 서치 콘솔과 네이버 서치어드바이저의 인증 값을 넣습니다.
+`hugo.yaml`의 `params.verification`에 구글 서치 콘솔과 네이버 서치어드바이저의 인증 값을 넣습니다.
 사이트맵 주소는 `/sitemap.xml`입니다.
 
 ## 규칙
 
 글 10편을 게시하기 전에는 레이아웃과 스타일을 수정하지 않습니다.
+
+## 테마 보완 사항
+
+- `static/style.css`: 한글 고정폭 글꼴(Nanum Gothic Coding)과 줄 간격을 지정합니다.
+- `layouts/partials/extended_head.html`: 글꼴 불러오기와 검색 등록 인증 태그를 출력합니다.
+- `layouts/robots.txt`: 사이트맵 주소를 포함합니다.
