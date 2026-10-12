@@ -15,3 +15,65 @@ code,
 kbd {
   font-family: var(--font-stack) !important;
 }
+
+/* 요약·용어 상자 */
+.box {
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  padding: 16px 20px;
+  margin: 25px 0;
+}
+
+.box-label {
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.box p {
+  margin: 0;
+}
+
+.box dl {
+  margin: 0;
+}
+
+.box dt {
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.box dt:first-child {
+  margin-top: 0;
+}
+
+.box dd {
+  margin: 2px 0 0;
+  color: color-mix(in srgb, var(--foreground) 80%, transparent);
+}
+
+/* 그림과 설명 */
+.post-figure {
+  width: 100%;
+  margin: 25px 0;
+}
+
+.post-figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent);
+}
+
+.post-figure figcaption {
+  background: none;
+  color: color-mix(in srgb, var(--foreground) 65%, transparent);
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 8px;
+  padding: 0;
+}
+
+mark {
+  padding: 0 2px;
+}

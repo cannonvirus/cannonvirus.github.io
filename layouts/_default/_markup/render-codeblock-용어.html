@@ -1,0 +1,10 @@
+<aside class="box box-terms">
+  <div class="box-label">용어</div>
+  <dl>
+    {{- range split (trim .Inner "\n") "\n" }}
+    {{- $parts := split . ": " }}
+    <dt>{{ index $parts 0 }}</dt>
+    <dd>{{ delimit (after 1 $parts) ": " }}</dd>
+    {{- end }}
+  </dl>
+</aside>

@@ -1,0 +1,5 @@
+{{- /* 대체 문구를 그림 아래 설명으로도 보여 준다. */ -}}
+<figure class="post-figure">
+  <img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}" loading="lazy">
+  {{- with .PlainText }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

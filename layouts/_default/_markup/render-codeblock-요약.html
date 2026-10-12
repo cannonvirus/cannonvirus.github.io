@@ -1,0 +1,6 @@
+<aside class="box box-summary">
+  <div class="box-label">요약</div>
+  {{- range split (trim .Inner "\n") "\n" }}
+  <p>{{ strings.TrimPrefix "요약:" . | strings.TrimSpace }}</p>
+  {{- end }}
+</aside>

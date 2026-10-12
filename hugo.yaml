@@ -16,6 +16,10 @@ taxonomies:
 
 markup:
   goldmark:
+    extensions:
+      extras:
+        mark:
+          enable: true # ==문장== 형광 강조
     renderer:
       unsafe: true # md 안의 HTML을 그대로 출력한다.
   highlight:

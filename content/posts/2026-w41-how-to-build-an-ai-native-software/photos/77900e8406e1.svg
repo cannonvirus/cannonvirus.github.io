@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="640" height="381" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 460.8 274.32" xmlns="http://www.w3.org/2000/svg" version="1.1">
+
+ <metadata>
+
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+   <cc:Work>
+
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+
+    <dc:date>2026-10-12T19:48:54.766757</dc:date>
+
+    <dc:format>image/svg+xml</dc:format>
+
+    <dc:creator>
+
+     <cc:Agent>
+
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+
+     </cc:Agent>
+
+    </dc:creator>
+
+   </cc:Work>
+
+  </rdf:RDF>
+
+ </metadata>
+
+ <defs>
+
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+
+ </defs>
+
+ <g id="figure_1">
+
+  <g id="patch_1">
+
+   <path d="M 0 274.32 
+
+L 460.8 274.32 
+
+L 460.8 0 
+
+L 0 0 
+
+z
+
+" style="fill: #211d13"/>
+
+  </g>
+
+  <g id="axes_1">
+
+   <g id="patch_2">
+
+    <path d="M 273.18 248.4 
+
+L 433.44 248.4 
+
+Q 439.2 248.4 439.2 242.64 
+
+L 439.2 74.16 
+
+Q 439.2 68.4 433.44 68.4 
+
+L 273.18 68.4 
+
+Q 267.42 68.4 267.42 74.16 
+
+L 267.42 242.64 
+
+Q 267.42 248.4 273.18 248.4 
+
+z
+
+" style="fill: #3b241c"/>
+
+   </g>
+
+   <g id="line2d_1">
+
+    <path d="M 21.6 101.52 
+
+L 439.2 101.52 
+
+" clip-path="url(#p250d5fd6d8)" style="fill: none; stroke: #eceae5; stroke-width: 1.1; stroke-linecap: square"/>
+
+   </g>
+
+   <g id="line2d_2">
+
+    <path d="M 21.6 138.24 
+
+L 439.2 138.24 
+
+" clip-path="url(#p250d5fd6d8)" style="fill: none; stroke: #453e30; stroke-width: 0.8; stroke-linecap: square"/>
+
+   </g>
+
+   <g id="line2d_3">
+
+    <path d="M 21.6 174.96 
+
+L 439.2 174.96 
+
+" clip-path="url(#p250d5fd6d8)" style="fill: none; stroke: #453e30; stroke-width: 0.8; stroke-linecap: square"/>
+
+   </g>
+
+   <g id="line2d_4">
+
+    <path d="M 21.6 211.68 
+
+L 439.2 211.68 
+
+" clip-path="url(#p250d5fd6d8)" style="fill: none; stroke: #453e30; stroke-width: 0.8; stroke-linecap: square"/>
+
+   </g>
+
+   <g id="text_1">
+
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eceae5" x="106.44" y="89.550937" transform="rotate(-0 106.44 89.550937)">사 오는 것</text>
+
+   </g>
+
+   <g id="text_2">
+
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #de6a4c" x="278.22" y="89.550937" transform="rotate(-0 278.22 89.550937)">직접 만드는 것</text>
+
+   </g>
+
+   <g id="text_3">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #a8a194" x="21.6" y="124.329961" transform="rotate(-0 21.6 124.329961)">실행 환경</text>
+
+   </g>
+
+   <g id="text_4">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eceae5" x="106.44" y="124.285039" transform="rotate(-0 106.44 124.285039)">샌드박스 기계</text>
+
+   </g>
+
+   <g id="text_5">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eceae5" x="278.22" y="124.285039" transform="rotate(-0 278.22 124.285039)">코드가 준비된 스냅샷</text>
+
+   </g>
+
+   <g id="text_6">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #a8a194" x="21.6" y="161.005039" transform="rotate(-0 21.6 161.005039)">도구 연결</text>
+
+   </g>
+
+   <g id="text_7">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eceae5" x="106.44" y="161.005039" transform="rotate(-0 106.44 161.005039)">MCP 게이트웨이</text>
+
+   </g>
+
+   <g id="text_8">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eceae5" x="278.22" y="161.005039" transform="rotate(-0 278.22 161.005039)">회사에 필요한 도구 목록</text>
+
+   </g>
+
+   <g id="text_9">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #a8a194" x="21.6" y="197.725039" transform="rotate(-0 21.6 197.725039)">작업 절차</text>
+
+   </g>
+
+   <g id="text_10">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eceae5" x="106.44" y="197.725039" transform="rotate(-0 106.44 197.725039)">코딩 에이전트</text>
+
+   </g>
+
+   <g id="text_11">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eceae5" x="278.22" y="197.725039" transform="rotate(-0 278.22 197.725039)">SDLC를 담은 블루프린트</text>
+
+   </g>
+
+   <g id="text_12">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #a8a194" x="21.6" y="234.501641" transform="rotate(-0 21.6 234.501641)">검증</text>
+
+   </g>
+
+   <g id="text_13">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eceae5" x="106.44" y="234.532187" transform="rotate(-0 106.44 234.532187)">추적 도구와 리뷰어</text>
+
+   </g>
+
+   <g id="text_14">
+
+    <text style="font-size: 11.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eceae5" x="278.22" y="234.445039" transform="rotate(-0 278.22 234.445039)">게이트 정책</text>
+
+   </g>
+
+  </g>
+
+  <g id="text_15">
+
+   <text style="font-weight: 700; font-size: 15.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eceae5" x="21.6" y="30.622109" transform="rotate(-0 21.6 30.622109)">공통 부품은 사고 회사만 아는 것은 만든다</text>
+
+  </g>
+
+  <g id="text_16">
+
+   <text style="font-size: 10.5px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #a8a194" x="21.6" y="52.249687" transform="rotate(-0 21.6 52.249687)">구성 요소별 구매와 구축의 구분</text>
+
+  </g>
+
+ </g>
+
+ <defs>
+
+  <clipPath id="p250d5fd6d8">
+
+   <rect x="21.6" y="68.4" width="417.6" height="180"/>
+
+  </clipPath>
+
+ </defs>
+
+</svg>
+
