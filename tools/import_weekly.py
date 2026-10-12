@@ -20,23 +20,24 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parent.parent
 
 # VISER chart_runner의 밝은 바탕 색을 블로그의 어두운 바탕 색으로 바꾼다.
-# 강조 셋(ACCENT·BLUE·GOLD)은 dataviz 검증기로 바탕 #211d13 위에서 확인했다.
+# ACCENT는 블로그 테마의 강조색(--accent)과 같다. 검증기의 명도 범위(0.48~0.67)보다 밝지만
+# 테마와 맞추려고 그대로 쓴다. 색각 이상 구분·대비 등 나머지 항목은 바탕 #211d13 위에서 통과했다.
 SURFACE = "#211d13"
 SHAPE_COLORS = {
     "#fcfaf6": SURFACE,    # SURFACE
     "#ffffff": "#322c20",  # 칸 바탕
     "#22201d": "#eceae5",  # INK
     "#6f685f": "#a8a194",  # MUTED
-    "#b8452f": "#de6a4c",  # ACCENT
+    "#b8452f": "#eec35e",  # ACCENT
     "#2f6ea8": "#4a90d9",  # BLUE
-    "#b07f14": "#b88a2a",  # GOLD
+    "#b07f14": "#de6a4c",  # GOLD (노랑은 ACCENT가 쓰므로 주황으로 옮긴다)
     "#f3eee7": "#2b261b",  # PALE
     "#e2dbd0": "#453e30",  # LINE
     "#b9b0a4": "#6f685c",  # GRAY
     "#e3edf6": "#1e2b3a",  # COOL
     "#b9cfe4": "#3b5674",  # COOL_EDGE
-    "#f6e3dd": "#3b241c",  # WARM
-    "#e2b3a6": "#7a4636",  # WARM_EDGE
+    "#f6e3dd": "#3a3118",  # WARM
+    "#e2b3a6": "#7d6a35",  # WARM_EDGE
 }
 # 글자의 흰색은 색 칸 위에 놓인 것이므로 어두운 색으로 바꾼다.
 TEXT_COLORS = {**SHAPE_COLORS, "#ffffff": "#1a170f"}
@@ -188,7 +189,7 @@ def convert_item(week, title, block, report_dir, out_root, photos, unknown):
         f"title: {yaml_str(title)}",
         f"date: {week_date(week).isoformat()}T09:00:00+09:00",
         f"description: {yaml_str(summary)}",
-        "tags: [" + ", ".join(yaml_str(t) for t in [*topics_for(title, text), week, "주간 정리"]) + "]",
+        "tags: [" + ", ".join(yaml_str(t) for t in [*topics_for(title, text), week]) + "]",
         f"source_url: {yaml_str(url)}",
         f"source_newsletter: {yaml_str(newsletter)}",
         "draft: true",

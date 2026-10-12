@@ -1,5 +1,5 @@
-{{- /* 대체 문구를 그림 아래 설명으로도 보여 준다. */ -}}
+{{- /* 사진은 대체 문구를 그림 아래 설명으로도 보여 준다. 그래프(SVG)는 그림 안에 제목이 있어 생략한다. */ -}}
 <figure class="post-figure">
   <img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}" loading="lazy">
-  {{- with .PlainText }}<figcaption>{{ . }}</figcaption>{{ end }}
+  {{- if not (strings.HasSuffix .Destination ".svg") }}{{ with .PlainText }}<figcaption>{{ . }}</figcaption>{{ end }}{{ end }}
 </figure>

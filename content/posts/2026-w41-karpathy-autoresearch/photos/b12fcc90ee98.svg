@@ -82,7 +82,7 @@ Q 210.16 205.2 215.92 205.2
 
 z
 
-" style="fill: #3b241c"/>
+" style="fill: #3a3118"/>
 
    </g>
 
@@ -114,7 +114,7 @@ L 439.2 153.36
 
    <g id="text_2">
 
-    <text style="font-weight: 700; font-size: 12px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #de6a4c" x="220.96" y="88.044375" transform="rotate(-0 220.96 88.044375)">train.py</text>
+    <text style="font-weight: 700; font-size: 12px; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif; text-anchor: start; fill: #eec35e" x="220.96" y="88.044375" transform="rotate(-0 220.96 88.044375)">train.py</text>
 
    </g>
 
