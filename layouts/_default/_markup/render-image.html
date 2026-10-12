@@ -1,5 +1,6 @@
-{{- /* 사진은 대체 문구를 그림 아래 설명으로도 보여 준다. 그래프(SVG)는 그림 안에 제목이 있어 생략한다. */ -}}
+{{- /* 그림 아래 설명은 제목(`![대체 문구](경로 "설명")`)을 적은 그림에만 붙인다.
+       그래프는 그림 안에 제목이 있어 설명을 적지 않는다. */ -}}
 <figure class="post-figure">
   <img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}" loading="lazy">
-  {{- if not (strings.HasSuffix .Destination ".svg") }}{{ with .PlainText }}<figcaption>{{ . }}</figcaption>{{ end }}{{ end }}
+  {{- with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>
