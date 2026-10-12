@@ -30,7 +30,7 @@ markup:
 
 params:
   contentTypeName: posts
-  showMenuItems: 3
+  showMenuItems: 4
   fullWidthTheme: false
   centerTheme: true
   autoCover: true
@@ -66,15 +66,19 @@ languages:
         logoHomeLink: /
     menu:
       main:
-        - identifier: posts
-          name: 글
-          url: /posts/
+        - identifier: weekly
+          name: Weekly
+          url: /weekly/
           weight: 10
-        - identifier: tags
-          name: 태그
-          url: /tags/
+        - identifier: projects
+          name: Projects
+          url: /projects/
           weight: 20
+        - identifier: tags
+          name: Tags
+          url: /tags/
+          weight: 30
         - identifier: github
           name: GitHub
           url: https://github.com/cannonvirus
-          weight: 30
+          weight: 40

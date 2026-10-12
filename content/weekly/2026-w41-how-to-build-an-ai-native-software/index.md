@@ -2,7 +2,7 @@
 title: "Uber의 소프트웨어 팩토리: 에이전트 운영 체계"
 date: 2026-10-12T09:00:00+09:00
 description: "소프트웨어 팩토리는 코딩 에이전트를 새로 만드는 일이 아니라 사 온 에이전트가 돌아갈 실행 환경·도구·규칙·측정 체계를 회사 차원에서 갖추는 일이며, Uber는 이를 여섯 가지 구성 요소로 만들었지만 공개 사례가 모두 플랫폼 팀을 둔 대형 기술 기업이라는 한계가 있다."
-tags: ["에이전트", "코딩 도구", "MLOps", "2026-W41"]
+tags: ["agent", "dev-tools", "infra"]
 source_url: "https://www.theaithinker.com/p/how-to-build-an-ai-native-software"
 source_newsletter: "TLDR AI"
 draft: true

@@ -3,7 +3,7 @@
 사용 예:
     python tools/import_weekly.py D:/coding/VISER/dataset/reports/2026-W41.md
 
-보고서 파일은 읽기만 한다. 결과는 content/posts/<주차>-<이름>/ 아래에 초안으로 쓴다.
+보고서 파일은 읽기만 한다. 결과는 content/weekly/<주차>-<이름>/ 아래에 초안으로 쓴다.
 """
 
 from __future__ import annotations
@@ -189,7 +189,7 @@ def convert_item(week, title, block, report_dir, out_root, photos, unknown):
         f"title: {yaml_str(title)}",
         f"date: {week_date(week).isoformat()}T09:00:00+09:00",
         f"description: {yaml_str(summary)}",
-        "tags: [" + ", ".join(yaml_str(t) for t in [*topics_for(title, text), week]) + "]",
+        "tags: [" + ", ".join(yaml_str(t) for t in topics_for(title, text)) + "]",
         f"source_url: {yaml_str(url)}",
         f"source_newsletter: {yaml_str(newsletter)}",
         "draft: true",
@@ -205,7 +205,7 @@ def convert_item(week, title, block, report_dir, out_root, photos, unknown):
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("report", type=Path, help="VISER 주간 보고서 Markdown 경로")
-    parser.add_argument("--out", type=Path, default=ROOT / "content" / "posts")
+    parser.add_argument("--out", type=Path, default=ROOT / "content" / "weekly")
     parser.add_argument(
         "--photos",
         choices=["omit", "link", "keep"],

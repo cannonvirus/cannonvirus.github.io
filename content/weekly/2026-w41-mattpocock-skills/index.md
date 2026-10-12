@@ -2,7 +2,7 @@
 title: "mattpocock/skills: 코딩 에이전트용 엔지니어링 스킬 저장소"
 date: 2026-10-12T09:00:00+09:00
 description: "코딩 에이전트의 흔한 실패 유형을 질문 세션, 용어집, 테스트 주도 개발, 설계 점검 스킬로 줄이려는 저장소이며, 설계 점검 스킬은 후보를 찾아 줄 뿐 엉킨 코드를 대신 풀어 주지는 않는다."
-tags: ["에이전트", "코딩 도구", "2026-W41"]
+tags: ["dev-tools", "agent"]
 source_url: "https://github.com/mattpocock/skills"
 source_newsletter: "Deep Learning Weekly"
 draft: true
