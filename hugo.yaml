@@ -17,6 +17,7 @@ taxonomies:
 markup:
   goldmark:
     extensions:
+      strikethrough: false # 본문의 범위 표기(91.4~99.6%)가 취소선으로 바뀌지 않게 한다.
       extras:
         mark:
           enable: true # ==문장== 형광 강조
