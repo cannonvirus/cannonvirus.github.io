@@ -2,10 +2,10 @@
 title: "autoresearch: 에이전트 자율 실험 저장소"
 date: 2026-10-12T09:00:00+09:00
 description: "에이전트가 소형 LLM 학습 코드를 스스로 고치고 5분씩 학습해 나아진 변경만 남기는 저장소이며, 학습 시간을 고정했기 때문에 다른 컴퓨터에서 얻은 결과와는 비교할 수 없다."
-tags: ["agent"]
+tags: ["autonomous-research", "model-training"]
 source_url: "https://github.com/karpathy/autoresearch"
 source_newsletter: "Nathan Benaich"
-draft: true
+draft: false
 ---
 
 > 이 글은 아래 원문을 우리말로 간추려 정리한 글입니다. 정확한 내용은 원문을 확인하십시오.
