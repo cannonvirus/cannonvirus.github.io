@@ -1,6 +1,7 @@
 /* 테마 기본값을 덮어쓴다. 테마의 head.html이 이 파일을 마지막에 불러온다. */
 
 :root {
+  color-scheme: dark; /* 브라우저의 강제 다크 모드가 색과 그림을 다시 바꾸지 않게 한다. */
   --font-stack: "Fira Code", "Noto Sans KR", Monaco, Consolas, monospace;
   --line-height: 1.7em; /* 한글 본문은 기본값 1.54em보다 넓어야 읽기 쉽다. */
 }
@@ -58,6 +59,8 @@ kbd {
 }
 
 .post-figure img {
+  color-scheme: dark;
+  forced-color-adjust: none;
   display: block;
   max-width: 100%;
   height: auto;
