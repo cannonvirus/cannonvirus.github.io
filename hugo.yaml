@@ -35,7 +35,7 @@ params:
   fullWidthTheme: false
   centerTheme: true
   autoCover: true
-  readingTime: true
+  readingTime: false
   Toc: true
   TocTitle: 목차
   dateFormat: "2006-01-02"
