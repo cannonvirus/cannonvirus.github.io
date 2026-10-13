@@ -97,6 +97,6 @@ Q-Mask 텍스트 앵커링은 세밀한 글자와 그 글자가 놓인 위치를
 
 - 원문: [huggingface.co/SeerRay-Lab/Xiaomi-OCR-0](https://huggingface.co/SeerRay-Lab/Xiaomi-OCR-0)
 - 원문을 소개한 뉴스레터: The Living Edge
-- 그래프: 원문에 적힌 값으로 새로 그린 그림입니다. 원문에 실린 그림이 아닙니다.
+- 그래프: 원문에 적힌 값으로 직접 그린 그림입니다.
 - 작성 방식: 직접 만든 뉴스 정리 파이프라인(VISER)으로 생성하고 검수한 글입니다. 본문의 수치와 주장은 원문에서 가져온 것입니다.
 - 정리 주차: 2026-W40
