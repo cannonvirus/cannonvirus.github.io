@@ -48,10 +48,10 @@ News 구역의 글은 VISER가 만든다. 이 저장소에서 손으로 고치�
 
 ```powershell
 # VISER 저장소에서 실행한다
-uv run python -m src.tasks.weekly --week 2026-W41 --blog           # 초안을 다시 쓴다 (커밋하지 않는다)
-uv run python -m src.tasks.weekly --week 2026-W41 --blog-publish   # 게시 상태로 바꾸고 커밋·푸시한다
+uv run python monitor.py    # b 주간 보고서 → 주간 페이지에서 실을 글을 체크 → c 블로그에서 y로 게시
 ```
 
-- 주간 `--run`이 끝나면 `content/news/<주차>-<이름>/`에 초안(`draft: true`)이 생긴다.
-- 미리보기로 확인한 뒤 `--blog-publish`로 게시한다. 그 주의 글 폴더만 커밋된다.
+- VISER 주간 보고서 페이지에서 블로그에 실을 글을 체크한다. 체크한 글만 이 저장소에 온다.
+- 모니터의 `c`가 체크한 글을 보여 주고 `y`를 받으면 `content/news/<주차>-<이름>/`에 쓰고 그 폴더만 커밋·푸시한다.
+- 초안 단계는 없다. 체크를 풀어도 게시한 글은 내려가지 않는다.
 - 분야 태그는 VISER가 붙인다. 목록은 VISER의 `src/tasks/blog_tags.py`에 있다.
