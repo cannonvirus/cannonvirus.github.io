@@ -11,6 +11,8 @@ Hugo와 Terminal 테마로 만든 GitHub Pages 블로그입니다.
 
 머리말 항목은 `title`, `date`, `description`, `tags`, `draft`입니다. `description`은 검색 결과에 표시되는 문구입니다.
 
+개발일지(Projects 구역)와 Weekly 구역 글의 작성 기준(내용, 문체, 제목과 문구, 그림)은 비공개 VISER 저장소의 `docs/writing-guide.md`를 정본으로 따릅니다.
+
 ## 미리보기
 
 ```powershell
