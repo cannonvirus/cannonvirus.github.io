@@ -65,7 +65,7 @@ Pocock은 소프트웨어 개발에서 가장 흔한 실패로 서로 원하는 
 
 디버깅에는 `/diagnosing-bugs`를 쓴다. 검증된 디버깅 습관을 정해진 순서로 정리한 스킬이고, 각 단계를 통과해야 다음 단계로 넘어간다. 까다로운 버그와 성능 저하에 쓴다.
 
-![/diagnosing-bugs 진단 순서](photos/e82ec1ec8cfb.gif)
+![/diagnosing-bugs 진단 순서](photos/e82ec1ec8cfb.png)
 
 ## 5. 설계를 지키는 스킬
 
