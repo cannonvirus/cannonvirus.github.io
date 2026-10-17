@@ -1,14 +1,14 @@
 ---
 title: "Just-in-Time Agentic OCR: 2단계 문서 처리 방식"
 date: 2026-09-21T09:00:00+09:00
-description: "Just-in-Time Agentic OCR은 모든 쪽을 모델 없이 훑고 검색으로 찾은 쪽만 VLM으로 읽는 방식이며, 문서 10~100개 규모의 데이터룸에 맞는다"
+description: "Just-in-Time Agentic OCR은 모든 쪽을 모델 없이 훑고 검색으로 찾은 쪽만 VLM으로 읽는 방식이며, 문서 10~100개 규모의 데이터룸에 맞는다."
 tags: ["rag", "vision"]
 week: "2026-W38"
 key_points:
-  - "LiteParse는 공시 문서 84건 12,013쪽을 32초에 훑었다"
-  - "3M 질문에 답하려고 VLM으로 다시 읽은 쪽은 12,013쪽 중 2쪽이었다"
-  - "문서 1,000~100만 개 이상의 오프라인 파이프라인은 처음부터 모든 쪽에 VLM OCR을 돌린다"
-  - "pdftotext와 Opus 5를 쓰는 기본 구성은 비용, 그라운딩, 형식 지원에 한계가 있다"
+  - "LiteParse는 공시 문서 84건 12,013쪽을 32초에 훑었다."
+  - "3M 질문에 답하려고 VLM으로 다시 읽은 쪽은 12,013쪽 중 2쪽이었다."
+  - "문서 1,000~100만 개 이상의 오프라인 파이프라인은 처음부터 모든 쪽에 VLM OCR을 돌린다."
+  - "pdftotext와 Opus 5를 쓰는 기본 구성은 비용, 그라운딩, 형식 지원에 한계가 있다."
 source_url: "https://www.llamaindex.ai/blog/just-in-time-agentic-ocr"
 source_newsletter: "Deep Learning Weekly"
 draft: false
@@ -22,7 +22,7 @@ draft: false
 Claude Cowork나 Codex 같은 에이전트 하네스(harness)는 사용자가 올린 문서 수십 개로 업무 질문에 답할 때 문서를 두 번 나눠 읽는다. 하네스는 먼저 모든 파일에서 글자만 값싸게 뽑아 검색하고, 답에 필요한 쪽을 찾으면 그 쪽만 시각 언어 모델(VLM, Vision Language Model)로 다시 정밀하게 읽는다. LlamaIndex는 이 방식에 [Just-in-Time Agentic OCR](https://www.llamaindex.ai/blog/just-in-time-agentic-ocr)이라는 이름을 붙였다. 사용자가 파일과 질문을 넣으면 에이전트가 필요한 몇 쪽의 표와 차트만 구조화된 텍스트로 바꿔 답을 찾는 문서 처리 방식이다.
 
 ```요약
-요약: Just-in-Time Agentic OCR은 모든 쪽을 모델 없이 훑고 검색으로 찾은 쪽만 VLM으로 읽는 방식이며, 문서 10~100개 규모의 데이터룸에 맞는다
+요약: Just-in-Time Agentic OCR은 모든 쪽을 모델 없이 훑고 검색으로 찾은 쪽만 VLM으로 읽는 방식이며, 문서 10~100개 규모의 데이터룸에 맞는다.
 ```
 
 ```용어
