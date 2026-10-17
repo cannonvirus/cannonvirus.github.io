@@ -1,6 +1,7 @@
 {{- /* 보고서형 글. 머리말 `layout: report`나 hugo.yaml의 cascade로 고른다.
 
-       구성: 문서 머리(분류·제목·문서 정보) → 요약(한 문장 + 핵심 3~5줄) → 목차 → 본문(절 번호, 그림·표 번호) → 출처.
+       구성: 문서 머리(분류·제목·문서 정보) → [왼쪽 목차·진행률 | 요약(한 문장 + 핵심 3~5줄) → 본문(절 번호, 그림·표 번호) → 출처].
+       - 목차는 넓은 화면에서 왼쪽 칸(post-rail), 좁은 화면과 인쇄에서 요약 아래(toc-inline)에 보인다.
        - 핵심 줄: 머리말 key_points가 있으면 그 값, 없으면 본문의 ==강조== 문장을 순서대로 최대 5개 쓴다.
        - 본문의 ```요약 상자는 요약 구역과 같은 문장이라 이 형식에서는 숨긴다(CSS .report .box-summary).
        - 그림 번호와 표 번호는 render-image.html·render-table.html이 이 형식일 때만 붙인다.
@@ -9,8 +10,9 @@
 {{ $week := "" }}
 {{ if eq .Section "news" }}{{ $week = partial "week-of.html" . }}{{ end }}
 {{ $content := .Content }}
-{{ $content = $content | replaceRE `(<h[23] id="[^"]+">)(\d+(?:\.\d+)*)\.\s*` `${1}<span class="sec-no">${2}.</span> ` }}
-<article class="post report">
+{{ $content = $content | replaceRE `(<h[23] id="[^"]+">)(\d+(?:\.\d+)*\.?)\s+` `${1}<span class="sec-no">${2}</span> ` }}
+<div id="top-progress" aria-hidden="true"></div>
+<article class="post report has-rail">
   <header class="report-head">
     <div class="report-kicker">
       {{- if eq .Section "news" }}News · 주간 기술 정리{{ with $week }} {{ . }}{{ end }}
@@ -19,6 +21,7 @@
     <h1 class="report-title">{{ .Title | markdownify }}</h1>
     <dl class="report-meta">
       <div><dt>작성일</dt><dd>{{ partial "post-date" . }}</dd></div>
+      <div><dt>읽는 시간</dt><dd>약 {{ .ReadingTime }}분</dd></div>
       {{ with $week }}<div><dt>정리 주차</dt><dd>{{ . }}</dd></div>{{ end }}
       {{ with .GetTerms "series" }}<div><dt>연재</dt><dd>{{ range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</dd></div>{{ end }}
       {{ with .GetTerms "tags" }}<div><dt>분야</dt><dd>{{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ $t.RelPermalink }}">{{ $t.LinkTitle }}</a>{{ end }}</dd></div>{{ end }}
@@ -32,6 +35,9 @@
     {{ $points = slice }}
     {{ range first 5 (findRE `<mark>[\s\S]*?</mark>` $content) }}{{ $points = $points | append (plainify .) }}{{ end }}
   {{ end }}
+  <div class="post-layout">
+  {{ partial "post-rail.html" . }}
+  <div class="post-main">
   <section class="report-summary" aria-label="요약">
     <div class="box-label">요약</div>
     {{ with .Description }}<p class="report-summary__lead">{{ . }}</p>{{ end }}
@@ -42,14 +48,9 @@
     {{ end }}
   </section>
 
-  {{ with .TableOfContents }}
-  <nav class="report-toc" aria-label="목차">
-    <div class="box-label">목차</div>
-    {{ . | replaceRE `(<a href="#[^"]+">)(\d+(?:\.\d+)*)\.\s*` `${1}<span class="sec-no">${2}.</span> ` | safeHTML }}
-  </nav>
-  {{ end }}
+  {{ partial "toc-inline.html" . }}
 
-  <div class="post-content report-body">
+  <div class="post-content post-body report-body">
     {{ $content | safeHTML }}
 
     {{- /* 그림 출처 목록. 같은 출처는 한 줄로 묶는다. */ -}}
@@ -73,5 +74,7 @@
 
   {{ partial "series-nav.html" . }}
   {{ partial "posts_pagination.html" . }}
+  </div>
+  </div>
 </article>
 {{ end }}

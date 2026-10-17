@@ -2,7 +2,7 @@
 
 :root {
   color-scheme: dark; /* 브라우저의 강제 다크 모드가 색과 그림을 다시 바꾸지 않게 한다. */
-  --font-stack: "Fira Code", "Noto Sans KR", Monaco, Consolas, monospace;
+  --font-stack: "Fira Code", "Nanum Gothic Coding", "Noto Sans KR", Monaco, Consolas, monospace;
   --line-height: 1.7em; /* 한글 본문은 기본값 1.54em보다 넓어야 읽기 쉽다. */
 }
 
@@ -89,7 +89,7 @@ mark {
 
 /* 목차 안의 코드 표기는 상자 없이 주변 글자와 같게 보인다. */
 .table-of-contents code,
-.report-toc code {
+.toc-inline code {
   background: none;
   border: 0;
   padding: 0;
@@ -100,10 +100,11 @@ mark {
 
 /* ===== 2026-10-17 레이아웃 개편 (design/layout-tags-20261017) ===== */
 
-/* 본문 글꼴. 긴 한글 문단은 고정폭 글꼴보다 비례 글꼴이 읽기 쉽다.
-   제목·메뉴·날짜·코드는 테마의 고정폭 글꼴을 그대로 쓴다. */
+/* 글꼴 구분. 긴 한글 문단은 고정폭 글꼴보다 비례 글꼴이 읽기 쉽다.
+   - 본문·글 제목: Pretendard(--body-font)
+   - 메뉴·날짜·목차·절 제목·코드: 고정폭(--font-stack, 영문 Fira Code + 한글 Nanum Gothic Coding) */
 :root {
-  --body-font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --body-font: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --muted: color-mix(in srgb, var(--foreground) 65%, transparent);
   --rule: color-mix(in srgb, var(--foreground) 18%, transparent);
   --panel: color-mix(in srgb, var(--foreground) 5%, var(--background));
@@ -336,7 +337,7 @@ mark {
 .report-meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
 
 .report-summary,
-.report-toc,
+.toc-inline,
 .report-sources {
   margin: 0 0 24px;
   padding: 16px 20px;
@@ -374,17 +375,17 @@ mark {
   border: 0.2em solid var(--accent); /* 배경색은 인쇄에서 빠지므로 테두리로 그린다. */
 }
 
-.report-toc { margin-bottom: 36px; }
-.report-toc ul { margin: 0; padding: 0; list-style: none; }
-.report-toc ul ul { padding-left: 2.4em; }
-.report-toc li { margin: 3px 0; }
-.report-toc li::before { content: none !important; }
-.report-toc a { text-decoration: none; }
-.report-toc a:hover { text-decoration: underline; }
+.toc-inline { margin-bottom: 36px; }
+.toc-inline ul { margin: 0; padding: 0; list-style: none; }
+.toc-inline ul ul { padding-left: 2.4em; }
+.toc-inline li { margin: 3px 0; }
+.toc-inline li::before { content: none !important; }
+.toc-inline a { text-decoration: none; }
+.toc-inline a:hover { text-decoration: underline; }
 
 .sec-no {
   display: inline-block;
-  min-width: 1.6em;
+  margin-right: 0.45em;
   color: var(--accent);
 }
 
@@ -425,8 +426,137 @@ mark {
 @media (max-width: 684px) {
   .report-meta { grid-template-columns: 1fr; }
   .report-title { font-size: calc(var(--font-size) * 1.35); }
-  .report-summary, .report-toc, .report-sources { padding: 14px; }
+  .report-summary, .toc-inline, .report-sources { padding: 14px; }
 }
+
+/* ===== 글 화면: 옆 목차·진행률·글꼴 구분 =====
+   claude.dev 블로그 글(2026-10-17 사용자 지정 레퍼런스)의 구조를 참고했다. 색·글꼴·코드는 이 블로그의 것이다.
+   - 1,100px 이상: 글 머리 아래를 [목차 240px | 본문 760px 이하] 두 칸으로 나누고 목차를 화면에 고정한다
+   - 1,100px 미만: 목차는 본문 위 상자(toc-inline), 진행률은 화면 맨 위 2px 선(#top-progress)이다 */
+
+.rail { display: none; }
+#top-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+}
+
+.post-head .post-title {
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: calc(var(--font-size) * 1.75);
+  line-height: 1.4;
+}
+
+.post-head {
+  padding-bottom: 6px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.post-reading-time { color: var(--muted); }
+
+@media (min-width: 1100px) {
+  .container:has(.has-rail) { max-width: 1180px; }
+  .has-rail > .post-head,
+  .has-rail > .report-head {
+    padding-left: calc(240px + 56px);
+  }
+  .has-rail > .post-head > *,
+  .has-rail > .report-head > * { max-width: 760px; }
+  .post-layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 760px);
+    gap: 56px;
+    align-items: start;
+  }
+  .rail {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 28px;
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+    font-family: var(--font-stack);
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+  .toc-inline { display: none; }
+  #top-progress { display: none; }
+}
+
+.rail__label {
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+.rail__tree ul { list-style: none; margin: 0; padding: 0; }
+.post .rail__tree li:not(:empty)::before { content: none; }
+.rail__tree li { margin: 0; padding: 0; }
+.rail__tree a {
+  display: block;
+  padding: 3px 0 3px 1.4em;
+  text-indent: -1.4em;
+  color: var(--muted);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rail__tree a:hover { color: var(--foreground); }
+.rail__tree a.on { color: var(--accent); }
+.rail__tree .br { display: inline-block; width: 1.4em; text-indent: 0; color: color-mix(in srgb, var(--foreground) 35%, transparent); }
+.rail__tree a.on .br { color: var(--accent); }
+
+/* 하위 절(###)은 지금 읽는 절의 항목만 펼친다. */
+.rail__tree li > ul { display: none; padding-left: 1.4em; }
+.rail__tree li.open > ul { display: block; }
+
+.rail__progress {
+  margin-top: 22px;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--foreground) 30%, transparent);
+  overflow: hidden;
+}
+.rail__progress b { color: var(--accent); font-weight: 400; }
+.rail__pct { color: var(--foreground); margin-left: 8px; }
+.rail__time { margin-top: 6px; color: var(--muted); }
+
+/* 절 제목은 고정폭 글꼴로 작게 두고, 본문은 비례 글꼴로 둔다. */
+.post-body h2,
+.post-body h3 {
+  font-family: var(--font-stack);
+  letter-spacing: 0.01em;
+}
+.post-body h2 { font-size: 1.12rem; margin-top: 48px; }
+.post-body h3 { font-size: 1rem; }
+
+/* 인라인 코드 칩: 파일 이름·명령. 테두리와 옅은 바탕으로 본문과 구분한다. */
+.post-body :not(pre) > code {
+  font-size: 0.88em;
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--foreground) 16%, transparent);
+  border-radius: 0;
+  padding: 1px 5px;
+  margin: 0 1px;
+}
+
+/* 목록 항목이 코드 칩으로 시작하면 칩을 항목의 이름표로 쓴다(예: "`CLAUDE.md` 프로젝트 설명"). */
+.post-body li > code:first-child { color: var(--accent); }
+
+/* 리드 문장: 문단 첫머리의 굵은 문장. 뒤의 설명보다 밝게 둔다. */
+.post-body p > strong:first-child {
+  color: var(--foreground);
+  font-weight: 700;
+}
+.post-body p { color: color-mix(in srgb, var(--foreground) 88%, transparent); }
 
 /* ===== 인쇄 =====
    테마는 인쇄 색을 따로 두지 않아 브라우저 기본값(배경 그래픽 끔)으로 찍으면 흰 종이에 밝은 글자가 나온다. */
@@ -443,11 +573,14 @@ mark {
   @page { margin: 16mm 15mm; }
   body { background: #fff; color: #111; }
   .container { padding: 0; max-width: none; }
-  .footer, .pagination, .series-nav, .hanchor, .read-more { display: none !important; }
+  .footer, .pagination, .series-nav, .hanchor, .read-more, .rail, #top-progress { display: none !important; }
+  .toc-inline { display: block !important; }
+  .has-rail > .post-head, .has-rail > .report-head { padding-left: 0 !important; }
+  .post-layout { display: block !important; }
   a { color: inherit; text-decoration: none; }
   .post-content p, .post-content li { font-size: 10.5pt; line-height: 1.7; }
   h2, h3 { break-after: avoid; }
-  figure, .table-figure, .box, .report-summary, .report-toc, blockquote { break-inside: avoid; }
+  figure, .table-figure, .box, .report-summary, .toc-inline, blockquote { break-inside: avoid; }
   .post-figure img { max-height: 120mm; width: auto; }
   .report .post-content h2 { margin-top: 28px; }
 }

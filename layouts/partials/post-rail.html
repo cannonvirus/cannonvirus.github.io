@@ -1,0 +1,12 @@
+{{- /* 글 옆 목차(TREE)와 읽기 진행률. 넓은 화면(1,100px 이상)에서만 글 왼쪽에 고정해 보인다.
+       - 목차: 본문 ##·### 제목. 하위 절(###)은 읽는 위치가 그 절 안일 때만 펼친다
+       - 진행률: 글자 막대(▓░)와 백분율. static/reading.js가 스크롤에 맞춰 채운다. 스크립트가 없으면 0%로 남는다
+       - 읽는 시간: Hugo의 ReadingTime(한글은 글자 500자를 1분으로 센다)
+       구조와 동작 원리는 claude.dev 블로그 글의 옆 목차를 참고했고, 코드와 디자인은 새로 작성했다. */ -}}
+{{- $toc := .TableOfContents | replaceRE `(<a href="#[^"]+">)` `${1}<span class="br">└</span>` -}}
+<aside class="rail" aria-label="글 목차">
+  <div class="rail__label">목차</div>
+  <div class="rail__tree" id="rail-tree">{{ $toc | safeHTML }}</div>
+  <div class="rail__progress" id="rail-progress" aria-hidden="true"><b></b><span class="rail__rest">░░░░░░░░░░░░░░░░░░░░</span><span class="rail__pct">0%</span></div>
+  <div class="rail__time">읽는 시간 약 {{ .ReadingTime }}분</div>
+</aside>
