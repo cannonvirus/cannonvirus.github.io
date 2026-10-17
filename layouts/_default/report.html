@@ -1,10 +1,11 @@
 {{- /* 보고서형 글. 머리말 `layout: report`나 hugo.yaml의 cascade로 고른다.
 
-       구성: 문서 머리(분류·제목·문서 정보) → [왼쪽 목차·진행률 | 요약(한 문장 + 핵심 3~5줄) → 본문(절 번호, 그림·표 번호) → 출처].
+       구성: 문서 머리(분류·제목·문서 정보) → [왼쪽 목차·진행률 | 요약(한 문장) → 본문(절 번호, 그림·표 번호) → 출처].
        - 목차는 넓은 화면에서 왼쪽 칸(post-rail), 좁은 화면과 인쇄에서 요약 아래(toc-inline)에 보인다.
-       - 요약 구역은 머리말 key_points(핵심 3~5줄)가 있을 때만 둔다. 이때 본문의 ```요약 상자는 같은 문장이라 숨긴다
-         (CSS .report--points .box-summary). key_points가 없으면 요약 구역을 두지 않고 본문의 요약 상자를 그대로 보인다.
-         key_points를 만드는 방법은 아직 정하지 않았다(2026-10-17).
+       - 요약 구역은 머리말 description(보고서의 `요약:` 한 문장)이 있을 때 둔다. 이때 본문의 ```요약 상자는 같은 문장이라
+         숨긴다(CSS .report--points .box-summary). description이 없으면 본문의 요약 상자를 그대로 보인다.
+         핵심 3~5줄(key_points)은 2026-10-17 사용자 결정으로 뺐다. 요약 한 문장·도입·굵은 리드 문장과 내용이 겹치고,
+         요약 상자 안에 핵심이 있는 모양이 어색했다. 이미 게시한 글의 머리말에 남은 key_points는 읽지 않는다.
        - News 글 첫머리의 원문 안내 인용("이 글은 아래 원문을…")은 문서 정보 칸의 원문·원문 소개와 같은 내용이라 뺀다
          (2026-10-17 사용자 결정). 글 끝 "출처와 작성 방식" 절에도 원문이 있다.
        - 그림 번호와 표 번호는 render-image.html·render-table.html이 이 형식일 때만 붙인다.
@@ -17,7 +18,7 @@
 {{ if eq .Section "news" }}
   {{ $content = replaceRE `^\s*<blockquote>\s*<p>이 글은 아래 원문을[\s\S]*?</blockquote>\s*` "" $content 1 }}
 {{ end }}
-{{ $points := .Params.key_points }}
+{{ $points := .Description }}
 <div id="top-progress" aria-hidden="true"></div>
 <article class="post report has-rail{{ with $points }} report--points{{ end }}">
   <header class="report-head">
@@ -42,10 +43,7 @@
   {{ with $points }}
   <section class="report-summary" aria-label="요약">
     <div class="box-label">요약</div>
-    {{ with $.Description }}<p class="report-summary__lead">{{ . }}</p>{{ end }}
-    <ul class="report-summary__points">
-      {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
-    </ul>
+    <p class="report-summary__lead">{{ . }}</p>
   </section>
   {{ end }}
 
