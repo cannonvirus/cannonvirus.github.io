@@ -28,7 +28,6 @@
     <h1 class="report-title">{{ .Title | markdownify }}</h1>
     <dl class="report-meta">
       <div><dt>작성일</dt><dd>{{ partial "post-date" . }}</dd></div>
-      <div><dt>읽는 시간</dt><dd>약 {{ .ReadingTime }}분</dd></div>
       {{ with $week }}<div><dt>정리 주차</dt><dd>{{ . }}</dd></div>{{ end }}
       {{ with .GetTerms "series" }}<div><dt>연재</dt><dd>{{ range . }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</dd></div>{{ end }}
       {{ with .GetTerms "tags" }}<div><dt>분야</dt><dd>{{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ $t.RelPermalink }}">{{ $t.LinkTitle }}</a>{{ end }}</dd></div>{{ end }}
