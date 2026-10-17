@@ -2,7 +2,7 @@
 
 :root {
   color-scheme: dark; /* 브라우저의 강제 다크 모드가 색과 그림을 다시 바꾸지 않게 한다. */
-  --font-stack: "Fira Code", "Noto Sans KR", Monaco, Consolas, monospace;
+  --font-stack: "Fira Code", "Nanum Gothic Coding", "Noto Sans KR", Monaco, Consolas, monospace;
   --line-height: 1.7em; /* 한글 본문은 기본값 1.54em보다 넓어야 읽기 쉽다. */
 }
 
@@ -10,6 +10,14 @@ body {
   font-family: var(--font-stack);
   word-break: keep-all; /* 한글 낱말 중간에서 줄이 바뀌지 않게 한다. */
   overflow-wrap: anywhere;
+}
+
+/* 테마가 모든 요소에 word-break: break-word를 직접 지정해 위의 keep-all이 상속되지 않았다.
+   390px 화면에서 "올라 / 가는"처럼 낱말 중간에서 줄이 바뀌었다(2026-10-17 캡처). */
+*,
+*::before,
+*::after {
+  word-break: keep-all;
 }
 
 code,
@@ -80,11 +88,504 @@ mark {
 }
 
 /* 목차 안의 코드 표기는 상자 없이 주변 글자와 같게 보인다. */
-.table-of-contents code {
+.table-of-contents code,
+.toc-inline code {
   background: none;
   border: 0;
   padding: 0;
   margin: 0;
   font-size: inherit;
   color: inherit;
+}
+
+/* ===== 2026-10-17 레이아웃 개편 (design/layout-tags-20261017) ===== */
+
+/* 글꼴 구분. 긴 한글 문단은 고정폭 글꼴보다 비례 글꼴이 읽기 쉽다.
+   - 본문·글 제목: Pretendard(--body-font)
+   - 메뉴·날짜·목차·절 제목·코드: 고정폭(--font-stack, 영문 Fira Code + 한글 Nanum Gothic Coding) */
+:root {
+  --body-font: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --muted: color-mix(in srgb, var(--foreground) 65%, transparent);
+  --rule: color-mix(in srgb, var(--foreground) 18%, transparent);
+  --panel: color-mix(in srgb, var(--foreground) 5%, var(--background));
+}
+
+.post-content p,
+.post-content li,
+.post-content dd,
+.post-content blockquote,
+.post-content figcaption,
+.post-content td,
+.post-content th,
+.box,
+.on-list .post-content,
+.term-description,
+.term-list__desc,
+.index-content,
+.week-group__desc,
+.report-summary,
+.report-meta dd {
+  font-family: var(--body-font);
+}
+
+.post-content p,
+.post-content li {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+/* 좁은 화면에서도 메뉴 4개를 한 줄로 보인다. 테마는 684px 이하에서 "Menu ▾" 펼침 단추로 바꾼다. */
+@media (max-width: 684px) {
+  .container { padding: 20px 16px; }
+  .menu--desktop { display: flex; flex-direction: row; flex-wrap: wrap; gap: 4px 14px; }
+  .navigation-menu__inner li { padding: 0; }
+  .menu--mobile { display: none; }
+}
+
+/* 분야·연재 표시 */
+.post-terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin: 0 0 20px;
+  font-size: 0.9rem;
+}
+
+.term {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+.term--series {
+  border: 1px solid var(--accent);
+  padding: 0 6px;
+}
+
+.term-count {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.term-description {
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.terms .term-list {
+  margin: 20px 0 40px;
+  padding: 0;
+}
+
+.terms .term-list li {
+  display: grid;
+  grid-template-columns: minmax(10rem, max-content) 4rem 1fr;
+  gap: 4px 16px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.terms .term-list li:not(:empty)::before { content: none; }
+
+.term-list__count { color: var(--muted); font-size: 0.9rem; }
+.term-list__desc { color: var(--muted); font-size: 0.92rem; }
+
+@media (max-width: 684px) {
+  .terms .term-list li { grid-template-columns: 1fr auto; }
+  .term-list__desc { grid-column: 1 / -1; }
+}
+
+/* 주차별·연재별 목록과 첫 화면 */
+.week-group,
+.series-group,
+.home-block {
+  margin: 10px 0 40px;
+}
+
+.week-group__title,
+.series-group__title,
+.home-block__title {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.series-group__title a,
+.home-block__title a { text-decoration: none; }
+
+.week-group__list,
+.home-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.week-group__list > li,
+.home-list > li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.week-group__list > li::before,
+.home-list > li::before { content: none !important; }
+
+.week-group__link { font-weight: 700; }
+.week-group__list .post-terms { margin: 6px 0 0; }
+.home-list .post-terms { display: inline-flex; margin: 0 0 0 6px; }
+
+.week-group__desc {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.series-group__list {
+  margin: 0;
+  padding-left: 2.2em;
+}
+
+.series-group__list li { padding: 5px 0; }
+.series-group__date { color: var(--muted); font-size: 0.85rem; margin-left: 6px; }
+.home-list__series { font-weight: 700; }
+
+/* 연재 목록 (글 끝) */
+.series-nav {
+  margin: 50px 0 0;
+  padding: 16px 20px;
+  border: 1px solid var(--rule);
+  background: var(--panel);
+}
+
+.series-nav__title { font-weight: 700; margin-bottom: 8px; }
+.series-nav ol { margin: 0; padding-left: 1.8em; }
+.series-nav li { padding: 2px 0; }
+.series-nav .is-current { color: var(--accent); font-weight: 700; }
+
+/* 표 */
+.table-figure { margin: 25px 0; width: 100%; }
+
+.table-figure figcaption {
+  background: none;
+  color: var(--foreground);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.table-scroll { overflow-x: auto; }
+
+.post-content table {
+  width: 100%;
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid var(--rule);
+  padding: 8px 12px;
+  line-height: 1.6;
+  vertical-align: top;
+}
+
+.post-content th {
+  background: var(--panel);
+  text-transform: none;
+  border-bottom: 2px solid color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+/* ===== 보고서형 (layout: report) ===== */
+
+.report-head {
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.report-kicker {
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.report-title {
+  font-family: var(--body-font);
+  font-weight: 700;
+  color: var(--foreground);
+  font-size: calc(var(--font-size) * 1.6);
+  line-height: 1.4;
+  margin: 0 0 18px;
+}
+
+.report-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 24px;
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.report-meta > div { display: flex; gap: 10px; min-width: 0; }
+.report-meta dt { color: var(--muted); flex: 0 0 5.5em; font-weight: 400; font-family: var(--body-font); }
+.report-meta dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+
+.report-summary,
+.toc-inline,
+.report-sources {
+  margin: 0 0 24px;
+  padding: 16px 20px;
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.report-summary { border-left-width: 4px; background: var(--panel); }
+
+.report-summary__lead {
+  margin: 0 0 10px;
+  font-weight: 700;
+  line-height: 1.75;
+}
+
+.report-summary__points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.report-summary__points li {
+  position: relative;
+  padding-left: 1.2em;
+  margin: 4px 0;
+  line-height: 1.7;
+}
+
+.post .report-summary__points li:not(:empty)::before {
+  content: "";
+  position: absolute;
+  left: 0.15em;
+  top: 0.7em;
+  width: 0;
+  height: 0;
+  border: 0.2em solid var(--accent); /* 배경색은 인쇄에서 빠지므로 테두리로 그린다. */
+}
+
+.toc-inline { margin-bottom: 36px; }
+.toc-inline ul { margin: 0; padding: 0; list-style: none; }
+.toc-inline ul ul { padding-left: 2.4em; }
+.toc-inline li { margin: 3px 0; }
+.toc-inline li::before { content: none !important; }
+.toc-inline a { text-decoration: none; }
+.toc-inline a:hover { text-decoration: underline; }
+
+.sec-no {
+  display: inline-block;
+  margin-right: 0.45em;
+  color: var(--accent);
+}
+
+.report .post-content h2 {
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+
+/* key_points가 있어 요약 구역을 둔 글은 본문의 요약 상자가 같은 문장이다. */
+.report--points .box-summary { display: none; }
+
+.report .post-figure figcaption {
+  font-family: var(--body-font);
+  color: var(--foreground);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.fig-no { font-weight: 700; color: var(--accent); }
+
+.fig-source {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* 출처 절과 그림 출처 목록은 본문보다 작게 둔다. */
+.report .post-content h2[id^="출처"] ~ * { font-size: 0.92rem; }
+.report .post-content h2[id^="출처"] { font-size: 1.05rem; }
+.report .post-content h2[id^="출처"] ~ ul li { font-size: 0.92rem; line-height: 1.7; }
+
+.report-sources { margin-top: 24px; }
+.report-sources ul { margin: 0; padding-left: 20px; }
+.report-sources li { font-size: 0.88rem !important; line-height: 1.7; }
+
+@media (max-width: 684px) {
+  .report-meta { grid-template-columns: 1fr; }
+  .report-title { font-size: calc(var(--font-size) * 1.35); }
+  .report-summary, .toc-inline, .report-sources { padding: 14px; }
+}
+
+/* ===== 글 화면: 옆 목차·진행률·글꼴 구분 =====
+   claude.dev 블로그 글(2026-10-17 사용자 지정 레퍼런스)의 구조를 참고했다. 색·글꼴·코드는 이 블로그의 것이다.
+   - 1,100px 이상: 글 머리 아래를 [목차 240px | 본문 760px 이하] 두 칸으로 나누고 목차를 화면에 고정한다
+   - 1,100px 미만: 목차는 본문 위 상자(toc-inline), 진행률은 화면 맨 위 2px 선(#top-progress)이다 */
+
+.rail { display: none; }
+#top-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+}
+
+.post-head .post-title {
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: calc(var(--font-size) * 1.75);
+  line-height: 1.4;
+}
+
+.post-head {
+  padding-bottom: 6px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.post-reading-time { color: var(--muted); }
+
+@media (min-width: 1100px) {
+  .container:has(.has-rail) { max-width: 1180px; }
+  .has-rail > .post-head,
+  .has-rail > .report-head {
+    padding-left: calc(240px + 56px);
+  }
+  .has-rail > .post-head > *,
+  .has-rail > .report-head > * { max-width: 760px; }
+  .post-layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 760px);
+    gap: 56px;
+    align-items: start;
+  }
+  .rail {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 28px;
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+    font-family: var(--font-stack);
+    font-size: 0.8rem;
+    line-height: 1.55;
+  }
+  .toc-inline { display: none; }
+  #top-progress { display: none; }
+}
+
+.rail__label {
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+.rail__tree ul { list-style: none; margin: 0; padding: 0; }
+.post .rail__tree li:not(:empty)::before { content: none; }
+.rail__tree li { margin: 0; padding: 0; }
+.rail__tree a {
+  display: block;
+  padding: 3px 0 3px 1.4em;
+  text-indent: -1.4em;
+  color: var(--muted);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.rail__tree a:hover { color: var(--foreground); }
+.rail__tree a.on { color: var(--accent); }
+.rail__tree .br { display: inline-block; width: 1.4em; text-indent: 0; color: color-mix(in srgb, var(--foreground) 35%, transparent); }
+.rail__tree a.on .br { color: var(--accent); }
+
+/* 하위 절(###)은 지금 읽는 절의 항목만 펼친다. */
+.rail__tree li > ul { display: none; padding-left: 1.4em; }
+.rail__tree li.open > ul { display: block; }
+
+.rail__progress {
+  margin-top: 22px;
+  white-space: nowrap;
+  color: color-mix(in srgb, var(--foreground) 30%, transparent);
+  overflow: hidden;
+}
+.rail__progress b { color: var(--accent); font-weight: 400; }
+.rail__pct { color: var(--foreground); margin-left: 8px; }
+.rail__time { margin-top: 6px; color: var(--muted); }
+
+/* 절 제목은 고정폭 글꼴로 작게 두고, 본문은 비례 글꼴로 둔다. */
+.post-body h2,
+.post-body h3 {
+  font-family: var(--font-stack);
+  letter-spacing: 0.01em;
+}
+.post-body h2 { font-size: 1.12rem; margin-top: 48px; }
+.post-body h3 { font-size: 1rem; }
+
+/* 인라인 코드 칩: 파일 이름·명령. 테두리와 옅은 바탕으로 본문과 구분한다. */
+.post-body :not(pre) > code {
+  font-size: 0.88em;
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 7%, transparent);
+  border: 1px solid color-mix(in srgb, var(--foreground) 16%, transparent);
+  border-radius: 0;
+  padding: 1px 5px;
+  margin: 0 1px;
+}
+
+/* 목록 항목이 코드 칩으로 시작하면 칩을 항목의 이름표로 쓴다(예: "`CLAUDE.md` 프로젝트 설명"). */
+.post-body li > code:first-child { color: var(--accent); }
+
+/* 리드 문장: 문단·목록 항목 첫머리의 굵은 문장(**문장**). 뒤의 설명보다 밝게 둔다.
+   사용 규칙: 병렬 요점 문단에만, 한 절에 3개까지(2026-10-17 사용자 결정). */
+.post-body p > strong:first-child,
+.post-body li > strong:first-child {
+  color: var(--foreground);
+  font-weight: 700;
+}
+.post-body p,
+.post-body li { color: color-mix(in srgb, var(--foreground) 88%, transparent); }
+
+/* ===== 인쇄 =====
+   테마는 인쇄 색을 따로 두지 않아 브라우저 기본값(배경 그래픽 끔)으로 찍으면 흰 종이에 밝은 글자가 나온다. */
+@media print {
+  :root {
+    --background: #ffffff;
+    --foreground: #111111;
+    --accent: #6b4f00;
+    --muted: #555555;
+    --rule: #bbbbbb;
+    --panel: #f4f4f4;
+    color-scheme: light;
+  }
+  @page { margin: 16mm 15mm; }
+  body { background: #fff; color: #111; }
+  .container { padding: 0; max-width: none; }
+  .footer, .pagination, .series-nav, .hanchor, .read-more, .rail, #top-progress { display: none !important; }
+  .toc-inline { display: block !important; }
+  .has-rail > .post-head, .has-rail > .report-head { padding-left: 0 !important; }
+  .post-layout { display: block !important; }
+  a { color: inherit; text-decoration: none; }
+  .post-content p, .post-content li { font-size: 10.5pt; line-height: 1.7; }
+  h2, h3 { break-after: avoid; }
+  figure, .table-figure, .box, .report-summary, .toc-inline, blockquote { break-inside: avoid; }
+  .post-figure img { max-height: 120mm; width: auto; }
+  .report .post-content h2 { margin-top: 28px; }
 }

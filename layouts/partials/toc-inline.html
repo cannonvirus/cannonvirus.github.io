@@ -1,0 +1,7 @@
+{{- /* 본문 위 목차. 옆 목차(post-rail)가 보이지 않는 좁은 화면과 인쇄에서만 보인다. 절 번호는 강조색으로 분리한다. */ -}}
+{{ with .TableOfContents }}
+<nav class="toc-inline" aria-label="목차">
+  <div class="box-label">목차</div>
+  {{ . | replaceRE `(<a href="#[^"]+">)(\d+(?:\.\d+)*\.?)\s+` `${1}<span class="sec-no">${2}</span> ` | safeHTML }}
+</nav>
+{{ end }}

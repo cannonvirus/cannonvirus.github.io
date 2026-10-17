@@ -1,0 +1,33 @@
+{{- /* Projects 목록. 연재별로 묶고 연재 안에서는 번호 순서(작성일 순)로 둔다. 최근에 글이 올라온 연재가 위다.
+       구역 페이지의 type이 posts라 layouts/projects/list.html로는 고를 수 없다. _default/list.html이 이 부분 템플릿을 부른다. */ -}}
+  {{ with .Content }}<div class="index-content">{{ . }}</div>{{ end }}
+  {{ $series := slice }}
+  {{ $names := slice }}
+  {{ range .Pages.ByDate.Reverse }}
+    {{ range .GetTerms "series" }}
+      {{ if not (in $names .Path) }}{{ $names = $names | append .Path }}{{ $series = $series | append . }}{{ end }}
+    {{ end }}
+  {{ end }}
+  {{ range $series }}
+    <section class="series-group">
+      <h2 class="series-group__title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> <span class="term-count">{{ len .Pages }}편</span></h2>
+      {{ with .Description }}<p class="term-description">{{ . }}</p>{{ end }}
+      <ol class="series-group__list">
+        {{ range .Pages.ByDate }}
+          <li>
+            <a href="{{ .RelPermalink }}">{{ .Title | replaceRE `^.+ 개발 (#\d+):\s*` "$1 " }}</a>
+            <time class="series-group__date">{{ partial "post-date" . }}</time>
+          </li>
+        {{ end }}
+      </ol>
+    </section>
+  {{ end }}
+
+  {{- /* 연재에 속하지 않은 글. 연재 태그를 붙이기 전의 글도 여기에 보여 목록에서 빠지지 않게 한다. */ -}}
+  {{ $loose := slice }}
+  {{ range .Pages.ByDate.Reverse }}{{ if not (.GetTerms "series") }}{{ $loose = $loose | append . }}{{ end }}{{ end }}
+  {{ with $loose }}
+    <div class="posts">
+      {{ range . }}{{ partial "post-card.html" . }}{{ end }}
+    </div>
+  {{ end }}

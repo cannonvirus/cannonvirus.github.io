@@ -2,7 +2,7 @@
 title: "claude-api 스킬의 평가 설계·개선 명령"
 date: 2026-10-05T09:00:00+09:00
 description: "평가를 만드는 build-eval과 그 평가로 앱을 한 단계씩 고치는 hillclimb 명령이며, Anthropic 사내 고객 지원 벤치마크에서는 모델을 Opus 4.8에서 Sonnet 5로 낮추고 프롬프트를 고쳐 탐색용 티켓 30건의 정확도를 높이면서 비용을 줄였다."
-tags: ["agent-skills", "agent-eval"]
+tags: ["coding-agents", "agents"]
 source_url: "https://claude.dev/blog/automating-eval-design-and-hillclimbing/"
 source_newsletter: "TLDR AI"
 draft: false

@@ -1,6 +1,19 @@
 {{- /* 그림 아래 설명은 제목(`![대체 문구](경로 "설명")`)을 적은 그림에만 붙인다.
-       그래프는 그림 안에 제목이 있어 설명을 적지 않는다. */ -}}
-<figure class="post-figure">
+       그래프는 그림 안에 제목이 있어 설명을 적지 않는다.
+
+       보고서형(layout: report)에서는 모든 그림에 "그림 N." 캡션을 붙인다. 제목이 없으면 대체 문구를 쓴다.
+       캡션 끝의 "(출처: …)"는 따로 떼어 작은 글자로 적고, report.html이 글 끝 그림 출처 목록에 모은다. */ -}}
+{{- $report := eq .Page.Layout "report" -}}
+{{- $no := add .Ordinal 1 -}}
+{{- $caption := .Title -}}
+{{- if and $report (not $caption) }}{{ $caption = .PlainText }}{{ end -}}
+{{- $source := "" -}}
+{{- with $caption }}{{ with findRESubmatch `^(.*?)\s*\(출처:\s*(.+)\)\s*$` . 1 }}{{ $caption = index (index . 0) 1 }}{{ $source = index (index . 0) 2 }}{{ end }}{{ end -}}
+<figure class="post-figure"{{ if $report }} id="fig-{{ $no }}"{{ end }}>
   <img src="{{ .Destination | safeURL }}" alt="{{ .PlainText }}" loading="lazy">
+  {{- if $report }}
+  <figcaption><span class="fig-no">그림 {{ $no }}.</span> {{ $caption }}{{ with $source }}<span class="fig-source" data-no="{{ $no }}">출처: {{ . }}</span>{{ end }}</figcaption>
+  {{- else }}
   {{- with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}
+  {{- end }}
 </figure>

@@ -2,7 +2,7 @@
 title: "mattpocock/skills: 코딩 에이전트용 엔지니어링 스킬 모음"
 date: 2026-10-12T09:00:00+09:00
 description: "에이전트와의 이해 차이, 용어 혼란, 피드백 부족, 설계 붕괴를 각각 겨냥한 작은 스킬 모음으로, 어떤 모델에서도 쓸 수 있지만 설계 점검 스킬은 엉킨 코드를 직접 풀어 주지 않는다."
-tags: ["agent-skills", "eng-practice"]
+tags: ["coding-agents"]
 source_url: "https://github.com/mattpocock/skills"
 source_newsletter: "Deep Learning Weekly"
 draft: false

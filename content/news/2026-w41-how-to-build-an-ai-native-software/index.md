@@ -2,7 +2,7 @@
 title: "소프트웨어 팩토리: 수백 개 에이전트를 돌리는 회사의 체계"
 date: 2026-10-12T09:00:00+09:00
 description: "소프트웨어 팩토리는 코딩 에이전트는 사서 쓰고 실행 환경·도구·규칙·비용 측정은 회사가 직접 만드는 체계이고, Uber는 이 체계에서 이전 작업과 코드 리뷰 같은 반복 잡무부터 에이전트에 맡겼다."
-tags: ["agent-platform", "coding-agent"]
+tags: ["agents", "coding-agents"]
 source_url: "https://www.theaithinker.com/p/how-to-build-an-ai-native-software"
 source_newsletter: "TLDR AI"
 draft: false

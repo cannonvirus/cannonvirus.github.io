@@ -2,7 +2,7 @@
 title: "World in World: 영상 속 세계를 탐색하는 학습 없는 제어 인터페이스"
 date: 2026-09-21T09:00:00+09:00
 description: "WiW는 파라미터를 고정한 비디오 월드 모델의 셀프 어텐션에 여러 시각 증거를 같은 형식으로 넣어 카메라 제어 재렌더링을 수행하며, DAVIS와 OpenVid-1M 평가에서 비교한 7개 방식 가운데 VBench 평균 점수가 가장 높고 카메라 궤적 오차가 가장 낮았다."
-tags: ["image-video-gen"]
+tags: ["generative-media"]
 source_url: "https://arxiv.org/abs/2609.11548"
 source_newsletter: "Turing Post"
 draft: false

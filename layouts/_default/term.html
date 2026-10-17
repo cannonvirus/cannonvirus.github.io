@@ -1,0 +1,12 @@
+{{- /* 분야·연재 한 개의 글 목록. 제목은 용어 페이지의 title, 설명은 description이다. */ -}}
+{{ define "main" }}
+  <h1>{{ if eq .Data.Plural "tags" }}#{{ end }}{{ .Title }} <span class="term-count">{{ len .Pages }}편</span></h1>
+  {{ with .Description }}<p class="term-description">{{ . }}</p>{{ end }}
+  {{ with .Content }}<div class="index-content">{{ . }}</div>{{ end }}
+  <div class="posts">
+    {{ $pages := cond (eq .Data.Plural "series") .Pages.ByDate .Pages }}
+    {{ range $pages }}
+      {{ partial "post-card.html" . }}
+    {{ end }}
+  </div>
+{{ end }}

@@ -1,0 +1,17 @@
+{{- /* 구역 목록. News는 주차별, Projects는 연재별로 묶는다(partials/list-news.html, list-projects.html).
+       두 구역은 cascade로 type이 posts라 구역 이름의 템플릿 폴더가 쓰이지 않으므로 여기서 나눈다. */ -}}
+{{ define "main" }}
+  {{ if and (eq .Kind "section") (templates.Exists (printf "partials/list-%s.html" .Section)) }}
+    {{ partial (printf "list-%s.html" .Section) . }}
+  {{ else }}
+    {{ with .Content }}
+      <div class="index-content">{{ . }}</div>
+    {{ end }}
+    <div class="posts">
+      {{ range .Paginator.Pages }}
+        {{ partial "post-card.html" . }}
+      {{ end }}
+      {{ partial "pagination.html" . }}
+    </div>
+  {{ end }}
+{{ end }}

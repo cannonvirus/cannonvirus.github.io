@@ -7,15 +7,26 @@ title: cannonvirus.log
 theme: terminal
 
 enableRobotsTXT: true
+capitalizeListTitles: false # 이름표 파일이 없는 태그를 머리말에 적힌 대로 보인다(vlm이 Vlm이 되지 않게).
+
+# News 글은 모두 보고서형으로 보인다(2026-10-17 사용자 결정). 템플릿은 layouts/_default/report.html이다.
+cascade:
+  - target:
+      path: "{/news/**}"
+    layout: report
 
 pagination:
   pagerSize: 10
 
 taxonomies:
-  tag: tags
+  tag: tags # 분야. 글의 주제로 고른다. 이름표는 content/tags/<이름>/_index.md의 title이다.
+  series: series # 연재. 개발일지의 프로젝트 묶음이다.
 
 markup:
   goldmark:
+    parser:
+      attribute:
+        block: true # 표 아래 {caption="..."}로 표 제목을 단다(render-table.html).
     extensions:
       strikethrough: false # 본문의 범위 표기(91.4~99.6%)가 취소선으로 바뀌지 않게 한다.
       extras:

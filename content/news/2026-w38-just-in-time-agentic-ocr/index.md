@@ -2,7 +2,7 @@
 title: "Just-in-Time 에이전트 OCR: 두 단계 문서 처리 방식"
 date: 2026-09-21T09:00:00+09:00
 description: "문서 10~100개 규모의 데이터룸에서 전체를 값싼 추출로 훑고 필요한 쪽만 VLM으로 읽는 방식이며, 공시 84건 사례에서는 12,013쪽 중 2쪽만 VLM OCR을 거쳤지만 문서가 1천 개를 넘는 오프라인 파이프라인에는 권하지 않는다."
-tags: ["vlm", "rag-retrieval"]
+tags: ["vision", "rag"]
 source_url: "https://www.llamaindex.ai/blog/just-in-time-agentic-ocr"
 source_newsletter: "Deep Learning Weekly"
 draft: false

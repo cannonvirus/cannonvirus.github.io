@@ -42,11 +42,16 @@ http://localhost:1313 에서 확인합니다.
 - `layouts/robots.txt`: 사이트맵 주소를 포함합니다.
 - `layouts/partials/footer.html`: 테마 바닥글의 Hugo와 테마 제작자 문구를 빼고 권리 표기만 출력합니다.
 - `hugo.yaml`의 `readingTime: false`: 글 머리의 읽는 시간과 단어 수를 출력하지 않습니다.
+- 2026-10-17 개편(분야·연재 분류, 주차별·연재별 목록, 옆 목차·읽기 진행률(`static/reading.js`), 글꼴 구분, 보고서형 글 `layout: report`, 인쇄 색): 변경 목록과 적용 순서는 `docs/design-20261017.md`에 있습니다.
 
 ## News 글 (VISER 주간 보고서)
 
 News 구역의 글은 VISER가 만든다. 이 저장소에서 손으로 고치지 않는다. 고칠 것이 있으면 VISER에 피드백을 주고
 다시 만든다. 절차와 규칙은 VISER 저장소의 `docs/weekly.md` "블로그 게시"에 있다.
+
+예외 1회(2026-10-17): 태그 개편으로 News 14편의 머리말 `tags` 줄만 `docs/design-20261017-migrate.py`로 바꿨다.
+VISER로 다시 게시하면 체크가 남아 있는 글만 다시 쓰이므로 14편 전체를 한 번에 바꾸려고 이 방법을 썼다(사용자 결정).
+본문은 바꾸지 않았다. 이후 태그는 다시 VISER가 붙인다. VISER의 태그 목록을 바꾸기 전에는 News 글을 다시 게시하지 않는다(`docs/design-20261017.md` 2.5절·5절).
 
 ```powershell
 # VISER 저장소에서 실행한다

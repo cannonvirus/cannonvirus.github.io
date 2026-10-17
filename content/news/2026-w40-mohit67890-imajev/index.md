@@ -2,7 +2,7 @@
 title: "ImaJev: 사진과 기록을 대조하는 판정 모델"
 date: 2026-10-05T09:00:00+09:00
 description: "ImaJev는 사진·기록·글을 읽고 정해 준 선택지에 확률을 매겨 답하는 2B·4B·9B 공개 모델이며, 4B는 제작자가 만든 ImajevBench 279문항에서 83.9%를 맞혔지만 이 벤치마크는 AI 생성 이미지로 만든 미리보기판이다."
-tags: ["vlm"]
+tags: ["vision"]
 source_url: "https://github.com/mohit67890/imajev"
 source_newsletter: "The Living Edge"
 draft: false

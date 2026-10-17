@@ -1,0 +1,30 @@
+{{- /* 표. 표 바로 아래 줄에 {caption="표 제목"}을 적으면 표 위에 제목을 단다.
+       보고서형(layout: report)에서는 제목 앞에 "표 N."을 붙인다. 좁은 화면에서는 표만 가로로 밀린다. */ -}}
+{{- $report := eq .Page.Layout "report" -}}
+<figure class="table-figure">
+  {{- with .Attributes.caption }}
+  <figcaption>{{ if $report }}<span class="fig-no">표 {{ add $.Ordinal 1 }}.</span> {{ end }}{{ . }}</figcaption>
+  {{- end }}
+  <div class="table-scroll">
+  <table>
+    <thead>
+      {{- range .THead }}
+      <tr>
+        {{- range . }}
+        <th{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</th>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </thead>
+    <tbody>
+      {{- range .TBody }}
+      <tr>
+        {{- range . }}
+        <td{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</td>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+  </div>
+</figure>

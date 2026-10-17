@@ -1,0 +1,40 @@
+{{- /* 테마 single.html을 덮어쓴다.
+       글 머리(제목·날짜·읽는 시간·분류) 아래를 두 칸으로 나눠 왼쪽에 목차(post-rail), 오른쪽에 본문을 둔다.
+       좁은 화면에서는 목차가 본문 위(toc-inline)로 가고, 진행률은 화면 맨 위의 가는 선으로 보인다. */ -}}
+{{ define "main" }}
+<div id="top-progress" aria-hidden="true"></div>
+<article class="post has-rail">
+  <header class="post-head">
+    <h1 class="post-title">
+      <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
+    </h1>
+    <div class="post-meta">
+      {{- if .Date -}}
+        <time class="post-date">{{- partial "post-date" . -}}</time>
+      {{- end -}}
+      <span class="post-reading-time">읽는 시간 약 {{ .ReadingTime }}분</span>
+    </div>
+    {{ partial "post-tags.html" . }}
+  </header>
+  {{ partial "cover.html" . }}
+
+  <div class="post-layout">
+    {{ partial "post-rail.html" . }}
+    <div class="post-main">
+      {{ partial "toc-inline.html" . }}
+      <div class="post-content post-body">
+        {{- with .Content -}}
+          <div>
+            {{ . | replaceRE "(<h[1-9] id=\"([^\"]+)\".+)(</h[1-9]+>)" `${1}<a href="#${2}" class="hanchor" ariaLabel="Anchor">#</a> ${3}` | safeHTML }}
+          </div>
+        {{- end -}}
+      </div>
+
+      {{ partial "series-nav.html" . }}
+      {{ if eq .Type $.Site.Params.contentTypeName }}
+        {{ partial "posts_pagination.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</article>
+{{ end }}

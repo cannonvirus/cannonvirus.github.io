@@ -1,0 +1,14 @@
+{{- /* 글 머리의 연재와 분야 표시. 목록·글·태그 페이지가 함께 쓴다.
+       이름표는 용어 페이지(content/tags/<이름>/_index.md)의 title이다. 그 파일이 없는 용어는 머리말에 적힌 이름 그대로 보인다. */ -}}
+{{- $series := .GetTerms "series" -}}
+{{- $tags := .GetTerms "tags" -}}
+{{- if or $series $tags }}
+<div class="post-terms">
+  {{- range $series }}
+  <a class="term term--series" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+  {{- end }}
+  {{- range $tags }}
+  <a class="term" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>
+  {{- end }}
+</div>
+{{- end }}
