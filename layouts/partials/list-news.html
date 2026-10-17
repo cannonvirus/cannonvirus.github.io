@@ -1,0 +1,27 @@
+{{- /* News 목록. 정리 주차별로 묶고 최근 주차를 위에 둔다. 글이 늘어 한 페이지가 길어지면 주차 단위로 나눈다.
+       구역 페이지의 type이 posts라 layouts/news/list.html로는 고를 수 없다. _default/list.html이 이 부분 템플릿을 부른다. */ -}}
+  {{ with .Content }}<div class="index-content">{{ . }}</div>{{ end }}
+  {{ $seen := slice }}
+  {{ range .Pages.ByDate.Reverse }}
+    {{ $w := partial "week-of.html" . }}
+    {{ if not (in $seen $w) }}{{ $seen = $seen | append $w }}{{ end }}
+  {{ end }}
+  <div class="week-groups">
+    {{ range $seen }}
+      {{ $w := . }}
+      <section class="week-group">
+        <h2 class="week-group__title">{{ $w }} <span class="term-count">주간 정리</span></h2>
+        <ul class="week-group__list">
+          {{ range $.Pages.ByTitle }}
+            {{ if eq (partial "week-of.html" .) $w }}
+            <li>
+              <a class="week-group__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+              {{ partial "post-tags.html" . }}
+              {{ with .Description }}<p class="week-group__desc">{{ . }}</p>{{ end }}
+            </li>
+            {{ end }}
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+  </div>

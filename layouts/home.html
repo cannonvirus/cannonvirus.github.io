@@ -1,0 +1,44 @@
+{{- /* 첫 화면. 테마는 두 구역의 글을 날짜순 한 목록으로 보여 News 글이 둘째 페이지로 밀렸다.
+       구역별로 나눠 Projects는 연재별 최근 글, News는 최근 주차의 글을 보인다. */ -}}
+{{ define "main" }}
+  {{ with .Content }}<div class="index-content">{{ . }}</div>{{ end }}
+
+  {{ with site.GetPage "/news" }}
+  {{ $latest := index .Pages.ByDate.Reverse 0 }}
+  {{ $week := partial "week-of.html" $latest }}
+  <section class="home-block">
+    <h2 class="home-block__title"><a href="{{ .RelPermalink }}">News</a> <span class="term-count">{{ $week }} 주간 정리</span></h2>
+    <ul class="home-list">
+      {{ range .Pages.ByTitle }}
+        {{ if eq (partial "week-of.html" .) $week }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> {{ partial "post-tags.html" . }}</li>
+        {{ end }}
+      {{ end }}
+    </ul>
+    <a class="read-more" href="{{ .RelPermalink }}">[지난 주차 보기]</a>
+  </section>
+  {{ end }}
+
+  {{ with site.GetPage "/projects" }}
+  <section class="home-block">
+    <h2 class="home-block__title"><a href="{{ .RelPermalink }}">Projects</a> <span class="term-count">개발일지 {{ len .Pages }}편</span></h2>
+    {{ $series := slice }}
+    {{ $names := slice }}
+    {{ range .Pages.ByDate.Reverse }}{{ range .GetTerms "series" }}{{ if not (in $names .Path) }}{{ $names = $names | append .Path }}{{ $series = $series | append . }}{{ end }}{{ end }}{{ end }}
+    <ul class="home-list">
+      {{ range $series }}
+        {{ $latest := index .Pages.ByDate.Reverse 0 }}
+        <li>
+          <a class="home-list__series" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+          <span class="term-count">{{ len .Pages }}편</span>
+          <div>최근 글: <a href="{{ $latest.RelPermalink }}">{{ $latest.Title }}</a> <time class="series-group__date">{{ partial "post-date" $latest }}</time></div>
+        </li>
+      {{ else }}
+        {{ range first 5 .Pages.ByDate.Reverse }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <time class="series-group__date">{{ partial "post-date" . }}</time></li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+{{ end }}

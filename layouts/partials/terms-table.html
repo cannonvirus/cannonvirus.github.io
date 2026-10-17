@@ -1,0 +1,9 @@
+<ul class="term-list">
+  {{- range .terms }}
+  <li>
+    <a class="term-list__name" href="{{ .Page.RelPermalink }}">{{ $.prefix }}{{ .Page.LinkTitle }}</a>
+    <span class="term-list__count">{{ .Count }}편</span>
+    {{- with .Page.Description }}<span class="term-list__desc">{{ . }}</span>{{ end }}
+  </li>
+  {{- end }}
+</ul>

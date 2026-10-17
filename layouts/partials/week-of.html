@@ -1,0 +1,6 @@
+{{- /* News 글의 정리 주차(예: 2026-W40). 머리말 week가 있으면 그 값, 없으면 폴더 이름 앞 8자(2026-w40)다. */ -}}
+{{- $week := .Params.week -}}
+{{- if not $week -}}
+  {{- with .File }}{{ $week = upper (substr .ContentBaseName 0 8) }}{{ end -}}
+{{- end -}}
+{{- return $week -}}

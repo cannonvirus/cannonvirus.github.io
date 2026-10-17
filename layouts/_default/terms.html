@@ -1,0 +1,16 @@
+{{- /* 분야·연재 전체 목록. 글이 많은 순서로 보이고, 이름표 옆에 글 수와 설명을 적는다.
+       분야 페이지(/tags/) 아래에 연재 목록을 함께 보여 Tags 메뉴 하나로 두 갈래를 모두 찾게 한다. */ -}}
+{{ define "main" }}
+<div class="terms">
+  <h1>{{ if eq .Data.Plural "tags" }}분야{{ else }}{{ .Title }}{{ end }}</h1>
+  {{ with .Content }}<div class="index-content">{{ . }}</div>{{ end }}
+  {{ partial "terms-table.html" (dict "terms" .Data.Terms.ByCount "prefix" (cond (eq .Data.Plural "tags") "#" "")) }}
+
+  {{ if eq .Data.Plural "tags" }}
+    {{ with site.Taxonomies.series }}
+      <h2>연재</h2>
+      {{ partial "terms-table.html" (dict "terms" .ByCount "prefix" "") }}
+    {{ end }}
+  {{ end }}
+</div>
+{{ end }}
