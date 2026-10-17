@@ -2,7 +2,7 @@
 title: "CANVAS 연구: 일관성을 지키는 장편 영상 생성"
 date: 2026-10-05T09:00:00+09:00
 description: "Gemini와 Veo 위에서 기획, 스토리보드, 구간별 생성, 결함 수정을 네 프레임워크가 나눠 맡아 몇 분 길이의 영상을 만들며, 연구진 평가에서 GenAD-Bench 종합 점수가 기준 방식 68.5보다 높은 81.4였다."
-tags: ["image-video-gen", "multi-agent"]
+tags: ["generative-media", "agents"]
 source_url: "https://research.google/blog/coherent-long-form-video-generation/"
 source_newsletter: "Turing Post"
 draft: false

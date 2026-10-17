@@ -2,7 +2,7 @@
 title: "Shopify 플라이휠: 운영 실패를 학습하는 루프"
 date: 2026-09-28T09:00:00+09:00
 description: "운영 중 실패한 대화를 매일 고쳐 작은 모델의 가중치에 학습시키는 루프이며, Shopify는 GraphQL 에이전트에서 프런티어 모델을 넘는 판정 점수와 서빙 비용 96% 절감(추정)을 얻었다고 밝혔다."
-tags: ["model-training", "agent-platform", "inference-cost"]
+tags: ["models", "agents"]
 source_url: "https://pytorch.org/blog/how-shopify-built-a-continual-learning-loop-with-pytorch-and-vllm/"
 source_newsletter: "Deep Learning Weekly"
 draft: false

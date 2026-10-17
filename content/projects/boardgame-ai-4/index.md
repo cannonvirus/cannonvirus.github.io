@@ -2,7 +2,8 @@
 title: "보드게임 AI 개발 #4: 34게임과 Rust 전환"
 date: 2026-10-13T11:00:00+09:00
 description: "한 달 동안 같은 순서로 게임 34개를 만들고 규칙 엔진을 Python에서 Rust로 모두 옮겨 SETI 엔진이 약 80배 빨라졌지만, 기존 기보와 같은 결과를 내도록 옮긴 엔진들은 빠른 설계를 따르지 못했다."
-tags: ["game-ai"]
+tags: []
+series: ["boardgame-ai"]
 draft: false
 ---
 

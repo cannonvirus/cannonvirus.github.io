@@ -2,7 +2,7 @@
 title: "PageIndex: 트리 인덱스 기반 RAG 엔진"
 date: 2026-10-05T09:00:00+09:00
 description: "PageIndex는 벡터 DB와 청킹 없이 문서의 트리 인덱스를 LLM이 추론으로 탐색하는 RAG 엔진이고, 개발팀은 재무 문서 질의응답 벤치마크 FinanceBench에서 정확도 98.7%를 기록했다고 밝혔다."
-tags: ["rag-retrieval"]
+tags: ["rag"]
 source_url: "https://github.com/VectifyAI/PageIndex"
 source_newsletter: "AlphaSignal"
 draft: false

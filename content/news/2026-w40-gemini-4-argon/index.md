@@ -2,7 +2,7 @@
 title: "Gemini 4 Argon: 장기 작업용 구글 프런티어 모델"
 date: 2026-10-05T09:00:00+09:00
 description: "Gemini 4 Argon은 출력 토큰 한도를 64K에서 1M으로 늘린 Google의 프런티어 모델이고, 지금은 Fairwind Program에 속한 보안 방어자에게만 먼저 제공된다."
-tags: ["model-release"]
+tags: ["models"]
 source_url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/"
 source_newsletter: "TLDR AI"
 draft: false

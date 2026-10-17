@@ -2,7 +2,7 @@
 title: "Cursor 에이전트 하네스의 토큰 효율 개선"
 date: 2026-10-05T09:00:00+09:00
 description: "Cursor는 시스템 프롬프트, 도구 정의, 캐시 배치, 파일 읽기, 하위 에이전트 사용을 고쳐 에이전트 품질을 떨어뜨리지 않고 사용자 토큰 비용을 7% 줄였다고 밝혔다."
-tags: ["coding-agent", "inference-cost"]
+tags: ["coding-agents", "efficiency"]
 source_url: "https://cursor.com/blog/improved-token-efficiency"
 source_newsletter: "Deep Learning Weekly"
 draft: false

@@ -49,6 +49,10 @@ http://localhost:1313 에서 확인합니다.
 News 구역의 글은 VISER가 만든다. 이 저장소에서 손으로 고치지 않는다. 고칠 것이 있으면 VISER에 피드백을 주고
 다시 만든다. 절차와 규칙은 VISER 저장소의 `docs/weekly.md` "블로그 게시"에 있다.
 
+예외 1회(2026-10-17): 태그 개편으로 News 14편의 머리말 `tags` 줄만 `docs/design-20261017-migrate.py`로 바꿨다.
+VISER로 다시 게시하면 체크가 남아 있는 글만 다시 쓰이므로 14편 전체를 한 번에 바꾸려고 이 방법을 썼다(사용자 결정).
+본문은 바꾸지 않았다. 이후 태그는 다시 VISER가 붙인다. VISER의 태그 목록을 바꾸기 전에는 News 글을 다시 게시하지 않는다(`docs/design-20261017.md` 2.5절·5절).
+
 ```powershell
 # VISER 저장소에서 실행한다
 uv run python monitor.py    # b 주간 보고서 → 주간 페이지에서 실을 글을 체크 → c 블로그에서 y로 게시

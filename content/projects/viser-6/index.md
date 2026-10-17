@@ -2,7 +2,8 @@
 title: "VISER 개발 #6: 주간 보고서와 그래프"
 date: 2026-10-14T13:00:00+09:00
 description: "VISER의 주간 보고서는 한 주 동안 고른 기사를 Opus가 해설 글로 다시 쓰고, 그래프는 Opus가 그릴 내용만 정하면 VISER가 같은 모양으로 그리며, 후보가 줄어드는 것처럼 대상이 실제로 바뀌는 내용만 움직이는 그래프로 보여 준다."
-tags: ["VISER"]
+tags: []
+series: ["viser"]
 draft: false
 ---
 

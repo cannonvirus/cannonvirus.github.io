@@ -2,7 +2,8 @@
 title: "보드게임 AI 개발 #2: 혼자 두는 유로게임을 위한 로컬 AI"
 date: 2026-10-13T09:00:00+09:00
 description: "무거운 유로게임 34종을 사람 한 명과 로컬 AI가 함께 두도록 만든 프로젝트이며, 엔진이 규칙과 점수를 맡고 AI는 자기 차례에 보이는 것만 받지만 AI의 실력은 아직 사람과 견주어 재지 못했다."
-tags: ["game-ai"]
+tags: []
+series: ["boardgame-ai"]
 draft: false
 ---
 

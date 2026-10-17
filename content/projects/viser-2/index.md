@@ -2,7 +2,8 @@
 title: "VISER 개발 #2: 전체 구조"
 date: 2026-10-14T09:00:00+09:00
 description: "VISER는 뉴스레터를 받아 로컬 모델로 거르고 요약한 뒤 웹 페이지로 발행하며, 공개 서버에는 페이지와 점수를 받는 기능만 두었고, 지금은 사람이 직접 실행해야 돌아간다."
-tags: ["VISER"]
+tags: []
+series: ["viser"]
 draft: false
 ---
 

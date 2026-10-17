@@ -2,7 +2,7 @@
 title: "Jev: 번호 붙은 요소 표에서 동작을 고르는 브라우저 에이전트"
 date: 2026-09-21T09:00:00+09:00
 description: "Jev는 페이지를 번호 붙은 요소 표로 바꿔 동작과 대상을 한 번의 요청으로 고르는 브라우저 에이전트이고, Google Flights 검색 한 가지를 세 번씩 잰 비교에서 작업 시간 중앙값이 9.450초에서 7.092초로 줄었다."
-tags: ["prompt-context", "inference-cost"]
+tags: ["agents", "efficiency"]
 source_url: "https://github.com/browser-use/jev-ultrafast"
 source_newsletter: "AlphaSignal"
 draft: false

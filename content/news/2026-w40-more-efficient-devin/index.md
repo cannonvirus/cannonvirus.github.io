@@ -2,7 +2,7 @@
 title: "Devin: 여러 모델을 조합해 쓰는 코딩 에이전트"
 date: 2026-10-05T09:00:00+09:00
 description: "Devin은 작업마다 맞는 모델을 골라 쓰고 도구 호출과 캐시 활용을 개선해, 지능을 유지하거나 높이면서 Fusion·Normal 모드 비용을 30~40% 낮췄다고 밝혔다."
-tags: ["coding-agent", "inference-cost"]
+tags: ["coding-agents", "efficiency"]
 source_url: "https://devin.ai/blog/more-efficient-devin"
 source_newsletter: "TLDR AI"
 draft: false

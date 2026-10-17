@@ -2,7 +2,8 @@
 title: "VISER 개발 #5: 모델 호출 경로"
 date: 2026-10-14T12:00:00+09:00
 description: "VISER는 매일 많이 하는 작은 일은 내 PC의 로컬 모델에, 가끔 하는 긴 글은 구독으로 쓰는 Claude Opus에 맡기고, 유료 API는 매일 쓰지 않는다."
-tags: ["VISER"]
+tags: []
+series: ["viser"]
 draft: false
 ---
 

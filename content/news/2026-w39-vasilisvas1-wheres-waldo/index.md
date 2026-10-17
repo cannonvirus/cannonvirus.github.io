@@ -2,7 +2,7 @@
 title: "wheres-waldo: 월도를 찾는 탐지기 세 가지 비교"
 date: 2026-09-28T09:00:00+09:00
 description: "월도를 찾는 탐지기 세 가지를 학습에 쓰지 않은 페이지로 비교한 프로젝트로, 원본 해상도 타일로 학습한 YOLO11n이 월도가 있는 18쪽 중 72%에서 월도를 상위 3개 후보 안에 넣었지만 정답 상자가 21개뿐이라 수치가 크게 흔들릴 수 있다."
-tags: ["vlm", "robotics"]
+tags: ["vision"]
 source_url: "https://github.com/VasilisVas1/wheres-waldo"
 source_newsletter: "The Living Edge"
 draft: false
