@@ -19,7 +19,7 @@ draft: false
 > 원문: [claude.dev/blog/automating-eval-design-and-hillclimbing](https://claude.dev/blog/automating-eval-design-and-hillclimbing/)  
 > 원문을 소개한 뉴스레터: TLDR AI
 
-LLM 앱이나 스킬이 특정 작업을 얼마나 잘하는지 알려면 평가 세트가 필요하다. 하지만 평가를 잘 설계하고 스스로를 속이지 않으면서 그 점수를 올리기는 어렵다. Anthropic은 Claude Code에 기본으로 포함된 [claude-api 스킬](https://claude.dev/blog/automating-eval-design-and-hillclimbing/)에 이 두 일을 맡는 명령을 더했다. `/claude-api build-eval`(이하 `build-eval`)은 사용자와 문답하며 코드베이스 안에 평가 세트와 채점기를 만든다. `/claude-api hillclimb`(이하 `hillclimb`)은 그 평가를 기준으로 프롬프트나 모델 설정을 한 번에 하나씩 고쳐 점수를 올린다. 이 글에서는 두 명령이 따르는 원칙과 절차, 적용 사례 두 가지를 정리한다.
+LLM 앱이나 스킬이 특정 작업을 얼마나 잘하는지 알려면 평가 세트가 필요하다. 하지만 평가를 잘 설계하고 스스로를 속이지 않으면서 그 점수를 올리기는 어렵다. Anthropic은 Claude Code에 기본으로 포함된 [claude-api 스킬](https://claude.dev/blog/automating-eval-design-and-hillclimbing/)에 이 두 일을 맡는 명령 두 개를 더했다. 두 명령은 스킬 이름 뒤에 붙여 부른다. `build-eval`은 사용자와 문답하며 코드베이스 안에 평가 세트와 채점기를 만들고, `hillclimb`은 그 평가를 기준으로 프롬프트나 모델 설정을 한 번에 하나씩 고쳐 점수를 올린다. 이 글에서는 두 명령이 따르는 원칙과 절차, 적용 사례 두 가지를 정리한다.
 
 ```요약
 요약: claude-api 스킬의 `build-eval`과 `hillclimb`은 평가 세트 설계와 점수 개선을 Claude가 단계별로 진행하게 하며, 고객 지원 사례에서는 탐색에 쓰지 않은 티켓의 정확도를 78.6%에서 90.5%로 높이고 비용을 약 5분의 1로 줄였다.
