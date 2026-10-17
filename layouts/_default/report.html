@@ -2,8 +2,11 @@
 
        구성: 문서 머리(분류·제목·문서 정보) → [왼쪽 목차·진행률 | 요약(한 문장 + 핵심 3~5줄) → 본문(절 번호, 그림·표 번호) → 출처].
        - 목차는 넓은 화면에서 왼쪽 칸(post-rail), 좁은 화면과 인쇄에서 요약 아래(toc-inline)에 보인다.
-       - 핵심 줄: 머리말 key_points가 있으면 그 값, 없으면 본문의 ==강조== 문장을 순서대로 최대 5개 쓴다.
-       - 본문의 ```요약 상자는 요약 구역과 같은 문장이라 이 형식에서는 숨긴다(CSS .report .box-summary).
+       - 요약 구역은 머리말 key_points(핵심 3~5줄)가 있을 때만 둔다. 이때 본문의 ```요약 상자는 같은 문장이라 숨긴다
+         (CSS .report--points .box-summary). key_points가 없으면 요약 구역을 두지 않고 본문의 요약 상자를 그대로 보인다.
+         key_points를 만드는 방법은 아직 정하지 않았다(2026-10-17).
+       - News 글 첫머리의 원문 안내 인용("이 글은 아래 원문을…")은 문서 정보 칸의 원문·원문 소개와 같은 내용이라 뺀다
+         (2026-10-17 사용자 결정). 글 끝 "출처와 작성 방식" 절에도 원문이 있다.
        - 그림 번호와 표 번호는 render-image.html·render-table.html이 이 형식일 때만 붙인다.
        - 그림 출처: 그림 캡션 끝의 "(출처: …)"를 모아 글 끝에 그림 번호와 함께 적는다. */ -}}
 {{ define "main" }}
@@ -11,8 +14,12 @@
 {{ if eq .Section "news" }}{{ $week = partial "week-of.html" . }}{{ end }}
 {{ $content := .Content }}
 {{ $content = $content | replaceRE `(<h[23] id="[^"]+">)(\d+(?:\.\d+)*\.?)\s+` `${1}<span class="sec-no">${2}</span> ` }}
+{{ if eq .Section "news" }}
+  {{ $content = replaceRE `^\s*<blockquote>\s*<p>이 글은 아래 원문을[\s\S]*?</blockquote>\s*` "" $content 1 }}
+{{ end }}
+{{ $points := .Params.key_points }}
 <div id="top-progress" aria-hidden="true"></div>
-<article class="post report has-rail">
+<article class="post report has-rail{{ with $points }} report--points{{ end }}">
   <header class="report-head">
     <div class="report-kicker">
       {{- if eq .Section "news" }}News · 주간 기술 정리{{ with $week }} {{ . }}{{ end }}
@@ -30,23 +37,18 @@
     </dl>
   </header>
 
-  {{ $points := .Params.key_points }}
-  {{ if not $points }}
-    {{ $points = slice }}
-    {{ range first 5 (findRE `<mark>[\s\S]*?</mark>` $content) }}{{ $points = $points | append (plainify .) }}{{ end }}
-  {{ end }}
   <div class="post-layout">
   {{ partial "post-rail.html" . }}
   <div class="post-main">
+  {{ with $points }}
   <section class="report-summary" aria-label="요약">
     <div class="box-label">요약</div>
-    {{ with .Description }}<p class="report-summary__lead">{{ . }}</p>{{ end }}
-    {{ with $points }}
+    {{ with $.Description }}<p class="report-summary__lead">{{ . }}</p>{{ end }}
     <ul class="report-summary__points">
       {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
     </ul>
-    {{ end }}
   </section>
+  {{ end }}
 
   {{ partial "toc-inline.html" . }}
 

@@ -318,6 +318,8 @@ mark {
 }
 
 .report-title {
+  font-family: var(--body-font);
+  font-weight: 700;
   color: var(--foreground);
   font-size: calc(var(--font-size) * 1.6);
   line-height: 1.4;
@@ -395,8 +397,8 @@ mark {
   border-top: 1px solid var(--rule);
 }
 
-/* 본문의 요약 상자는 요약 구역과 같은 문장이다. */
-.report .box-summary { display: none; }
+/* key_points가 있어 요약 구역을 둔 글은 본문의 요약 상자가 같은 문장이다. */
+.report--points .box-summary { display: none; }
 
 .report .post-figure figcaption {
   font-family: var(--body-font);

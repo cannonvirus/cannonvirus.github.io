@@ -9,6 +9,12 @@ theme: terminal
 enableRobotsTXT: true
 capitalizeListTitles: false # 이름표 파일이 없는 태그를 머리말에 적힌 대로 보인다(vlm이 Vlm이 되지 않게).
 
+# News 글은 모두 보고서형으로 보인다(2026-10-17 사용자 결정). 템플릿은 layouts/_default/report.html이다.
+cascade:
+  - target:
+      path: "{/news/**}"
+    layout: report
+
 pagination:
   pagerSize: 10
 
