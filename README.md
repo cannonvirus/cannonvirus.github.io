@@ -30,6 +30,8 @@ hugo; npx -y pagefind@1.5.2 --serve
 ## 배포
 
 `main` 브랜치에 푸시하면 `.github/workflows/pages.yml`이 빌드, 검색 색인(Pagefind, 설정은 `pagefind.yml`), 배포를 수행합니다.
+같은 워크플로가 매일 09:05 KST(00:05 UTC)에도 실행됩니다. 게시일이 미래인 글은 Hugo가 빌드에서 빼므로,
+주간 글(게시일: 주차 다음 월요일 09시)처럼 미리 올린 글이 푸시 없이도 그날 공개됩니다. 예약 실행은 GitHub 부하에 따라 늦게 시작될 수 있습니다.
 저장소 Settings → Pages → Source를 "GitHub Actions"로 설정해야 합니다.
 
 ## 검색 등록

@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # 게시일이 미래인 글(주간 글은 주차 다음 월요일 09시)은 Hugo가 빌드에서 뺀다.
+  # 푸시가 없어도 그날 공개되도록 매일 다시 빌드한다. 00:05 UTC = 09:05 KST.
+  schedule:
+    - cron: "5 0 * * *"
 
 permissions:
   contents: read
