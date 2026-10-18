@@ -4,11 +4,6 @@ date: 2026-09-28T09:00:00+09:00
 description: "Shopify는 운영 중 실패한 대화를 매일 작은 모델의 학습 데이터로 바꾸는 지속 학습 루프를 만들었고, GraphQL 에이전트에서 프런티어 모델보다 높은 품질을 내면서 추정 서빙 비용을 96% 줄였다."
 tags: ["models", "agents"]
 week: "2026-W39"
-key_points:
-  - "사람의 채점에 맞춰 보정한 판정 모델의 점수가 학습의 보상 신호가 된다."
-  - "가중치를 바꾸기 전에 에이전트가 프롬프트와 하네스부터 고친다."
-  - "점수가 낮은 대화는 비평을 받아 다시 실행된 뒤 학습 궤적이 된다."
-  - "시스템 프롬프트를 gist 토큰으로 압축해 지연 시간과 GPU 수를 줄였다."
 source_url: "https://pytorch.org/blog/how-shopify-built-a-continual-learning-loop-with-pytorch-and-vllm/"
 source_newsletter: "Deep Learning Weekly"
 draft: false

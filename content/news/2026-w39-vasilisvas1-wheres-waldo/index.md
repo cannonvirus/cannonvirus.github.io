@@ -4,11 +4,6 @@ date: 2026-09-28T09:00:00+09:00
 description: "wheres-waldo는 월도를 찾는 탐지기 세 가지를 비교한 프로젝트로, 가장 나은 다중 배율 타일 YOLO는 월도가 있는 평가용 18쪽 중 13쪽(72%)에서 월도를 상위 3개 후보 안에 넣었다."
 tags: ["vision", "models"]
 week: "2026-W39"
-key_points:
-  - "페이지를 640픽셀로 줄이면 월도가 너무 작아져 YOLO가 거의 찾지 못한다."
-  - "원본 해상도 타일로 바꾸자 찾은 월도가 2개에서 6~7개로 늘었다."
-  - "19쪽 중 8쪽의 라벨 방향이 틀려 있던 오류가 결과를 깎아 먹고 있었다."
-  - "확신도가 높은 후보도 닮은 인물일 수 있어 확대 화면으로 확인해야 한다."
 source_url: "https://github.com/VasilisVas1/wheres-waldo"
 source_newsletter: "The Living Edge"
 draft: false
