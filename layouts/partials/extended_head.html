@@ -14,4 +14,5 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap">
 
 {{ with site.Params.verification.google }}<meta name="google-site-verification" content="{{ . }}">{{ end }}
+{{ partial "schema.html" . }}
 {{ with site.Params.verification.naver }}<meta name="naver-site-verification" content="{{ . }}">{{ end }}

@@ -265,6 +265,20 @@ mark {
 .series-nav li { padding: 2px 0; }
 .series-nav .is-current { color: var(--accent); font-weight: 700; }
 
+/* 관련 글: 연재 목록과 같은 상자 모양이다. 연재 목록 바로 아래면 간격을 줄인다. */
+.related-posts {
+  margin: 50px 0 0;
+  padding: 16px 20px;
+  border: 1px solid var(--rule);
+  background: var(--panel);
+}
+
+.series-nav + .related-posts { margin-top: 16px; }
+.related-posts__title { font-weight: 700; margin-bottom: 8px; }
+.related-posts ul { margin: 0; padding-left: 1.4em; }
+.related-posts li { padding: 2px 0; }
+.related-posts__date { opacity: 0.6; font-size: 0.85em; white-space: nowrap; }
+
 /* 표 */
 .table-figure { margin: 25px 0; width: 100%; }
 
@@ -578,7 +592,7 @@ mark {
   @page { margin: 16mm 15mm; }
   body { background: #fff; color: #111; }
   .container { padding: 0; max-width: none; }
-  .footer, .pagination, .series-nav, .hanchor, .read-more, .rail, #top-progress { display: none !important; }
+  .footer, .pagination, .series-nav, .related-posts, .hanchor, .read-more, .rail, #top-progress { display: none !important; }
   .toc-inline { display: block !important; }
   .has-rail > .post-head, .has-rail > .report-head { padding-left: 0 !important; }
   .post-layout { display: block !important; }

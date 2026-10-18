@@ -1,0 +1,55 @@
+# 글 속 링크가 살아 있는지 검사한다. 배포(pages.yml)와 따로 돌아 결과와 상관없이 배포는 그대로 된다.
+# 실패하면 GitHub가 저장소 주인에게 메일로 알린다. 결과는 Actions 실행 화면의 Summary에 표로 남는다.
+name: Check links
+
+on:
+  push:
+    branches: [main]
+    paths: ["content/**", "layouts/**", "hugo.yaml", ".lycheeignore"]
+  schedule:
+    - cron: "0 0 * * 1" # 매주 월요일 09:00(한국 시간). 바깥 사이트의 링크는 글을 고치지 않아도 깨진다.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  HUGO_VERSION: 0.167.0
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Hugo
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+          sudo dpkg -i ${{ runner.temp }}/hugo.deb
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: Build
+        env:
+          TZ: Asia/Seoul
+        run: hugo --gc --minify
+      - name: Restore link cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: lychee-${{ github.sha }}
+          restore-keys: lychee-
+      # 만든 HTML을 검사한다. /news/... 같은 사이트 안 링크는 public 폴더의 파일로 확인하고,
+      # 이 사이트의 절대 주소(canonical 등)는 아직 배포 전일 수 있어 뺀다. 429(요청 과다)는 살아 있는 링크로 본다.
+      # 검사하지 않을 주소는 .lycheeignore에 적는다.
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2.9.0
+        with:
+          args: >-
+            --no-progress
+            --cache --max-cache-age 1d
+            --root-dir ${{ github.workspace }}/public
+            --index-files index.html
+            --exclude '^https://cannonvirus\.github\.io'
+            --max-concurrency 8
+            --accept '200..=299,429'
+            'public/**/*.html'

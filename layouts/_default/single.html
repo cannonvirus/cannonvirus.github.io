@@ -30,6 +30,7 @@
       </div>
 
       {{ partial "series-nav.html" . }}
+      {{ partial "related-posts.html" . }}
       {{ if eq .Type $.Site.Params.contentTypeName }}
         {{ partial "posts_pagination.html" . }}
       {{ end }}

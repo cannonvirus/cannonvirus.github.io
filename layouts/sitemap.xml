@@ -1,0 +1,27 @@
+{{- /* Hugo 기본 사이트맵(v0.167.0)을 덮어쓴다. 바꾼 것은 lastmod 하나다.
+       enableGitInfo를 켜면 목록 페이지(첫 화면·구역·연재·분야)의 수정일이 _index.md의 마지막 커밋 날짜가 되어
+       새 글을 올려도 바뀌지 않는다. 목록 페이지는 자기 날짜와 안에 든 글 중 가장 늦은 날짜를 쓴다.
+       분야·연재 목록(/tags/, /series/)은 안에 든 것이 분야·연재 페이지라 그 안의 글까지 본다.
+       글의 수정일이 작성일보다 이르면(작성일을 미래로 잡고 먼저 커밋한 글) 작성일을 쓴다. */ -}}
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {{ range where .Pages "Sitemap.Disable" "ne" true }}
+    {{- if .Permalink -}}
+    {{- $lastmod := .Lastmod -}}
+    {{- if .IsPage }}{{ if $lastmod.Before .Date }}{{ $lastmod = .Date }}{{ end -}}
+    {{- else }}{{ range .RegularPagesRecursive | default .Pages }}{{ range .Pages | default (slice .) }}{{ if .Lastmod.After $lastmod }}{{ $lastmod = .Lastmod }}{{ end }}{{ end }}{{ end }}{{ end }}
+  <url>
+    <loc>{{ .Permalink }}</loc>{{ if not $lastmod.IsZero }}
+    <lastmod>{{ safeHTML ( $lastmod.Format "2006-01-02T15:04:05-07:00" ) }}</lastmod>{{ end }}{{ with .Sitemap.ChangeFreq }}
+    <changefreq>{{ . }}</changefreq>{{ end }}{{ if ge .Sitemap.Priority 0.0 }}
+    <priority>{{ .Sitemap.Priority }}</priority>{{ end }}{{ if .IsTranslated }}{{ range .AllTranslations }}
+    <xhtml:link
+                rel="alternate"
+                hreflang="{{ .Language.Locale }}"
+                href="{{ .Permalink }}"
+                />{{ end }}{{ end }}
+  </url>
+    {{- end -}}
+  {{ end }}
+</urlset>

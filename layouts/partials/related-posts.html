@@ -1,0 +1,15 @@
+{{- /* 글 끝의 관련 글. 분야 태그가 겹치는 글을 hugo.yaml의 related 기준으로 고른다.
+       같은 연재의 글은 바로 위 연재 목록(series-nav.html)에 있어 뺀다. 고를 글이 없으면 구역을 두지 않는다. */ -}}
+{{- $inSeries := slice -}}
+{{- range .GetTerms "series" }}{{ $inSeries = $inSeries | append .Pages }}{{ end -}}
+{{- $related := site.RegularPages.Related . | complement $inSeries | first 5 -}}
+{{- with $related }}
+<nav class="related-posts" aria-label="관련 글">
+  <div class="related-posts__title">관련 글</div>
+  <ul>
+    {{- range . }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <time class="related-posts__date">{{ .Date.Format site.Params.dateFormat }}</time></li>
+    {{- end }}
+  </ul>
+</nav>
+{{- end }}
