@@ -4,11 +4,6 @@ date: 2026-10-05T09:00:00+09:00
 description: "Cursor는 시스템 프롬프트, 도구 정의, 캐시 배치, 파일 읽기, 하위 에이전트 사용을 고쳐 에이전트 품질을 유지한 채 사용자 토큰 비용을 7% 줄였다."
 tags: ["efficiency", "coding-agents"]
 week: "2026-W40"
-key_points:
-  - "모델 성능이 오르자 시스템 프롬프트의 약 66%를 덜어 냈다."
-  - "자주 쓰지 않는 내장 도구는 필요할 때만 정의를 불러온다."
-  - "캐시 중단점을 두고 앞부분을 정리해 콜드 캐시 미스 비율을 20% 줄였다."
-  - "줄 번호를 10줄마다 하나만 붙여 캐시 읽기 토큰을 1.6% 줄였다."
 source_url: "https://cursor.com/blog/improved-token-efficiency"
 source_newsletter: "Deep Learning Weekly"
 draft: false

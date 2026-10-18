@@ -4,11 +4,6 @@ date: 2026-10-05T09:00:00+09:00
 description: "imajev는 사진·기록·텍스트를 읽고 사용자가 정한 선택지마다 확률과 판단 불가 확률을 돌려주는 2B·4B·9B 공개 모델이며, 4B는 ImajevBench 시험 문항 279개에서 83.9%를 맞혔다."
 tags: ["models", "vision"]
 week: "2026-W40"
-key_points:
-  - "판정 결과가 문장이 아니라 선택지별 확률로 나와 프로그램이 바로 분기할 수 있다."
-  - "4B는 판단 불가가 정답인 21문항 중 18개에서 판단 불가를 골랐다."
-  - "4B는 99% 이상 확신한 40%만 자동 처리할 때 모두 맞혔다."
-  - "네 단계 학습에 든 GPU 대여비는 프로젝트 전체에서 약 676달러다."
 source_url: "https://github.com/mohit67890/imajev"
 source_newsletter: "The Living Edge"
 draft: false

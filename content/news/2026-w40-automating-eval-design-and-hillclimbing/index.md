@@ -4,11 +4,6 @@ date: 2026-10-05T09:00:00+09:00
 description: "claude-api 스킬의 `build-eval`과 `hillclimb`은 평가 세트 설계와 점수 개선을 Claude가 단계별로 진행하게 하며, 고객 지원 사례에서는 탐색에 쓰지 않은 티켓의 정확도를 78.6%에서 90.5%로 높이고 비용을 약 5분의 1로 줄였다."
 tags: ["coding-agents", "agents"]
 week: "2026-W40"
-key_points:
-  - "평가 과제는 실제 사용 환경의 작업을 닮아야 하고, 사람이 어렵다고 판단한 사례로 채운다."
-  - "`build-eval`은 입력, 채점기, 기준 점수를 차례로 사용자에게 확인받는다."
-  - "`hillclimb`은 학습·테스트 세트 점수가 함께 오를 때만 변경을 남긴다."
-  - "점수가 멈추면 남은 실패를 원인별로 나눠 평가 자체의 결함을 찾는다."
 source_url: "https://claude.dev/blog/automating-eval-design-and-hillclimbing/"
 source_newsletter: "TLDR AI"
 draft: false

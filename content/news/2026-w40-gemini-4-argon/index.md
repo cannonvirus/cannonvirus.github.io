@@ -4,11 +4,6 @@ date: 2026-10-05T09:00:00+09:00
 description: "Gemini 4 Argon은 출력 토큰 한도를 1M 토큰으로 늘린 Google의 새 모델로, CWE-bench v1에서 68%로 공동 1위를 했지만 지금은 일부 보안 방어 조직만 쓸 수 있다."
 tags: ["models"]
 week: "2026-W40"
-key_points:
-  - "출력 토큰 한도를 64K 토큰에서 1M 토큰으로 늘렸다."
-  - "Google은 사내에서 C/C++ 코드를 Rust로 옮기는 데 Argon을 쓰고 있다."
-  - "취약점 탐지 벤치마크 두 개에서 Gemini 3.8 Flash Cyber를 앞섰다."
-  - "신뢰할 수 있는 방어 조직에는 사이버 가드레일을 뺀 버전을 준다."
 source_url: "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/"
 source_newsletter: "TLDR AI"
 draft: false

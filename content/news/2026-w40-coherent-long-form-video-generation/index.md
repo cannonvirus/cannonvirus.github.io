@@ -4,11 +4,6 @@ date: 2026-10-05T09:00:00+09:00
 description: "Google 연구진은 Gemini와 Veo 위에서 동작하는 멀티 에이전트 프레임워크 네 개로 몇 분 길이 영상의 인물·배경 일관성을 유지했고, CANVAS는 가장 강한 비교 방식과 견주어 배경 일관성을 최대 21.6% 높였다."
 tags: ["generative-media", "agents"]
 week: "2026-W40"
-key_points:
-  - "Co-Director는 창작 방향을 MAB로 고르고 판정 모델의 평가로 다시 고친다."
-  - "CANVAS는 인물·장소·물건의 모습을 메모리에 두고 다시 꺼내 쓴다."
-  - "A²RD는 구간마다 메모리를 조회하며 긴 영상을 이어 만든다."
-  - "VQQA는 픽셀이 아니라 텍스트 프롬프트를 고쳐 결함을 바로잡는다."
 source_url: "https://research.google/blog/coherent-long-form-video-generation/"
 source_newsletter: "Turing Post"
 draft: false

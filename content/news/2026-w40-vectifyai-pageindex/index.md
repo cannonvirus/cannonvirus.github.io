@@ -4,11 +4,6 @@ date: 2026-10-05T09:00:00+09:00
 description: "PageIndex는 문서마다 트리 인덱스를 만들고 LLM이 그 트리를 추론으로 탐색하는 RAG 엔진으로, 금융 문서 벤치마크 FinanceBench에서 정확도 98.7%를 기록했다."
 tags: ["rag"]
 week: "2026-W40"
-key_points:
-  - "유사도 검색 대신 LLM이 문서 트리를 추론으로 탐색한다."
-  - "로컬 인덱싱 비용은 페이지당 평균 0.0011달러이고 문서마다 한 번만 든다."
-  - "420쪽 문서에서 PDF 전체 입력은 PageIndex보다 질문당 16.6배 비싸다."
-  - "클라우드 버전은 OCR과 이미지 이해를 더해 스캔 문서까지 다룬다."
 source_url: "https://github.com/VectifyAI/PageIndex"
 source_newsletter: "AlphaSignal"
 draft: false

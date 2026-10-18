@@ -4,11 +4,6 @@ date: 2026-10-05T09:00:00+09:00
 description: "Devin은 최신 모델 조합과 하네스 개선으로 Fusion과 Normal 모드의 비용을 30~40% 낮추면서 모든 모드의 성능을 유지하거나 높였다."
 tags: ["efficiency", "coding-agents"]
 week: "2026-W40"
-key_points:
-  - "Devin은 작업 부분마다 강점이 맞는 모델을 골라 맡긴다."
-  - "Fusion은 성능 좋은 주 모델과 값싼 보조 모델을 짝지어 쓴다."
-  - "셸 명령을 한 호출로 묶고 독립 도구 호출은 병렬로 실행한다."
-  - "하네스는 프롬프트 캐시를 다시 쓸 수 있게 요청을 구성한다."
 source_url: "https://devin.ai/blog/more-efficient-devin"
 source_newsletter: "TLDR AI"
 draft: false
