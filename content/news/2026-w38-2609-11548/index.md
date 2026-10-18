@@ -4,12 +4,6 @@ date: 2026-09-21T09:00:00+09:00
 description: "World in World는 학습을 마친 비디오 월드 모델을 고치지 않고 원본 영상, 기하 정보, 생성 기록을 시각 증거로 바꿔 읽히는 방법이며, DAVIS와 OpenVid-1M 영상으로 한 카메라 재렌더링 평가에서 기존 6개 방식보다 VBench 평균 점수가 높고 카메라 궤적 오차가 낮았다."
 tags: ["generative-media", "vision"]
 week: "2026-W38"
-key_points:
-  - "여러 제어 정보를 모델이 원래 읽던 깨끗한 시각 상태로 바꿔 넣는다."
-  - "원본, 목표 시점 투영, 렌더링한 기하, 생성 기록이 서로 다른 빈틈을 메운다."
-  - "CGAR은 읽을 위치를 잡고, EWA는 증거마다 반영 강도를 조절한다."
-  - "EWA는 같은 순전파 결과를 다시 써서 네트워크 평가 횟수를 늘리지 않는다."
-  - "목표 시점 투영을 빼면 회전 오차가 1.7823°에서 6.1158°로 커진다."
 source_url: "https://arxiv.org/abs/2609.11548"
 source_newsletter: "Turing Post"
 draft: false

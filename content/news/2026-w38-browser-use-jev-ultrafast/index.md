@@ -4,11 +4,6 @@ date: 2026-09-21T09:00:00+09:00
 description: "Jev는 페이지를 번호 붙은 요소 표로 바꾼 뒤 작업과 대상을 고르는 브라우저 에이전트이고, 영상으로 남긴 한 번의 실행에서 Google Flights 항공편 검색을 7.073초에 마쳤다."
 tags: ["agents"]
 week: "2026-W38"
-key_points:
-  - "모델은 정해진 여덟 가지 작업과 표 안의 요소 번호만 고른다."
-  - "작업과 대상 후보를 요청 한 번으로 함께 받아 네트워크 왕복을 줄인다."
-  - "모델 출력은 셀렉터나 실행 가능한 코드가 되지 않는다."
-  - "한 작업을 세 번 잰 비교에서 작업 시간 중앙값이 25% 줄었다."
 source_url: "https://github.com/browser-use/jev-ultrafast"
 source_newsletter: "AlphaSignal"
 draft: false

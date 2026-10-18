@@ -4,11 +4,6 @@ date: 2026-09-21T09:00:00+09:00
 description: "Just-in-Time Agentic OCR은 모든 쪽을 모델 없이 훑고 검색으로 찾은 쪽만 VLM으로 읽는 방식이며, 문서 10~100개 규모의 데이터룸에 맞는다."
 tags: ["rag", "vision"]
 week: "2026-W38"
-key_points:
-  - "LiteParse는 공시 문서 84건 12,013쪽을 32초에 훑었다."
-  - "3M 질문에 답하려고 VLM으로 다시 읽은 쪽은 12,013쪽 중 2쪽이었다."
-  - "문서 1,000~100만 개 이상의 오프라인 파이프라인은 처음부터 모든 쪽에 VLM OCR을 돌린다."
-  - "pdftotext와 Opus 5를 쓰는 기본 구성은 비용, 그라운딩, 형식 지원에 한계가 있다."
 source_url: "https://www.llamaindex.ai/blog/just-in-time-agentic-ocr"
 source_newsletter: "Deep Learning Weekly"
 draft: false
