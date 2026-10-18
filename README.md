@@ -37,12 +37,12 @@ http://localhost:1313 에서 확인합니다.
 
 ## 테마 보완 사항
 
-- `static/style.css`: 한글 글꼴(Noto Sans KR)과 줄 간격을 지정합니다.
+- `assets/style.css`: 한글 글꼴(Noto Sans KR)과 줄 간격을 지정합니다. `extended_head.html`이 주소에 내용의 해시를 붙여 실으므로, 고친 내용이 배포 즉시 반영됩니다. `assets/reading.js`도 같습니다.
 - `layouts/partials/extended_head.html`: 글꼴 불러오기와 검색 등록 인증 태그를 출력합니다.
 - `layouts/robots.txt`: 사이트맵 주소를 포함합니다.
 - `layouts/partials/footer.html`: 테마 바닥글의 Hugo와 테마 제작자 문구를 빼고 권리 표기만 출력합니다.
 - `hugo.yaml`의 `readingTime: false`: 글 머리의 읽는 시간과 단어 수를 출력하지 않습니다.
-- 2026-10-17 개편(분야·연재 분류, 주차별·연재별 목록, 옆 목차·읽기 진행률(`static/reading.js`), 글꼴 구분, 보고서형 글 `layout: report`, 인쇄 색): 변경 목록과 적용 순서는 `docs/design-20261017.md`에 있습니다.
+- 2026-10-17 개편(분야·연재 분류, 주차별·연재별 목록, 옆 목차·읽기 진행률(`assets/reading.js`), 글꼴 구분, 보고서형 글 `layout: report`, 인쇄 색): 변경 목록과 적용 순서는 `docs/design-20261017.md`에 있습니다.
 
 ## News 글 (VISER 주간 보고서)
 

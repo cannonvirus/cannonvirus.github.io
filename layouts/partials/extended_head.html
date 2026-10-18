@@ -1,3 +1,8 @@
+{{- /* 사이트 스타일(assets/style.css). 테마 CSS 뒤에 실어 테마 규칙을 덮어쓴다.
+       주소에 내용의 해시를 붙여(fingerprint) 고친 CSS가 배포 즉시 반영되게 한다. static/에 두면 테마가 같은 주소로 실어
+       브라우저가 예전 파일을 계속 썼다. */ -}}
+{{ with resources.Get "style.css" | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
+
 <!-- 이 사이트는 처음부터 어두운 테마다. 선언이 없으면 휴대폰 브라우저의 강제 다크 모드가
      밝은 사이트로 보고 색을 다시 바꾼다. 그때 어두운 그래프(SVG)의 바탕이 밝아져 글자가 안 보였다. -->
 <meta name="color-scheme" content="dark">

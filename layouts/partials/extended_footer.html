@@ -1,2 +1,2 @@
-{{- /* 글 페이지에만 목차·진행률 스크립트를 싣는다(static/reading.js). */ -}}
-{{ if .IsPage }}<script src="{{ "reading.js" | relURL }}" defer></script>{{ end }}
+{{- /* 글 페이지에만 목차·진행률 스크립트를 싣는다(assets/reading.js). 주소에 내용의 해시를 붙여 고친 스크립트가 배포 즉시 반영되게 한다. */ -}}
+{{ if .IsPage }}{{ with resources.Get "reading.js" | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
