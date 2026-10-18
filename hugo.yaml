@@ -71,7 +71,7 @@ params:
 
   # 방문 통계(GoatCounter). 가입할 때 정한 사이트 코드(https://<코드>.goatcounter.com의 <코드>)를 넣는다.
   # 비어 있으면 스크립트를 싣지 않는다. 로컬 미리보기(hugo server)에서는 싣지 않는다(analytics.html).
-  goatcounter: ""
+  goatcounter: "cannonvirus"
 
 languages:
   ko:
