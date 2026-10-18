@@ -234,7 +234,9 @@ mark {
 
 .week-group__link { font-weight: 700; }
 .week-group__list .post-terms { margin: 6px 0 0; }
-.home-list .post-terms { display: inline-flex; margin: 0 0 0 6px; }
+/* 첫 화면 News 목록의 분야 태그는 제목 아래 줄에 흐린 색으로 둔다. 제목 옆에 같은 색으로 두면 제목이 이어지는 것처럼 읽혔다. */
+.home-list .post-terms { margin: 4px 0 0; font-size: 0.85rem; }
+.home-list .term { color: var(--muted); border-bottom-color: var(--rule); }
 
 .week-group__desc {
   margin: 6px 0 0;
