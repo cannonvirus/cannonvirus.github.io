@@ -21,15 +21,25 @@ hugo server --buildDrafts --disableFastRender
 
 http://localhost:1313 에서 확인합니다.
 
+사이트 검색은 `hugo server`에서는 동작하지 않습니다(색인이 없음). 검색까지 확인하려면 빌드한 뒤 색인을 만들어 띄웁니다.
+
+```powershell
+hugo; npx -y pagefind@1.5.2 --serve
+```
+
 ## 배포
 
-`main` 브랜치에 푸시하면 `.github/workflows/pages.yml`이 빌드와 배포를 수행합니다.
+`main` 브랜치에 푸시하면 `.github/workflows/pages.yml`이 빌드, 검색 색인(Pagefind, 설정은 `pagefind.yml`), 배포를 수행합니다.
 저장소 Settings → Pages → Source를 "GitHub Actions"로 설정해야 합니다.
 
 ## 검색 등록
 
 `hugo.yaml`의 `params.verification`에 구글 서치 콘솔과 네이버 서치어드바이저의 인증 값을 넣습니다.
 사이트맵 주소는 `/sitemap.xml`입니다.
+
+## 방문 통계
+
+GoatCounter를 씁니다. 가입할 때 정한 사이트 코드를 `hugo.yaml`의 `params.goatcounter`에 넣으면 배포용 빌드에만 스크립트가 실립니다(`layouts/partials/analytics.html`). 비어 있으면 싣지 않습니다. 통계는 `https://<코드>.goatcounter.com`에서 봅니다.
 
 ## 규칙
 
@@ -41,6 +51,10 @@ http://localhost:1313 에서 확인합니다.
 - `layouts/partials/extended_head.html`: 글꼴 불러오기와 검색 등록 인증 태그를 출력합니다.
 - `layouts/robots.txt`: 사이트맵 주소를 포함합니다.
 - `layouts/partials/footer.html`: 테마 바닥글의 Hugo와 테마 제작자 문구를 빼고 권리 표기만 출력합니다.
+- `layouts/partials/head.html`: 테마의 head.html을 덮어써 공유 이미지를 글마다 만든 그림으로 바꾸고, 트위터 카드를 큰 그림형으로 합니다.
+- `layouts/partials/og-image.html`: 글별 공유 이미지(1200×630)를 빌드할 때 만듭니다. 바탕은 `assets/og-base.png`, 글꼴은 `assets/fonts/`(SIL Open Font License 1.1, 라이선스 파일 동봉)입니다.
+- `layouts/_default/_markup/render-image.html`: 그림에 가로·세로 크기를 적고, 움직이지 않는 그림은 긴 변 1600px 이하의 webp로 바꿉니다(GIF는 그대로).
+- 사이트 검색: `content/search.md`, `layouts/_default/search.html`. 색인 대상은 글 본문(`data-pagefind-body`)이고 목차·연재 목록·관련 글은 뺍니다.
 - `hugo.yaml`의 `readingTime: false`: 글 머리의 읽는 시간과 단어 수를 출력하지 않습니다.
 - 2026-10-17 개편(분야·연재 분류, 주차별·연재별 목록, 옆 목차·읽기 진행률(`assets/reading.js`), 글꼴 구분, 보고서형 글 `layout: report`, 인쇄 색): 변경 목록과 적용 순서는 `docs/design-20261017.md`에 있습니다.
 

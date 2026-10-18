@@ -4,7 +4,7 @@
 {{- range .GetTerms "series" }}{{ $inSeries = $inSeries | append .Pages }}{{ end -}}
 {{- $related := site.RegularPages.Related . | complement $inSeries | first 5 -}}
 {{- with $related }}
-<nav class="related-posts" aria-label="관련 글">
+<nav class="related-posts" aria-label="관련 글" data-pagefind-ignore="all">
   <div class="related-posts__title">관련 글</div>
   <ul>
     {{- range . }}

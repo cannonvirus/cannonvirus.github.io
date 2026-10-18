@@ -1,6 +1,6 @@
 {{- /* 구조화 데이터(JSON-LD). 검색엔진이 사이트 이름과 글의 종류·작성일·수정일·저자를 정확히 읽게 한다.
        - 첫 화면: WebSite(사이트 이름)
-       - 글: BlogPosting + BreadcrumbList(첫 화면 › 구역 › 글). News 글은 원문 주소를 isBasedOn으로 적는다.
+       - 글: BlogPosting + BreadcrumbList(첫 화면 › 구역 › 글). News 글은 원문 주소를 isBasedOn으로 적는다. 검색 화면(layout: search)은 글이 아니라 뺀다.
        수정일(.Lastmod)은 hugo.yaml의 enableGitInfo로 마지막 커밋 날짜가 된다. 작성일보다 이르면 작성일을 쓴다. */ -}}
 {{- $iso := "2006-01-02T15:04:05-07:00" -}}
 {{- $owner := dict "@type" "Person" "name" site.Params.owner "url" site.Params.ownerURL -}}
@@ -14,8 +14,8 @@
       "inLanguage" site.Language.Lang
       "author" $owner -}}
 <script type="application/ld+json">{{ $site | jsonify | safeJS }}</script>
-{{- else if .IsPage -}}
-  {{- $image := "og-image.png" -}}
+{{- else if and .IsPage (ne .Layout "search") -}}
+  {{- $image := (partial "og-image.html" .).RelPermalink -}}
   {{- with .Params.cover }}{{ $image = . }}{{ with $.Resources.GetMatch . }}{{ $image = .RelPermalink }}{{ end }}
   {{- else }}{{ with .Resources.GetMatch "cover.*" }}{{ $image = .RelPermalink }}{{ end }}{{ end -}}
   {{- $modified := .Lastmod -}}

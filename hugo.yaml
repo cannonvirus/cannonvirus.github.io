@@ -55,7 +55,7 @@ markup:
 
 params:
   contentTypeName: posts
-  showMenuItems: 4
+  showMenuItems: 5 # 메뉴 5개(News·Projects·Tags·Search·GitHub)를 모두 펼쳐 둔다. 넘으면 "더 보기"로 접힌다.
   fullWidthTheme: false
   centerTheme: true
   autoCover: true
@@ -68,6 +68,10 @@ params:
   verification:
     google: "MVsafGi0jkblN4BI8ft7iG-OLPuL6Lj08ZKTVycw21E"
     naver: ""
+
+  # 방문 통계(GoatCounter). 가입할 때 정한 사이트 코드(https://<코드>.goatcounter.com의 <코드>)를 넣는다.
+  # 비어 있으면 스크립트를 싣지 않는다. 로컬 미리보기(hugo server)에서는 싣지 않는다(analytics.html).
+  goatcounter: ""
 
 languages:
   ko:
@@ -104,6 +108,10 @@ languages:
           name: Tags
           url: /tags/
           weight: 30
+        - identifier: search # 사이트 검색(Pagefind). content/search.md, layouts/_default/search.html
+          name: Search
+          url: /search/
+          weight: 35
         - identifier: github
           name: GitHub
           url: https://github.com/cannonvirus

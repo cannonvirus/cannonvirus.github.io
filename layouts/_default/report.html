@@ -20,7 +20,7 @@
 {{ end }}
 {{ $points := .Description }}
 <div id="top-progress" aria-hidden="true"></div>
-<article class="post report has-rail{{ with $points }} report--points{{ end }}">
+<article class="post report has-rail{{ with $points }} report--points{{ end }}" data-pagefind-body data-pagefind-meta="title:{{ .Title }}">
   <header class="report-head">
     <div class="report-kicker">
       {{- if eq .Section "news" }}News · 주간 기술 정리{{ with $week }} {{ . }}{{ end }}

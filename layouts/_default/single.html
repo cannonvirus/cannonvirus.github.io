@@ -3,7 +3,7 @@
        좁은 화면에서는 목차가 본문 위(toc-inline)로 가고, 진행률은 화면 맨 위의 가는 선으로 보인다. */ -}}
 {{ define "main" }}
 <div id="top-progress" aria-hidden="true"></div>
-<article class="post has-rail">
+<article class="post has-rail" data-pagefind-body data-pagefind-meta="title:{{ .Title }}">
   <header class="post-head">
     <h1 class="post-title">
       <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>

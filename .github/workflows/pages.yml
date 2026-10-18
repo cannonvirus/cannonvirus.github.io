@@ -36,6 +36,9 @@ jobs:
           HUGO_ENVIRONMENT: production
           TZ: Asia/Seoul
         run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+      # 사이트 검색 색인. 설정은 pagefind.yml에 있다.
+      - name: Search index
+        run: npx -y pagefind@1.5.2
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./public

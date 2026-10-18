@@ -1,0 +1,7 @@
+# 사이트 검색 색인(Pagefind) 설정. 배포 워크플로가 hugo 빌드 뒤에 `npx pagefind`로 public/pagefind/를 만든다.
+# 색인 대상은 글 본문(data-pagefind-body)이다. 글 머리(제목은 data-pagefind-meta로 따로 넣는다)와 제목 옆 # 표시는 뺀다.
+site: public
+exclude_selectors:
+  - ".post-head"
+  - ".report-head"
+  - ".hanchor"

@@ -5,7 +5,7 @@ name: Check links
 on:
   push:
     branches: [main]
-    paths: ["content/**", "layouts/**", "hugo.yaml", ".lycheeignore"]
+    paths: ["content/**", "layouts/**", "hugo.yaml", "pagefind.yml", ".lycheeignore"]
   schedule:
     - cron: "0 0 * * 1" # 매주 월요일 09:00(한국 시간). 바깥 사이트의 링크는 글을 고치지 않아도 깨진다.
   workflow_dispatch:
@@ -32,6 +32,9 @@ jobs:
         env:
           TZ: Asia/Seoul
         run: hugo --gc --minify
+      # 사이트 검색 색인. 검색 화면이 싣는 /pagefind/ 파일이 있어야 링크 검사를 통과한다.
+      - name: Search index
+        run: npx -y pagefind@1.5.2
       - name: Restore link cache
         uses: actions/cache@v4
         with:

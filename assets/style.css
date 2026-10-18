@@ -139,6 +139,7 @@ mark {
   .container { padding: 20px 16px; }
   .menu--desktop { display: flex; flex-direction: row; flex-wrap: wrap; gap: 4px 14px; }
   .navigation-menu__inner li { padding: 0; }
+  .navigation-menu__inner > li:not(:last-of-type) { margin-right: 0; } /* 테마의 오른쪽 여백 20px을 빼고 gap만 쓴다. 메뉴 5개가 390px 폭에서 한 줄에 든다. */
   .menu--mobile { display: none; }
 }
 
@@ -605,3 +606,16 @@ mark {
   .post-figure img { max-height: 120mm; width: auto; }
   .report .post-content h2 { margin-top: 28px; }
 }
+
+/* 검색 화면(Pagefind UI). 사이트 색과 글꼴을 따른다. */
+.search-page {
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: var(--foreground);
+  --pagefind-ui-background: var(--background);
+  --pagefind-ui-border: color-mix(in srgb, var(--foreground) 25%, transparent);
+  --pagefind-ui-tag: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 0;
+  --pagefind-ui-font: inherit;
+}
+.search-page mark { background: color-mix(in srgb, var(--accent) 30%, transparent) !important; color: inherit !important; }

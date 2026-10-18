@@ -1,0 +1,18 @@
+{{- /* 사이트 검색(Pagefind). 배포할 때 빌드 뒤에 pagefind가 public/pagefind/에 색인을 만든다.
+       색인 대상은 글 본문(data-pagefind-body)이고 목차·연재 목록·관련 글은 뺀다(data-pagefind-ignore). */ -}}
+{{ define "main" }}
+<link rel="stylesheet" href="{{ "pagefind/pagefind-ui.css" | relURL }}">
+<article class="post search-page">
+  <h1 class="post-title">{{ .Title }}</h1>
+  <div id="search"></div>
+</article>
+<script src="{{ "pagefind/pagefind-ui.js" | relURL }}"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const ui = new PagefindUI({ element: "#search", showSubResults: true, showImages: false,
+      translations: { placeholder: "글 검색", zero_results: "[SEARCH_TERM]에 맞는 글이 없습니다", many_results: "[SEARCH_TERM] 검색 결과 [COUNT]건", one_result: "[SEARCH_TERM] 검색 결과 1건", load_more: "더 보기", clear_search: "지우기" } });
+    const q = new URLSearchParams(location.search).get("q");
+    if (q) ui.triggerSearch(q);
+  });
+</script>
+{{ end }}
