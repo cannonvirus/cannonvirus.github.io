@@ -53,7 +53,7 @@ GoatCounter를 씁니다. 가입할 때 정한 사이트 코드를 `hugo.yaml`�
 - `layouts/partials/footer.html`: 테마 바닥글의 Hugo와 테마 제작자 문구를 빼고 권리 표기만 출력합니다.
 - `layouts/partials/head.html`: 테마의 head.html을 덮어써 공유 이미지를 글마다 만든 그림으로 바꾸고, 트위터 카드를 큰 그림형으로 합니다.
 - `layouts/partials/og-image.html`: 글별 공유 이미지(1200×630)를 빌드할 때 만듭니다. 바탕은 `assets/og-base.png`, 글꼴은 `assets/fonts/`(SIL Open Font License 1.1, 라이선스 파일 동봉)입니다.
-- `layouts/_default/_markup/render-image.html`: 그림에 가로·세로 크기를 적고, 움직이지 않는 그림은 긴 변 1600px 이하의 webp로 바꿉니다(GIF는 그대로).
+- `layouts/_default/_markup/render-image.html`: 그림에 가로·세로 크기를 적습니다. PNG는 무손실 webp로, JPG는 손실 webp(q85)로 바꾸고 긴 변을 1600px 이하로 줄입니다. 이미 webp인 그림은 다시 압축하지 않습니다. 움직이는 그림은 GIF 대신 무손실 애니메이션 webp로 넣습니다(빌드 때 GIF를 바꾸면 메모리가 부족합니다).
 - 사이트 검색: `content/search.md`, `layouts/_default/search.html`. 색인 대상은 글 본문(`data-pagefind-body`)이고 목차·연재 목록·관련 글은 뺍니다.
 - `hugo.yaml`의 `readingTime: false`: 글 머리의 읽는 시간과 단어 수를 출력하지 않습니다.
 - 2026-10-17 개편(분야·연재 분류, 주차별·연재별 목록, 옆 목차·읽기 진행률(`assets/reading.js`), 글꼴 구분, 보고서형 글 `layout: report`, 인쇄 색): 변경 목록과 적용 순서는 `docs/design-20261017.md`에 있습니다.

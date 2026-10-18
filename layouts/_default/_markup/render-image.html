@@ -10,14 +10,17 @@
 {{- $source := "" -}}
 {{- with $caption }}{{ with findRESubmatch `^(.*?)\s*\(출처:\s*(.+)\)\s*$` . 1 }}{{ $caption = index (index . 0) 1 }}{{ $source = index (index . 0) 2 }}{{ end }}{{ end -}}
 {{- /* 글 묶음 안의 그림은 가로·세로 크기를 적어 그림이 뜰 때 본문이 밀리지 않게 한다.
-       움직이지 않는 그림은 긴 변을 1600px 이하로 줄이고 webp로 바꾼다. 바꾼 것이 원본보다 크면 원본을 쓴다. GIF는 그대로 둔다. */ -}}
+       PNG(그래프·화면 캡처)는 무손실 webp로, JPG(사진)는 손실 webp(q85)로 바꾸고 긴 변을 1600px 이하로 줄인다.
+       바꾼 것이 원본보다 크면 원본을 쓴다. webp·GIF는 이미 압축된 파일이라 다시 압축하지 않는다. */ -}}
 {{- $src := .Destination -}}
 {{- $size := "" -}}
 {{- with .Page.Resources.Get .Destination -}}
   {{- $img := . -}}
-  {{- if ne .MediaType.SubType "gif" -}}
-    {{- $new := cond (gt .Width 1600) (.Resize "1600x webp q85") (.Process "webp q85") -}}
-    {{- if lt (len $new.Content) (len .Content) }}{{ $img = $new }}{{ end -}}
+  {{- $spec := index (dict "png" "webp lossless" "jpeg" "webp q85") .MediaType.SubType -}}
+  {{- with $spec -}}
+    {{- $new := "" -}}
+    {{- if gt $img.Width 1600 }}{{ $new = $img.Resize (printf "1600x %s" .) }}{{ else }}{{ $new = $img.Process . }}{{ end -}}
+    {{- if lt (len $new.Content) (len $img.Content) }}{{ $img = $new }}{{ end -}}
   {{- end -}}
   {{- $src = $img.RelPermalink -}}
   {{- $size = printf ` width="%d" height="%d"` $img.Width $img.Height -}}
