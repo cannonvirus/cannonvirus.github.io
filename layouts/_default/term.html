@@ -1,10 +1,20 @@
-{{- /* 분야·연재 한 개의 글 목록. 제목은 용어 페이지의 title, 설명은 description이다. */ -}}
+{{- /* 분야·연재 한 개의 글 목록. 제목은 용어 페이지의 title, 설명은 description이다.
+       연재는 최신 글이 위다. 처음부터 읽을 사람을 위해 목록 위에 가장 오래된 글(1회)로 가는 단추를 둔다. */ -}}
 {{ define "main" }}
+  {{ $isSeries := eq .Data.Plural "series" }}
   <h1>{{ if eq .Data.Plural "tags" }}#{{ end }}{{ .Title }} <span class="term-count">{{ len .Pages }}편</span></h1>
   {{ with .Description }}<p class="term-description">{{ . }}</p>{{ end }}
   {{ with .Content }}<div class="index-content">{{ . }}</div>{{ end }}
+  {{ if $isSeries }}
+    {{ with index .Pages.ByDate 0 }}
+    <p class="series-start">
+      <a class="button series-start__link" href="{{ .RelPermalink }}">첫 회 읽기</a>
+      <span class="term-count">{{ .Title | replaceRE `^.+ 개발 (#\d+):\s*` "$1 " }}</span>
+    </p>
+    {{ end }}
+  {{ end }}
   <div class="posts">
-    {{ $pages := cond (eq .Data.Plural "series") .Pages.ByDate .Pages }}
+    {{ $pages := cond $isSeries .Pages.ByDate.Reverse .Pages }}
     {{ range $pages }}
       {{ partial "post-card.html" . }}
     {{ end }}

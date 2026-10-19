@@ -251,6 +251,24 @@ mark {
   padding-left: 2.2em;
 }
 
+/* 연재 페이지의 "첫 회 읽기" 단추. 연재 표시(.term--series)와 같은 1px 강조색 테두리, 누를 때는 테마 button과 같은 바탕색이다. */
+.series-start {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  margin: 14px 0 26px;
+}
+
+a.button.series-start__link {
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 4px 14px;
+  transition: background 0.15s linear;
+}
+
+a.button.series-start__link:hover { background: color-mix(in srgb, var(--accent) 15%, transparent); }
+
 .series-group__list li { padding: 5px 0; }
 .series-group__date { color: var(--muted); font-size: 0.85rem; margin-left: 6px; }
 .home-list__series { font-weight: 700; }
@@ -595,7 +613,7 @@ mark {
   @page { margin: 16mm 15mm; }
   body { background: #fff; color: #111; }
   .container { padding: 0; max-width: none; }
-  .footer, .pagination, .series-nav, .related-posts, .hanchor, .read-more, .rail, #top-progress { display: none !important; }
+  .footer, .pagination, .series-nav, .related-posts, .hanchor, .read-more, .series-start, .rail, #top-progress { display: none !important; }
   .toc-inline { display: block !important; }
   .has-rail > .post-head, .has-rail > .report-head { padding-left: 0 !important; }
   .post-layout { display: block !important; }

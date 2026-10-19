@@ -58,6 +58,7 @@ GoatCounter를 씁니다. 가입할 때 정한 사이트 코드를 `hugo.yaml`�
 - `layouts/_default/_markup/render-image.html`: 그림에 가로·세로 크기를 적습니다. PNG는 무손실 webp로, JPG는 손실 webp(q85)로 바꾸고 긴 변을 1600px 이하로 줄입니다. 이미 webp인 그림은 다시 압축하지 않습니다. 움직이는 그림은 GIF 대신 무손실 애니메이션 webp로 넣습니다(빌드 때 GIF를 바꾸면 메모리가 부족합니다).
 - 사이트 검색: `content/search.md`, `layouts/_default/search.html`. 색인 대상은 글 본문(`data-pagefind-body`)이고 목차·연재 목록·관련 글은 뺍니다.
 - `hugo.yaml`의 `readingTime: false`: 글 머리의 읽는 시간과 단어 수를 출력하지 않습니다.
+- 연재 페이지(`/series/<이름>/`, `layouts/_default/term.html`): 글을 최신순으로 보이고, 목록 위에 가장 오래된 글(1회)로 가는 "첫 회 읽기" 단추를 둡니다(2026-10-19). Projects 목록(`list-projects.html`)과 글 끝 연재 목록은 번호 순서 그대로입니다.
 - 2026-10-17 개편(분야·연재 분류, 주차별·연재별 목록, 옆 목차·읽기 진행률(`assets/reading.js`), 글꼴 구분, 보고서형 글 `layout: report`, 인쇄 색): 변경 목록과 적용 순서는 `docs/design-20261017.md`에 있습니다.
 
 ## News 글 (VISER 주간 보고서)
