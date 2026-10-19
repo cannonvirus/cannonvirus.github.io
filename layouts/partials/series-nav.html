@@ -1,10 +1,10 @@
-{{- /* 연재 글 목록. 글이 속한 연재의 글을 번호 순서(작성일 순)로 보이고 지금 글을 표시한다. */ -}}
+{{- /* 연재 글 목록. 글이 속한 연재의 글을 최신 글부터 보이고(2026-10-19 사용자 결정) 지금 글을 표시한다. 번호는 reversed로 회차와 맞춘다. */ -}}
 {{- $page := . -}}
 {{- range .GetTerms "series" }}
 <nav class="series-nav" aria-label="연재 목록" data-pagefind-ignore="all">
   <div class="series-nav__title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> 연재 {{ len .Pages }}편</div>
-  <ol>
-    {{- range .Pages.ByDate }}
+  <ol reversed>
+    {{- range .Pages.ByDate.Reverse }}
     <li{{ if eq . $page }} class="is-current"{{ end }}>
       {{- if eq . $page }}<span>{{ .Title }}</span>{{ else }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end -}}
     </li>

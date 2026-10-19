@@ -1,4 +1,4 @@
-{{- /* Projects 목록. 연재별로 묶고 연재 안에서는 번호 순서(작성일 순)로 둔다. 최근에 글이 올라온 연재가 위다.
+{{- /* Projects 목록. 연재별로 묶고 연재 안에서는 최신 글이 위다(2026-10-19 사용자 결정). 번호는 reversed로 회차와 맞춘다. 최근에 글이 올라온 연재가 위다.
        구역 페이지의 type이 posts라 layouts/projects/list.html로는 고를 수 없다. _default/list.html이 이 부분 템플릿을 부른다. */ -}}
   {{ with .Content }}<div class="index-content">{{ . }}</div>{{ end }}
   {{ $series := slice }}
@@ -12,8 +12,8 @@
     <section class="series-group">
       <h2 class="series-group__title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> <span class="term-count">{{ len .Pages }}편</span></h2>
       {{ with .Description }}<p class="term-description">{{ . }}</p>{{ end }}
-      <ol class="series-group__list">
-        {{ range .Pages.ByDate }}
+      <ol class="series-group__list" reversed>
+        {{ range .Pages.ByDate.Reverse }}
           <li>
             <a href="{{ .RelPermalink }}">{{ .Title | replaceRE `^.+ 개발 (#\d+):\s*` "$1 " }}</a>
             <time class="series-group__date">{{ partial "post-date" . }}</time>
