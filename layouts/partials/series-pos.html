@@ -1,0 +1,14 @@
+{{- /* 연재 안에서 글의 자리. 글 머리의 "N편 중 N회"(single.html)와 글 끝 이전·다음 회 버튼(series-nav.html)이 쓴다.
+       회차는 연재 글을 날짜순으로 센 번호다. 연재가 없는 글이면 빈 dict를 돌려준다. */ -}}
+{{- $pos := dict -}}
+{{- range first 1 (.GetTerms "series") -}}
+  {{- $list := .Pages.ByDate -}}
+  {{- range $i, $p := $list -}}
+    {{- if eq $p $ -}}
+      {{- $pos = dict "no" (add $i 1) "total" (len $list) -}}
+      {{- if gt $i 0 }}{{ $pos = merge $pos (dict "prev" (index $list (sub $i 1))) }}{{ end -}}
+      {{- if lt (add $i 1) (len $list) }}{{ $pos = merge $pos (dict "next" (index $list (add $i 1))) }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $pos -}}

@@ -1,5 +1,26 @@
-{{- /* 연재 글 목록. 글이 속한 연재의 글을 최신 글부터 보이고(2026-10-19 사용자 결정) 지금 글을 표시한다. 번호는 reversed로 회차와 맞춘다. */ -}}
+{{- /* 연재 글 끝. 같은 연재의 이전·다음 회 버튼과 연재 글 목록.
+       - 버튼: 테마의 이전/다음 글은 구역(Projects) 기준이라 다른 연재 글로 넘어가므로, 연재 글에서는 이 버튼으로 바꾼다(single.html)
+       - 목록: 최신 글부터 보이고(2026-10-19 사용자 결정) 지금 글을 표시한다. 번호는 reversed로 회차와 맞춘다. */ -}}
 {{- $page := . -}}
+{{- $pos := partial "series-pos.html" . -}}
+{{- if or $pos.prev $pos.next }}
+<nav class="series-pager" aria-label="연재 이전·다음 회" data-pagefind-ignore="all">
+  {{- with $pos.prev }}
+  <a class="series-pager__link series-pager__link--prev" href="{{ .RelPermalink }}" rel="prev">
+    <span class="series-pager__dir">← 이전 회</span>
+    <span class="series-pager__title">{{ .Title }}</span>
+  </a>
+  {{- else }}
+  <span></span>
+  {{- end }}
+  {{- with $pos.next }}
+  <a class="series-pager__link series-pager__link--next" href="{{ .RelPermalink }}" rel="next">
+    <span class="series-pager__dir">다음 회 →</span>
+    <span class="series-pager__title">{{ .Title }}</span>
+  </a>
+  {{- end }}
+</nav>
+{{- end }}
 {{- range .GetTerms "series" }}
 <nav class="series-nav" aria-label="연재 목록" data-pagefind-ignore="all">
   <div class="series-nav__title"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> 연재 {{ len .Pages }}편</div>

@@ -1,6 +1,9 @@
 {{- /* 표. 표 바로 아래 줄에 {caption="표 제목"}을 적으면 표 위에 제목을 단다.
-       보고서형(layout: report)에서는 제목 앞에 "표 N."을 붙인다. 좁은 화면에서는 표만 가로로 밀린다. */ -}}
+       보고서형(layout: report)에서는 제목 앞에 "표 N."을 붙인다. 좁은 화면에서는 표만 가로로 밀린다.
+       {caption="..." pick="3"}처럼 열 번호(1부터)를 적으면 그 열을 강조한다. 비교표에서 고른 쪽을 표시할 때 쓴다.
+       칸 안의 "184.5점", "−13.7점"처럼 숫자에 붙은 단위는 한 덩어리(nw)로 묶어 좁은 화면에서 숫자와 단위 사이가 끊기지 않게 한다. */ -}}
 {{- $report := eq .Page.Layout "report" -}}
+{{- $pick := int (.Attributes.pick | default 0) -}}
 <figure class="table-figure">
   {{- with .Attributes.caption }}
   <figcaption>{{ if $report }}<span class="fig-no">표 {{ add $.Ordinal 1 }}.</span> {{ end }}{{ . }}</figcaption>
@@ -10,8 +13,8 @@
     <thead>
       {{- range .THead }}
       <tr>
-        {{- range . }}
-        <th{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</th>
+        {{- range $i, $c := . }}
+        <th{{ if eq (add $i 1) $pick }} class="is-pick"{{ end }}{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</th>
         {{- end }}
       </tr>
       {{- end }}
@@ -19,8 +22,8 @@
     <tbody>
       {{- range .TBody }}
       <tr>
-        {{- range . }}
-        <td{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</td>
+        {{- range $i, $c := . }}
+        <td{{ if eq (add $i 1) $pick }} class="is-pick"{{ end }}{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text | replaceRE `([−+]?[0-9][0-9.,]*[%가-힣]+)` `<span class="nw">$1</span>` | safeHTML }}</td>
         {{- end }}
       </tr>
       {{- end }}

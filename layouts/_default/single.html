@@ -12,6 +12,9 @@
       {{- if .Date -}}
         <time class="post-date">{{- partial "post-date" . -}}</time>
       {{- end -}}
+      {{- with partial "series-pos.html" . -}}
+        <span class="post-series-pos">연재 {{ .total }}편 중 {{ .no }}회</span>
+      {{- end -}}
     </div>
     {{ partial "post-tags.html" . }}
   </header>
@@ -31,7 +34,8 @@
 
       {{ partial "series-nav.html" . }}
       {{ partial "related-posts.html" . }}
-      {{ if eq .Type $.Site.Params.contentTypeName }}
+      {{- /* 연재 글은 series-nav.html의 연재 기준 이전·다음 회 버튼을 쓴다. */}}
+      {{ if and (eq .Type $.Site.Params.contentTypeName) (not (.GetTerms "series")) }}
         {{ partial "posts_pagination.html" . }}
       {{ end }}
     </div>

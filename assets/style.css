@@ -83,6 +83,35 @@ kbd {
   padding: 0;
 }
 
+/* 그림 확대 (assets/zoom.js). 띄웠을 때 커지는 그림에만 can-zoom이 붙는다. */
+.post-figure img.can-zoom { cursor: zoom-in; }
+
+dialog.zoom {
+  max-width: none;
+  max-height: none;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 24px 32px;
+  border: 0;
+  background: var(--background);
+  color: var(--foreground);
+  cursor: zoom-out;
+}
+
+dialog.zoom[open] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+dialog.zoom::backdrop { background: transparent; }
+dialog.zoom img { height: auto; padding: 0; border: 1px solid var(--rule); border-radius: 0; }
+dialog.zoom p { margin: 0; font-family: var(--body-font); color: var(--muted); font-size: 0.9rem; text-align: center; }
+html:has(dialog.zoom[open]) { overflow: hidden; }
+
 mark {
   padding: 0 2px;
 }
@@ -286,6 +315,36 @@ a.button.series-start__link:hover { background: color-mix(in srgb, var(--accent)
 .series-nav li { padding: 2px 0; }
 .series-nav .is-current { color: var(--accent); font-weight: 700; }
 
+/* 연재 이전·다음 회 버튼 (연재 목록 위). 다음 회는 오른쪽에 두고, 좁은 화면에서는 위아래로 쌓는다. */
+.series-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 50px 0 0;
+}
+
+.series-pager + .series-nav { margin-top: 16px; }
+
+a.series-pager__link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  border: 1px solid var(--rule);
+  text-decoration: none;
+}
+
+a.series-pager__link:hover { border-color: var(--accent); }
+.series-pager__link--next { grid-column: 2; text-align: right; }
+.series-pager__dir { color: var(--muted); font-size: 0.85rem; }
+.series-pager__title { font-family: var(--body-font); font-weight: 600; line-height: 1.45; }
+
+@media (max-width: 684px) {
+  .series-pager { grid-template-columns: 1fr; }
+  .series-pager > span:empty { display: none; }
+  .series-pager__link--next { grid-column: auto; }
+}
+
 /* 관련 글: 연재 목록과 같은 상자 모양이다. 연재 목록 바로 아래면 간격을 줄인다. */
 .related-posts {
   margin: 50px 0 0;
@@ -321,6 +380,7 @@ a.button.series-start__link:hover { background: color-mix(in srgb, var(--accent)
   border: 1px solid var(--rule);
   border-collapse: collapse;
   font-size: 0.95rem;
+  word-break: keep-all; /* 한글 낱말 중간에서 줄을 바꾸지 않는다 */
 }
 
 .post-content th,
@@ -335,6 +395,17 @@ a.button.series-start__link:hover { background: color-mix(in srgb, var(--accent)
   background: var(--panel);
   text-transform: none;
   border-bottom: 2px solid color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+/* 고른 열({pick="N"}, render-table.html) */
+.post-content th.is-pick,
+.post-content td.is-pick { background: color-mix(in srgb, var(--accent) 12%, var(--background)); }
+.post-content th.is-pick { color: var(--accent); }
+.post-content td .nw { white-space: nowrap; }
+
+@media (max-width: 684px) {
+  .post-content th,
+  .post-content td { padding: 6px 8px; }
 }
 
 /* ===== 보고서형 (layout: report) ===== */
