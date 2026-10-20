@@ -1,7 +1,8 @@
-{{- /* 본문 위 목차. 옆 목차(post-rail)가 보이지 않는 좁은 화면과 인쇄에서만 보인다. 절 번호는 강조색으로 분리한다. */ -}}
+{{- /* 본문 위 목차. 옆 목차(post-rail)가 보이지 않는 좁은 화면과 인쇄에서만 보인다. 절 번호는 강조색으로 분리한다.
+       접어 둔다(2026-10-20). 펼쳐 두면 모바일 첫 화면이 목차로 차서 본문이 화면 아래로 밀렸다. 인쇄할 때는 reading.js가 펼친다. */ -}}
 {{ with .TableOfContents }}
-<nav class="toc-inline" aria-label="목차" data-pagefind-ignore="all">
-  <div class="box-label">목차</div>
+<details class="toc-inline fold" data-pagefind-ignore="all">
+  <summary class="box-label">목차 <span class="fold__count">{{ len (findRE `<li>` .) }}개 절</span></summary>
   {{ . | replaceRE `(<a href="#[^"]+">)(\d+(?:\.\d+)*\.?)\s+` `${1}<span class="sec-no">${2}</span> ` | safeHTML }}
-</nav>
+</details>
 {{ end }}

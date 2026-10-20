@@ -60,6 +60,23 @@ kbd {
   color: color-mix(in srgb, var(--foreground) 80%, transparent);
 }
 
+/* 접는 상자(목차·용어, details.fold). 제목 줄을 눌러 펼친다. 접혀 있을 때 ▸, 펼치면 ▾. */
+details.fold > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+details.fold > summary::-webkit-details-marker { display: none; }
+details.fold > summary::before { content: "▸"; color: var(--accent); width: 0.8em; }
+details.fold[open] > summary::before { content: "▾"; }
+details.fold:not([open]) > summary { margin-bottom: 0; }
+.fold__count { color: var(--muted); font-weight: 400; font-size: 0.85rem; }
+@media (max-width: 684px) {
+  details.fold:not([open]) { padding-top: 12px; padding-bottom: 12px; }
+}
+
 /* 그림과 설명 */
 .post-figure {
   width: 100%;
@@ -268,6 +285,25 @@ mark {
 .home-list .post-terms { margin: 4px 0 0; font-size: 0.85rem; }
 .home-list .term { color: var(--muted); border-bottom-color: var(--rule); }
 
+/* 목록 제목. 글 제목과 같은 비례 글꼴로 두고, 밑줄은 가리킬 때만 긋는다(2026-10-20 사용자 결정). 고정폭 글꼴에 밑줄 친 제목이 줄지어 있으면 훑어 읽기 어려웠다. 날짜·태그는 고정폭 그대로다. */
+.home-list a,
+.week-group__link,
+.series-group__list a {
+  font-family: var(--body-font);
+  text-decoration: none;
+}
+.home-list a:hover,
+.week-group__link:hover,
+.series-group__list a:hover { text-decoration: underline; }
+.home-list .term { font-family: var(--font-stack); }
+
+/* 바닥글 링크 */
+.footer .copyright--user { gap: 4px 14px; }
+
+/* 구역 설명(index-content)의 문단 바깥 여백을 빼 아래 목록과의 간격을 상자 여백(25px)만 남긴다. */
+.index-content > p:first-child { margin-top: 0; }
+.index-content > p:last-child { margin-bottom: 0; }
+
 .week-group__desc {
   margin: 6px 0 0;
   color: var(--muted);
@@ -406,6 +442,11 @@ a.series-pager__link:hover { border-color: var(--accent); }
 @media (max-width: 684px) {
   .post-content th,
   .post-content td { padding: 6px 8px; }
+}
+
+/* 넓은 화면의 표 글자는 본문(17px)에 가깝게 둔다. 그림으로 넣던 표(약 19px)보다 15px이 작아 보였다(2026-10-20). */
+@media (min-width: 685px) {
+  .post-content table { font-size: 1rem; }
 }
 
 /* ===== 보고서형 (layout: report) ===== */
@@ -689,6 +730,7 @@ a.series-pager__link:hover { border-color: var(--accent); }
   .container { padding: 0; max-width: none; }
   .footer, .pagination, .series-nav, .related-posts, .hanchor, .read-more, .series-start, .rail, #top-progress { display: none !important; }
   .toc-inline { display: block !important; }
+  details.fold > summary::before { content: none; }
   .has-rail > .post-head, .has-rail > .report-head { padding-left: 0 !important; }
   .post-layout { display: block !important; }
   a { color: inherit; text-decoration: none; }
@@ -711,3 +753,4 @@ a.series-pager__link:hover { border-color: var(--accent); }
   --pagefind-ui-font: inherit;
 }
 .search-page mark { background: color-mix(in srgb, var(--accent) 30%, transparent) !important; color: inherit !important; }
+

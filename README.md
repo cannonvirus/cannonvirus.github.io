@@ -36,7 +36,7 @@ hugo; npx -y pagefind@1.5.2 --serve
 
 ## 검색 등록
 
-`hugo.yaml`의 `params.verification`에 구글 서치 콘솔과 네이버 서치어드바이저의 인증 값을 넣습니다.
+`hugo.yaml`의 `params.verification`에 구글 서치 콘솔의 인증 값을 넣습니다. 네이버 서치어드바이저는 등록하지 않습니다(2026-10-20 사용자 결정).
 사이트맵 주소는 `/sitemap.xml`입니다.
 
 배포 워크플로는 배포가 끝나면 새로 생겼거나 수정일이 바뀐 주소를 IndexNow(Bing·네이버 등)에 알립니다(`indexnow` 작업).
@@ -47,16 +47,12 @@ hugo; npx -y pagefind@1.5.2 --serve
 
 GoatCounter를 씁니다. 가입할 때 정한 사이트 코드를 `hugo.yaml`의 `params.goatcounter`에 넣으면 배포용 빌드에만 스크립트가 실립니다(`layouts/partials/analytics.html`). 비어 있으면 싣지 않습니다. 통계는 `https://<코드>.goatcounter.com`에서 봅니다.
 
-## 규칙
-
-글 10편을 게시하기 전에는 레이아웃과 스타일을 수정하지 않습니다.
-
 ## 테마 보완 사항
 
-- `assets/style.css`: 한글 글꼴(Noto Sans KR)과 줄 간격을 지정합니다. `extended_head.html`이 주소에 내용의 해시를 붙여 실으므로, 고친 내용이 배포 즉시 반영됩니다. `assets/reading.js`도 같습니다.
+- `assets/style.css`: 글꼴(본문·글 제목은 Pretendard, 메뉴·날짜·절 제목·코드는 Fira Code와 Nanum Gothic Coding)과 줄 간격을 지정합니다. `extended_head.html`이 주소에 내용의 해시를 붙여 실으므로, 고친 내용이 배포 즉시 반영됩니다. `assets/reading.js`도 같습니다.
 - `layouts/partials/extended_head.html`: 글꼴 불러오기와 검색 등록 인증 태그를 출력합니다.
 - `layouts/robots.txt`: 사이트맵 주소를 포함합니다.
-- `layouts/partials/footer.html`: 테마 바닥글의 Hugo와 테마 제작자 문구를 빼고 권리 표기와 About 링크만 출력합니다.
+- `layouts/partials/footer.html`: 테마 바닥글의 Hugo와 테마 제작자 문구를 빼고 권리 표기와 About·RSS·GitHub 링크만 출력합니다. 위쪽 메뉴의 마지막 항목은 GitHub 대신 About입니다(2026-10-20).
 - `layouts/partials/head.html`: 테마의 head.html을 덮어써 공유 이미지를 글마다 만든 그림으로 바꾸고, 트위터 카드를 큰 그림형으로 합니다. 테마 CSS 13개는 한 파일(`css/theme.css`)로 묶어 싣습니다.
 - About 페이지: `content/about.md`. 글 목록·RSS·사이트맵에는 넣지 않고 바닥글에서 연결합니다.
 - `layouts/partials/og-image.html`: 글별 공유 이미지(1200×630)를 빌드할 때 만듭니다. 바탕은 `assets/og-base.png`, 글꼴은 `assets/fonts/`(SIL Open Font License 1.1, 라이선스 파일 동봉)입니다.
@@ -66,7 +62,9 @@ GoatCounter를 씁니다. 가입할 때 정한 사이트 코드를 `hugo.yaml`�
 - 연재 페이지(`/series/<이름>/`, `layouts/_default/term.html`): 글을 최신순으로 보이고, 목록 위에 가장 오래된 글(1회)로 가는 "첫 회 읽기" 단추를 둡니다(2026-10-19). Projects 목록(`list-projects.html`)의 연재별 묶음과 글 끝 연재 목록(`series-nav.html`)도 최신순이며, 목록 번호는 `reversed`로 회차와 같게 둡니다.
 - 연재 이전·다음 회(2026-10-20): 연재 글은 글 머리 날짜 옆에 "연재 N편 중 N회"를 적고, 글 끝 연재 목록 위에 같은 연재 기준 "← 이전 회 / 다음 회 →" 버튼을 둡니다(`series-pos.html`, `series-nav.html`). 테마의 이전/다음 글은 구역(Projects) 기준이라 다른 연재로 넘어가므로 연재 글에서는 빼고, 연재가 아닌 글에만 남깁니다.
 - 그림 확대(2026-10-20, `assets/zoom.js`): 넓은 화면(1,100px 이상, 마우스)에서 띄우면 1.25배 넘게 커지는 그림에만 돋보기 커서를 달고, 누르면 화면에 맞춰 띄웁니다. 원본보다 크게 늘리지 않습니다. 아무 데나 누르기, Esc, 뒤로 가기로 닫힙니다. 모바일에서는 띄워도 커지지 않고 두 손가락 확대가 이미 되므로 동작하지 않습니다.
-- 표(2026-10-20): Projects 글의 표는 그림으로 그리지 않고 마크다운 표로 씁니다. 그림으로 넣은 표는 모바일에서 글자가 9px 안팎으로 작아졌고 검색·복사가 되지 않았습니다. 표 아래 `{caption="제목" pick="3"}`처럼 열 번호를 적으면 그 열(고른 쪽)을 강조합니다(`render-table.html`).
+- 표(2026-10-20): Projects 글의 표는 그림으로 그리지 않고 마크다운 표로 씁니다. 그림으로 넣은 표는 모바일에서 글자가 9px 안팎으로 작아졌고 검색·복사가 되지 않았습니다. 표 아래 `{caption="제목" pick="3"}`처럼 열 번호를 적으면 그 열(고른 쪽)을 강조합니다(`render-table.html`). 표 글자는 685px 이상 화면에서 16px, 그보다 좁은 화면에서 15.2px입니다.
+- 목차·용어 상자 접기(2026-10-20): 본문 위 목차(`toc-inline.html`, 옆 목차가 없는 1,100px 미만 화면)는 접어 두고, 용어 상자(`render-codeblock-용어.html`)는 685px 미만 화면에서만 접습니다(`fold-init.html`). 펼쳐 두면 모바일에서 첫 절 제목이 화면 2.4장 아래에 있었습니다(접으면 1.5장). 인쇄할 때는 `reading.js`가 모두 펼칩니다.
+- 목록 제목(2026-10-20): 첫 화면·News·Projects 목록의 글 제목은 Pretendard로 쓰고 밑줄은 가리킬 때만 긋습니다.
 - 2026-10-17 개편(분야·연재 분류, 주차별·연재별 목록, 옆 목차·읽기 진행률(`assets/reading.js`), 글꼴 구분, 보고서형 글 `layout: report`, 인쇄 색): 변경 목록과 적용 순서는 `docs/design-20261017.md`에 있습니다.
 
 ## News 글 (VISER 주간 보고서)

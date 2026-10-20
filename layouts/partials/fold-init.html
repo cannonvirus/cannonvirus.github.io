@@ -1,0 +1,2 @@
+{{- /* 좁은 화면에서 용어 상자를 접는다. 본문 바로 뒤에서 바로 실행해 펼친 상자가 잠깐 보였다 접히지 않게 한다. */ -}}
+<script>if (matchMedia("(max-width: 684px)").matches) document.querySelectorAll("details.box-terms").forEach(function (d) { d.open = false; });</script>

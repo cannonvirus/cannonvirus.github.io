@@ -1,10 +1,12 @@
-<aside class="box box-terms">
-  <div class="box-label">용어</div>
+{{- /* 용어 상자. 좁은 화면에서는 접어 둔다(fold-init.html, 2026-10-20). 넓은 화면과 스크립트가 없을 때는 펼친 채다. */ -}}
+{{- $rows := split (trim .Inner "\n") "\n" -}}
+<details class="box box-terms fold" open>
+  <summary class="box-label">용어 <span class="fold__count">{{ len $rows }}개</span></summary>
   <dl>
-    {{- range split (trim .Inner "\n") "\n" }}
+    {{- range $rows }}
     {{- $parts := split . ": " }}
     <dt>{{ index $parts 0 }}</dt>
     <dd>{{ delimit (after 1 $parts) ": " }}</dd>
     {{- end }}
   </dl>
-</aside>
+</details>

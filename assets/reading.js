@@ -1,3 +1,17 @@
+// 접는 상자(목차·용어, details.fold). 인쇄할 때는 모두 펼쳤다가 되돌린다. 좁은 화면에서 용어 상자를 접는 일은 fold-init.html이 한다.
+(function () {
+  var folds = Array.prototype.slice.call(document.querySelectorAll("details.fold"));
+  if (!folds.length) return;
+  var shut = [];
+  window.addEventListener("beforeprint", function () {
+    shut = folds.filter(function (d) { return !d.open; });
+    shut.forEach(function (d) { d.open = true; });
+  });
+  window.addEventListener("afterprint", function () {
+    shut.forEach(function (d) { d.open = false; });
+  });
+})();
+
 // 글 옆 목차(TREE)의 현재 절 표시와 읽기 진행률. layouts/partials/post-rail.html과 함께 쓴다.
 // 목차가 없는 페이지에서는 아무것도 하지 않는다.
 (function () {

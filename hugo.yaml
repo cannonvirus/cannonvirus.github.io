@@ -112,7 +112,7 @@ languages:
           name: Search
           url: /search/
           weight: 35
-        - identifier: github
-          name: GitHub
-          url: https://github.com/cannonvirus
+        - identifier: about # GitHub 링크는 바닥글과 About 페이지에 둔다(2026-10-20)
+          name: About
+          url: /about/
           weight: 40
