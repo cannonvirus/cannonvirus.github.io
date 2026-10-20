@@ -1,7 +1,7 @@
 """사이트 글꼴을 쓰인 글자만 남겨 만든다(2026-10-20 사용자 결정).
 
 Pretendard(본문·글 제목)와 Nanum Gothic Coding(고정폭 자리의 한글)을 CDN에서 받으면 글 한 편에 글꼴 조각 52개, 약 800KB를
-받았다. 빌드한 페이지에 나오는 글자만 남긴 파일 다섯 개를 이 사이트에서 보내면 한 번 받은 파일로 사이트 전체를 그린다.
+받았다. 빌드한 페이지에 나오는 글자만 남긴 파일 네 개를 이 사이트에서 보내면 한 번 받은 파일로 사이트 전체를 그린다.
 
     python tools/subset_fonts.py <빌드한 사이트 폴더> <글꼴을 쓸 폴더>
 
@@ -12,8 +12,8 @@ Pretendard(본문·글 제목)와 Nanum Gothic Coding(고정폭 자리의 한글
   같은 이름을 쓸 수 없어, 글꼴 안의 이름을 CV Sans·CV Coding으로 바꾼다. CSS에서도 이 이름으로 부른다.
   저작권 표기와 라이선스(name 표의 0·13·14번)는 그대로 둔다.
 - 선 문자(├── 등, U+2500~257F)는 Fira Code에서 따로 뽑는다. 테마의 Fira Code에는 이 글자가 없어 Nanum Gothic Coding의
-  넓은 선 문자로 그려졌고, 코드 상자의 폴더 구조에서 오른쪽 설명 줄이 어긋났다. Fira Code는 이름이 예약되어 있지 않아
-  CSS에서 테마와 같은 "Fira Code" 이름에 글자 범위만 더한다.
+  넓은 선 문자로 그려졌고, 코드 상자의 폴더 구조에서 오른쪽 설명 줄이 어긋났다. CSS에서는 CV Box라는 이름으로
+  코드 상자에서만 쓴다(옆 목차의 └는 예전 모양 그대로 CV Coding으로 그린다).
 """
 import pathlib
 import sys
@@ -25,7 +25,6 @@ FONTS = pathlib.Path(__file__).resolve().parent.parent / "assets" / "fonts"
 # (원본, 만들 파일, 새 이름, 굵기 이름, 고정폭 한글용인지)
 JOBS = [
     ("Pretendard-Regular.woff2", "cv-sans-400.woff2", "CV Sans", "Regular", False),
-    ("Pretendard-SemiBold.woff2", "cv-sans-600.woff2", "CV Sans", "SemiBold", False),
     ("Pretendard-Bold.ttf", "cv-sans-700.woff2", "CV Sans", "Bold", False),
     ("NanumGothicCoding-Regular.ttf", "cv-coding-400.woff2", "CV Coding", "Regular", True),
     ("NanumGothicCoding-Bold.ttf", "cv-coding-700.woff2", "CV Coding", "Bold", True),
@@ -69,8 +68,8 @@ def main() -> None:
     out.mkdir(parents=True, exist_ok=True)
     chars = site_chars(site)
     # 고정폭 자리의 ASCII는 테마의 Fira Code가 그리므로 Nanum Gothic Coding에는 그 밖의 글자만 넣는다.
-    # 선 문자는 Fira Code가 그리므로 뺀다.
-    wide = "".join(sorted(c for c in chars if ord(c) > 0x7E and not 0x2500 <= ord(c) <= 0x257F))
+    # 선 문자도 넣는다. 코드 상자에서는 CV Box(Fira Code)가 그리지만, 옆 목차의 가지 표시(└)는 이 글꼴로 그린다.
+    wide = "".join(sorted(c for c in chars if ord(c) > 0x7E))
     for src, dst, family, style, mono in JOBS:
         opts = subset.Options()
         opts.flavor = "woff2"
