@@ -49,8 +49,9 @@ GoatCounter를 씁니다. 가입할 때 정한 사이트 코드를 `hugo.yaml`�
 
 ## 테마 보완 사항
 
-- `assets/style.css`: 글꼴(본문·글 제목은 Pretendard, 메뉴·날짜·절 제목·코드는 Fira Code와 Nanum Gothic Coding)과 줄 간격을 지정합니다. `extended_head.html`이 주소에 내용의 해시를 붙여 실으므로, 고친 내용이 배포 즉시 반영됩니다. `assets/reading.js`도 같습니다.
-- `layouts/partials/extended_head.html`: 글꼴 불러오기와 검색 등록 인증 태그를 출력합니다.
+- `assets/style.css`: 글꼴(본문·글 제목은 Pretendard, 메뉴·날짜·절 제목·코드는 Fira Code와 Nanum Gothic Coding)과 줄 간격을 지정합니다. 맨 위에 사이트 글꼴(CV Sans·CV Coding)의 정의가 있습니다. `extended_head.html`이 주소에 내용의 해시를 붙여 실으므로, 고친 내용이 배포 즉시 반영됩니다. `assets/reading.js`도 같습니다.
+- `layouts/partials/extended_head.html`: 본문 글꼴 미리 받기와 검색 등록 인증 태그를 출력합니다.
+- 글꼴(2026-10-20): Pretendard와 Nanum Gothic Coding을 CDN에서 받지 않고, 사이트에 쓰인 글자만 남긴 파일 다섯 개(`/fonts/site/`)를 이 사이트에서 보냅니다. CDN은 글자를 조각내 보내 글 한 편에 글꼴 요청 52개, 약 800KB였고, 바꾼 뒤에는 6개, 약 400KB이며 다음 페이지부터는 받지 않습니다. 배포 워크플로가 빌드와 검색 색인 뒤에 `tools/subset_fonts.py`로 다시 만들어 새 글의 글자도 들어갑니다. 원본은 `assets/fonts/`입니다. 두 글꼴은 이름이 예약되어 있어(SIL OFL 1.1 Reserved Font Name) 덜어 낸 파일은 CV Sans(Pretendard)·CV Coding(Nanum Gothic Coding)이라는 이름으로 부릅니다. `static/fonts/site/`는 로컬 미리보기용 기준본이라, 미리보기에서 새 글의 처음 나온 글자만 다른 글꼴로 보일 수 있습니다. 기준본을 새로 만들려면 `hugo -d <폴더>` 뒤에 `python -X utf8 tools/subset_fonts.py <폴더> static/fonts/site`를 실행합니다(fonttools, brotli 필요).
 - `layouts/robots.txt`: 사이트맵 주소를 포함합니다.
 - `layouts/partials/footer.html`: 테마 바닥글의 Hugo와 테마 제작자 문구를 빼고 권리 표기와 About·RSS·GitHub 링크만 출력합니다. 위쪽 메뉴의 마지막 항목은 GitHub 대신 About입니다(2026-10-20).
 - `layouts/partials/head.html`: 테마의 head.html을 덮어써 공유 이미지를 글마다 만든 그림으로 바꾸고, 트위터 카드를 큰 그림형으로 합니다. 테마 CSS 13개는 한 파일(`css/theme.css`)로 묶어 싣습니다.
