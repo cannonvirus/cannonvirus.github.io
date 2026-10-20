@@ -24,6 +24,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      host: ${{ steps.pages.outputs.host }}
+      indexnow_urls: ${{ steps.indexnow.outputs.urls }}
     steps:
       - name: Install Hugo
         run: |
@@ -43,6 +46,21 @@ jobs:
       # 사이트 검색 색인. 설정은 pagefind.yml에 있다.
       - name: Search index
         run: npx -y pagefind@1.5.2
+      # IndexNow로 알릴 주소. 지금 공개된 사이트맵과 새로 만든 사이트맵을 비교해 새로 생겼거나 수정일이 바뀐 주소만 고른다.
+      # 예약 실행에서는 그날 공개된 글이 새 주소로 잡힌다. 바뀐 것이 없으면 []이고 indexnow 작업을 건너뛴다.
+      - name: IndexNow targets
+        id: indexnow
+        run: |
+          old="${{ runner.temp }}/old-sitemap.xml"
+          curl -fsSL "${{ steps.pages.outputs.base_url }}/sitemap.xml" -o "$old" || : > "$old"
+          python3 - "$old" public/sitemap.xml >> "$GITHUB_OUTPUT" <<'EOF'
+          import json, re, sys
+          def pairs(path):
+              text = open(path, encoding="utf-8").read()
+              return set(re.findall(r"<loc>([^<]+)</loc>\s*(?:<lastmod>([^<]+)</lastmod>)?", text))
+          urls = sorted({loc for loc, _ in pairs(sys.argv[2]) - pairs(sys.argv[1])})
+          print("urls=" + json.dumps(urls[:10000]))
+          EOF
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
@@ -56,3 +74,23 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # 새 글과 고친 글을 IndexNow(Bing·네이버 등)에 알린다. 구글은 IndexNow에 참여하지 않아 사이트맵으로 찾는다.
+  # 배포가 끝난 뒤에 보내야 검색 엔진이 새 페이지를 읽을 수 있다. 키 파일은 static/<키>.txt이고, 키를 바꾸면 파일 이름·내용과
+  # 아래 INDEXNOW_KEY를 함께 바꾼다. 응답 200·202가 정상이다(202는 키 확인 대기).
+  indexnow:
+    needs: [build, deploy]
+    if: needs.build.outputs.indexnow_urls != '' && needs.build.outputs.indexnow_urls != '[]'
+    runs-on: ubuntu-latest
+    env:
+      INDEXNOW_KEY: f5856e35cb2bf76442bff4dcaadf9e2e
+      HOST: ${{ needs.build.outputs.host }}
+      URLS: ${{ needs.build.outputs.indexnow_urls }}
+    steps:
+      - name: Submit to IndexNow
+        run: |
+          echo "$URLS" | jq -r '.[]'
+          jq -n --arg host "$HOST" --arg key "$INDEXNOW_KEY" --argjson urls "$URLS" \
+            '{host: $host, key: $key, keyLocation: ("https://" + $host + "/" + $key + ".txt"), urlList: $urls}' > body.json
+          curl -sS --fail-with-body -w '\nHTTP %{http_code}\n' -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' --data @body.json

@@ -8,15 +8,16 @@
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#1a170f">
 
-<!-- 글꼴 세 가지(2026-10-17 개편). 모두 SIL Open Font License 1.1이다.
+<!-- 글꼴 두 가지(2026-10-17 개편). 모두 SIL Open Font License 1.1이다.
      - 본문·글 제목: Pretendard. 화면에 나온 글자만 나눠 받는 판(dynamic subset)을 버전 고정으로 불러온다
      - 고정폭(메뉴·목차·절 제목·코드): 영문은 테마의 Fira Code, 한글은 Nanum Gothic Coding(Fira Code에 한글이 없다)
-     - Noto Sans KR: Pretendard를 받지 못했을 때의 대체 글꼴 -->
+     Pretendard를 받지 못하면 시스템 글꼴(맑은 고딕, Apple SD 산돌고딕 Neo)로 보인다. 처음에는 Noto Sans KR을 대체 글꼴로
+     함께 불러왔으나, 그 CSS(약 190KB)를 받는 동안 첫 화면이 늦어지고, 확인한 화면에서 이 글꼴로 그려진 글자가 없어 뺐다(2026-10-20). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap">
 
 {{ with site.Params.verification.google }}<meta name="google-site-verification" content="{{ . }}">{{ end }}
 {{ partial "schema.html" . }}

@@ -43,7 +43,7 @@
   {{ with $points }}
   <section class="report-summary" aria-label="요약">
     <div class="box-label">요약</div>
-    <p class="report-summary__lead">{{ . }}</p>
+    <p class="report-summary__lead">{{ . | markdownify }}</p>
   </section>
   {{ end }}
 

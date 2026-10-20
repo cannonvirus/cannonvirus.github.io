@@ -557,6 +557,9 @@ a.button.series-start__link:hover { background: color-mix(in srgb, var(--accent)
 
 .rail__progress {
   margin-top: 22px;
+  /* 막대 글자(░▓)는 Fira Code와 Nanum Gothic Coding에 없어 뒤 글꼴로 넘어간다. 컴퓨터에 Noto Sans KR이 설치되어 있으면
+     그 글꼴의 넓은 빗금 글자로 그려져 막대가 칸을 넘치고 백분율이 가려졌다(2026-10-20). 막대를 그릴 글꼴을 정해 둔다. */
+  font-family: "Fira Code", Consolas, Menlo, "DejaVu Sans Mono", monospace;
   white-space: nowrap;
   color: color-mix(in srgb, var(--foreground) 30%, transparent);
   overflow: hidden;

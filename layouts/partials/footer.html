@@ -1,9 +1,10 @@
-{{- /* 테마 바닥글을 덮어쓴다. 테마의 Hugo·테마 제작자 문구를 빼고 권리 표기만 둔다.
+{{- /* 테마 바닥글을 덮어쓴다. 테마의 Hugo·테마 제작자 문구를 빼고 권리 표기와 About 링크만 둔다.
        아래 스크립트 묶음은 테마 것과 같아야 한다(메뉴 펼침, 코드 복사). */ -}}
 <footer class="footer">
   <div class="footer__inner">
     <div class="copyright copyright--user">
       <span>© {{ now.Year }} cannonvirus</span>
+      <span><a href="{{ "about/" | relURL }}">About</a></span>
     </div>
   </div>
 </footer>

@@ -17,7 +17,7 @@
             <li>
               <a class="week-group__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
               {{ partial "post-tags.html" . }}
-              {{ with .Description }}<p class="week-group__desc">{{ . }}</p>{{ end }}
+              {{ with .Description }}<p class="week-group__desc">{{ . | markdownify }}</p>{{ end }}
             </li>
             {{ end }}
           {{ end }}
