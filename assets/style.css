@@ -9,6 +9,8 @@
 @font-face { font-family: "CV Sans"; font-weight: 700; font-display: swap; src: url("/fonts/site/cv-sans-700.woff2") format("woff2"); }
 @font-face { font-family: "CV Coding"; font-weight: 400; font-display: swap; src: url("/fonts/site/cv-coding-400.woff2") format("woff2"); }
 @font-face { font-family: "CV Coding"; font-weight: 700; font-display: swap; src: url("/fonts/site/cv-coding-700.woff2") format("woff2"); }
+/* 선 문자(├── 등). 테마의 Fira Code에 없는 범위만 더해, 코드 상자의 폴더 구조가 영문과 같은 폭으로 줄을 맞춘다. */
+@font-face { font-family: "Fira Code"; font-weight: 300 700; font-display: swap; src: url("/fonts/site/fira-code-box.woff2") format("woff2"); unicode-range: U+2500-257F; }
 
 :root {
   color-scheme: dark; /* 브라우저의 강제 다크 모드가 색과 그림을 다시 바꾸지 않게 한다. */
@@ -760,7 +762,7 @@ a.series-pager__link:hover { border-color: var(--accent); }
   --pagefind-ui-tag: color-mix(in srgb, var(--foreground) 10%, transparent);
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: 0;
-  --pagefind-ui-font: inherit;
+  --pagefind-ui-font: var(--body-font); /* inherit로 두면 Pagefind 기본값(시스템 글꼴)을 그대로 이어받았다 */
 }
 .search-page mark { background: color-mix(in srgb, var(--accent) 30%, transparent) !important; color: inherit !important; }
 

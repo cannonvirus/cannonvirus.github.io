@@ -51,14 +51,14 @@ GoatCounter를 씁니다. 가입할 때 정한 사이트 코드를 `hugo.yaml`�
 
 - `assets/style.css`: 글꼴(본문·글 제목은 Pretendard, 메뉴·날짜·절 제목·코드는 Fira Code와 Nanum Gothic Coding)과 줄 간격을 지정합니다. 맨 위에 사이트 글꼴(CV Sans·CV Coding)의 정의가 있습니다. `extended_head.html`이 주소에 내용의 해시를 붙여 실으므로, 고친 내용이 배포 즉시 반영됩니다. `assets/reading.js`도 같습니다.
 - `layouts/partials/extended_head.html`: 본문 글꼴 미리 받기와 검색 등록 인증 태그를 출력합니다.
-- 글꼴(2026-10-20): Pretendard와 Nanum Gothic Coding을 CDN에서 받지 않고, 사이트에 쓰인 글자만 남긴 파일 다섯 개(`/fonts/site/`)를 이 사이트에서 보냅니다. CDN은 글자를 조각내 보내 글 한 편에 글꼴 요청 52개, 약 800KB였고, 바꾼 뒤에는 6개, 약 400KB이며 다음 페이지부터는 받지 않습니다. 배포 워크플로가 빌드와 검색 색인 뒤에 `tools/subset_fonts.py`로 다시 만들어 새 글의 글자도 들어갑니다. 원본은 `assets/fonts/`입니다. 두 글꼴은 이름이 예약되어 있어(SIL OFL 1.1 Reserved Font Name) 덜어 낸 파일은 CV Sans(Pretendard)·CV Coding(Nanum Gothic Coding)이라는 이름으로 부릅니다. `static/fonts/site/`는 로컬 미리보기용 기준본이라, 미리보기에서 새 글의 처음 나온 글자만 다른 글꼴로 보일 수 있습니다. 기준본을 새로 만들려면 `hugo -d <폴더>` 뒤에 `python -X utf8 tools/subset_fonts.py <폴더> static/fonts/site`를 실행합니다(fonttools, brotli 필요).
+- 글꼴(2026-10-20): Pretendard와 Nanum Gothic Coding을 CDN에서 받지 않고, 사이트에 쓰인 글자만 남긴 파일 다섯 개(`/fonts/site/`)를 이 사이트에서 보냅니다. CDN은 글자를 조각내 보내 글 한 편에 글꼴 요청 52개, 약 800KB였고, 바꾼 뒤에는 6개, 약 400KB이며 다음 페이지부터는 받지 않습니다. 배포 워크플로가 빌드와 검색 색인 뒤에 `tools/subset_fonts.py`로 다시 만들어 새 글의 글자도 들어갑니다. 원본은 `assets/fonts/`입니다. 코드 상자의 선 문자(├── 등)는 테마의 Fira Code에 없어 넓은 한글 고정폭 글꼴로 그려지며 줄이 어긋났기 때문에, 같은 Fira Code 5.2에서 선 문자만 뽑은 파일(5KB)을 더합니다. 두 글꼴은 이름이 예약되어 있어(SIL OFL 1.1 Reserved Font Name) 덜어 낸 파일은 CV Sans(Pretendard)·CV Coding(Nanum Gothic Coding)이라는 이름으로 부릅니다. `static/fonts/site/`는 로컬 미리보기용 기준본이라, 미리보기에서 새 글의 처음 나온 글자만 다른 글꼴로 보일 수 있습니다. 기준본을 새로 만들려면 `hugo -d <폴더>` 뒤에 `python -X utf8 tools/subset_fonts.py <폴더> static/fonts/site`를 실행합니다(fonttools, brotli 필요).
 - `layouts/robots.txt`: 사이트맵 주소를 포함합니다.
 - `layouts/partials/footer.html`: 테마 바닥글의 Hugo와 테마 제작자 문구를 빼고 권리 표기와 About·RSS·GitHub 링크만 출력합니다. 위쪽 메뉴의 마지막 항목은 GitHub 대신 About입니다(2026-10-20).
 - `layouts/partials/head.html`: 테마의 head.html을 덮어써 공유 이미지를 글마다 만든 그림으로 바꾸고, 트위터 카드를 큰 그림형으로 합니다. 테마 CSS 13개는 한 파일(`css/theme.css`)로 묶어 싣습니다.
 - About 페이지: `content/about.md`. 글 목록·RSS·사이트맵에는 넣지 않고 바닥글에서 연결합니다.
 - `layouts/partials/og-image.html`: 글별 공유 이미지(1200×630)를 빌드할 때 만듭니다. 바탕은 `assets/og-base.png`, 글꼴은 `assets/fonts/`(SIL Open Font License 1.1, 라이선스 파일 동봉)입니다.
 - `layouts/_default/_markup/render-image.html`: 그림에 가로·세로 크기를 적습니다. PNG는 무손실 webp로, JPG는 손실 webp(q85)로 바꾸고 긴 변을 1600px 이하로 줄입니다. 이미 webp인 그림은 다시 압축하지 않습니다. 움직이는 그림은 GIF 대신 무손실 애니메이션 webp로 넣습니다(빌드 때 GIF를 바꾸면 메모리가 부족합니다).
-- 사이트 검색: `content/search.md`, `layouts/_default/search.html`. 색인 대상은 글 본문(`data-pagefind-body`)이고 목차·연재 목록·관련 글은 뺍니다.
+- 사이트 검색: `content/search.md`, `layouts/_default/search.html`. 검색 화면의 글꼴은 본문과 같습니다(`style.css`의 `--pagefind-ui-font`). 색인 대상은 글 본문(`data-pagefind-body`)이고 목차·연재 목록·관련 글은 뺍니다.
 - `hugo.yaml`의 `readingTime: false`: 글 머리의 읽는 시간과 단어 수를 출력하지 않습니다.
 - 연재 페이지(`/series/<이름>/`, `layouts/_default/term.html`): 글을 최신순으로 보이고, 목록 위에 가장 오래된 글(1회)로 가는 "첫 회 읽기" 단추를 둡니다(2026-10-19). Projects 목록(`list-projects.html`)의 연재별 묶음과 글 끝 연재 목록(`series-nav.html`)도 최신순이며, 목록 번호는 `reversed`로 회차와 같게 둡니다.
 - 연재 이전·다음 회(2026-10-20): 연재 글은 글 머리 날짜 옆에 "연재 N편 중 N회"를 적고, 글 끝 연재 목록 위에 같은 연재 기준 "← 이전 회 / 다음 회 →" 버튼을 둡니다(`series-pos.html`, `series-nav.html`). 테마의 이전/다음 글은 구역(Projects) 기준이라 다른 연재로 넘어가므로 연재 글에서는 빼고, 연재가 아닌 글에만 남깁니다.
