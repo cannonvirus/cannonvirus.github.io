@@ -45,6 +45,14 @@ markup:
       extras:
         mark:
           enable: true # ==문장== 형광 강조
+      passthrough: # 수식을 그대로 넘겨 render-passthrough.html이 빌드 때 MathML로 그린다. 외부 스크립트가 없다.
+        enable: true
+        delimiters:
+          block:
+            - ['\[', '\]']
+            - ['$$', '$$']
+          inline:
+            - ['\(', '\)']
     renderer:
       unsafe: true # md 안의 HTML을 그대로 출력한다.
   highlight:
