@@ -380,7 +380,7 @@ Marker v2는 실제 룰북 표 3쪽 중 2쪽에서 표를 만들지 않고 글�
   - Luthier: Paverson Games 계정이 보드게임긱에 올린 [영어 룰북](https://boardgamegeek.com/filepage/301687/luthier-rules-english)
   - Arcs: Buried Giant Studios의 [영어 룰북](https://buriedgiant.com/arcs/Arcs_Base_Rulebook.pdf)
   - Endeavor: Deep Sea: Burnt Island Games [게임 쪽](https://www.burntislandgames.com/endeavordeepsea)의 [영어 룰북](https://www.burntislandgames.com/_files/ugd/69e02c_0ddb009651864556b89ed5ffb6ff5000.pdf)
-  - A Feast for Odin: Z-Man Games의 [영어 FAQ](https://images-cdn.zmangames.com/us-east-1/filer_public/0a/d9/0ad97385-c47c-41cb-a8e6-d708da6c63cd/affo-faq.pdf)
+  - A Feast for Odin: Z-Man Games 홈페이지의 A Feast for Odin 영어 FAQ입니다. 파일을 내려받는 서버의 보안 인증서가 만료돼 누르면 경고가 떠서 링크는 달지 않았습니다.
   - Ostia: uchibacoya [게임 쪽](https://uchibacoya.com/item-ostia.html)의 [영어 룰북](https://uchibacoya.com/images/ostia-rulebook-english.pdf)
   - Sekigahara: 코리아보드게임즈 규칙서 게시판의 한국어 참조표입니다. 게시판이 로그인해야 열려 글 주소는 확인하지 못했습니다.
 - 카드: Tabletop Simulator 창작마당 모드에서 받은 그림이고, 저작권은 해당 출판사와 저작자에게 있습니다.

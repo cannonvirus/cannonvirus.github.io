@@ -1,5 +1,3 @@
 # 링크 검사(.github/workflows/links.yml)에서 뺄 주소. 한 줄에 정규식 하나.
 # 브라우저로는 열리지만 자동 검사를 막는(403) 사이트를 적는다.
 ^https://boardgamegeek\.com/
-# Z-Man Games 파일 서버의 인증서가 2020년에 만료된 채라 인증서 오류가 나는 A Feast for Odin 영어 FAQ 한 건만 뺀다.
-^https://images-cdn\.zmangames\.com/us-east-1/filer_public/0a/d9/0ad97385-c47c-41cb-a8e6-d708da6c63cd/affo-faq\.pdf$
