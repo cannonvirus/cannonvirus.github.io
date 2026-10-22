@@ -424,6 +424,9 @@ a.series-pager__link:hover { border-color: var(--accent); }
 
 .table-scroll { overflow-x: auto; }
 
+/* 긴 표시 수식은 수식 상자 안에서만 좌우로 민다 */
+.math-block { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+
 .post-content table {
   width: 100%;
   margin: 0;
