@@ -101,16 +101,18 @@ Endeavor: Deep Sea는 Grand Gamers Guild와 함께 냈고, A Feast for Odin 영�
 
 ![후보별 룰북 글자 F1과 카드 번호 일치율 비교](bars-text-cards.png)
 
-| 후보 | 장치 | 한국어 룰북 F1 | 영어 룰북 F1 | SETI 이름 / 번호 | WC 번호 |
-|---|---|---:|---:|---:|---:|
-| qwen3-vl:8b-instruct | GPU | 0.98 | 0.97 | 1.00 / 0.43 | 0.82 |
-| Marker v2 + Surya OCR 2 | GPU | 0.95 | 0.96 | 1.00 / 0.60 | 0.80 |
-| Unlimited-OCR | GPU | 0.96 | 0.97 | 0.25 / 0.34 | 0.08 |
-| dots.mocr | GPU | 0.96 | 0.97 | 1.00 / 0.67 | 0.62 |
-| dots.ocr | GPU | 0.83 | 0.97 | 0.99 / 0.87 | 0.90 |
-| PaddleOCR PP-OCRv5 한국어 | CPU | 0.91 | 0.94 | 0.96 / 0.09 | 0.10 |
-| Indra OCR 모드 | CPU | 0.07 | 0.97 | 0.97 / 0.02 | 0.00 |
+| 후보 | 한글 | 영문 | SETI | WC |
+| --- | ---: | ---: | ---: | ---: |
+| qwen3-vl | 0.98 | 0.97 | 0.43 | 0.82 |
+| Marker | 0.95 | 0.96 | 0.60 | 0.80 |
+| Unlimited | 0.96 | 0.97 | 0.34 | 0.08 |
+| dots.mocr | 0.96 | 0.97 | 0.67 | 0.62 |
+| dots.ocr | 0.83 | 0.97 | 0.87 | 0.90 |
+| Paddle | 0.91 | 0.94 | 0.09 | 0.10 |
+| Indra | 0.07 | 0.97 | 0.02 | 0.00 |
 {caption="후보별 룰북 글자 F1과 카드 일치율"}
+
+한글과 영문은 한국어 룰북과 영어 룰북의 글자 F1이고, SETI와 WC는 카드 인쇄 번호 일치율이다. SETI 카드 이름 일치율은 Unlimited 0.25, Paddle 0.96, dots.ocr 0.99, Indra 0.97이고 나머지 셋은 1.00이다. 후보 이름은 줄여 적었다. qwen3-vl은 qwen3-vl:8b-instruct, Marker는 Marker v2 + Surya OCR 2, Unlimited는 Unlimited-OCR, Paddle은 PaddleOCR PP-OCRv5 한국어, Indra는 Indra OCR 모드다. Paddle과 Indra는 CPU로, 나머지 다섯은 GPU로 돌렸다.
 
 글자 F1은 쪽마다 공백을 뺀 글자를 개수까지 세어 정답과 견주고 쪽 평균을 낸다. 글자는 유니코드 NFKC로 맞추고 마크다운 기호와 HTML 태그를 지운 뒤 센다.
 
