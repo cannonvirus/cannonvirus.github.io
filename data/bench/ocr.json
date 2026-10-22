@@ -1,0 +1,29 @@
+{
+  "title": "룰북과 카드 OCR 7종",
+  "tab": "OCR",
+  "order": 10,
+  "public": true,
+  "post": "/projects/boardgame-ai-12",
+  "page": "/bench/ocr",
+  "cond": "2026-10 측정",
+  "who": "후보",
+  "columns": [
+    { "key": "ko", "label": "한글", "group": "룰북 글자 F1", "avg": true },
+    { "key": "en", "label": "영문", "group": "룰북 글자 F1", "avg": true },
+    { "key": "seti", "label": "SETI", "group": "카드 번호", "avg": true },
+    { "key": "wc", "label": "WC", "group": "카드 번호", "avg": true },
+    { "key": "teds", "label": "TEDS", "group": "표", "avg": true },
+    { "key": "sec", "label": "쪽당 초", "group": "속도", "lower": true, "digits": 1 }
+  ],
+  "rows": [
+    { "name": "qwen3-vl 8b", "tag": "GPU", "ko": 0.98, "en": 0.97, "seti": 0.43, "wc": 0.82, "teds": 0.86, "sec": 7.5 },
+    { "name": "Marker", "tag": "GPU", "ko": 0.95, "en": 0.96, "seti": 0.60, "wc": 0.80, "teds": 0.33, "sec": 11.1 },
+    { "name": "Unlimited", "tag": "GPU", "ko": 0.96, "en": 0.97, "seti": 0.34, "wc": 0.08, "teds": 0.39, "sec": 30.3 },
+    { "name": "dots.mocr", "tag": "GPU", "ko": 0.96, "en": 0.97, "seti": 0.67, "wc": 0.62, "teds": 0.60, "sec": 43.4 },
+    { "name": "dots.ocr", "tag": "GPU", "ko": 0.83, "en": 0.97, "seti": 0.87, "wc": 0.90, "teds": 0.61, "sec": 43.3 },
+    { "name": "Paddle", "tag": "CPU", "ko": 0.91, "en": 0.94, "seti": 0.09, "wc": 0.10, "teds": 0.44, "sec": 4.7 },
+    { "name": "Indra", "tag": "CPU", "ko": 0.07, "en": 0.97, "seti": 0.02, "wc": 0.00, "teds": 0.40, "sec": 0.2 }
+  ],
+  "note": "평균은 정확도 다섯 열의 단순 평균이다. 쪽당 초는 룰북 기준이고 낮을수록 좋다. 카드 번호는 SETI 카드 100장과 WC 카드 50장, 표는 실제 룰북 표다.",
+  "pick": "용도별 추천은 룰북 본문과 표 qwen3-vl, 카드의 작은 세로 번호 dots.ocr이다."
+}

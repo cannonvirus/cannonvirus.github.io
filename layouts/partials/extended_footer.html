@@ -3,4 +3,8 @@
 {{ if .IsPage }}
 {{- range slice "reading.js" "zoom.js" }}{{ with resources.Get . | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
 {{- end }}
+{{- /* 벤치 표의 정렬과 탭(assets/bench.js). 벤치 구역과 단축 코드 bench를 쓴 글에만 싣는다. */ -}}
+{{ if or (eq .Section "bench") (and .IsPage (.HasShortcode "bench")) }}
+{{- with resources.Get "bench.js" | fingerprint }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+{{- end }}
 {{ partial "analytics.html" . }}

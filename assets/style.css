@@ -194,12 +194,12 @@ mark {
   line-height: 1.85;
 }
 
-/* 좁은 화면에서도 메뉴 4개를 한 줄로 보인다. 테마는 684px 이하에서 "Menu ▾" 펼침 단추로 바꾼다. */
+/* 좁은 화면에서도 메뉴를 한 줄로 보인다. 테마는 684px 이하에서 "Menu ▾" 펼침 단추로 바꾼다. */
 @media (max-width: 684px) {
   .container { padding: 20px 16px; }
-  .menu--desktop { display: flex; flex-direction: row; flex-wrap: wrap; gap: 4px 14px; }
+  .menu--desktop { display: flex; flex-direction: row; flex-wrap: wrap; gap: 4px 10px; font-size: 0.875rem; } /* 메뉴 6개(Bench 추가, 2026-10-22)가 360px 화면에서도 한 줄에 들게 글자와 간격을 줄였다 */
   .navigation-menu__inner li { padding: 0; }
-  .navigation-menu__inner > li:not(:last-of-type) { margin-right: 0; } /* 테마의 오른쪽 여백 20px을 빼고 gap만 쓴다. 메뉴 5개가 390px 폭에서 한 줄에 든다. */
+  .navigation-menu__inner > li:not(:last-of-type) { margin-right: 0; } /* 테마의 오른쪽 여백 20px을 빼고 gap만 쓴다. */
   .menu--mobile { display: none; }
 }
 
@@ -771,3 +771,60 @@ a.series-pager__link:hover { border-color: var(--accent); }
 }
 .search-page mark { background: color-mix(in srgb, var(--accent) 30%, transparent) !important; color: inherit !important; }
 
+
+
+/* ===== 로컬 AI 벤치 (/bench/, 단축 코드 bench, 2026-10-22) =====
+   블로그 글의 머리, 본문, 표 스타일(.post-head, .post-content table)을 그대로 쓰고 여기에는 벤치에만 필요한 것만 둔다.
+   2026-10-22 사용자 요청으로 단추, 금색 바탕 열, 순위 원, 칸 안 막대를 뺐다. */
+
+.bench-desc { color: var(--muted); font-family: var(--body-font); margin: 4px 0 12px; line-height: 1.7; }
+.bench-page .post-body > h2:first-child,
+.bench-panel > h2 { margin-top: 0; }
+.bench-panel { margin-bottom: 40px; }
+.bench-links { font-size: 0.95rem; }
+.bench-links a + a { margin-left: 16px; }
+
+/* 벤치가 둘 이상일 때만 생기는 글자 탭. 스크립트가 있을 때만 탭 하나씩 보인다. */
+.bench-tabs { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0 0 24px; }
+.bench-tab { background: none; border: 0; padding: 0 0 2px; color: var(--muted); font: inherit; font-family: var(--body-font); cursor: pointer; }
+.bench-tab.is-on { color: var(--foreground); font-weight: 700; border-bottom: 2px solid var(--accent); }
+.bench-js .bench-panel[data-panel] { display: none; }
+.bench-js .bench-panel[data-panel].is-on { display: block; }
+
+/* 표 */
+.bench-board { margin: 16px 0 0; }
+.bench-table { font-variant-numeric: tabular-nums; }
+.bench-table th,
+.bench-table td { white-space: nowrap; text-align: right; vertical-align: middle; }
+.bench-table td.avg,
+.bench-table td.best { font-weight: 700; }
+.bench-table td.txt { color: var(--muted); text-align: left; }
+.bench-table tr.bench-group th { border-bottom: 1px solid var(--rule); color: var(--muted); font-weight: 400; font-size: 0.85rem; text-align: center; }
+.bench-table .tag { color: var(--muted); font-weight: 400; font-size: 0.8rem; }
+.bench-table thead th[data-sort] { cursor: pointer; user-select: none; }
+.bench-table thead th[data-sort]:hover,
+.bench-table thead th[data-sort]:focus-visible { color: var(--accent); outline: none; }
+.bench-table th.is-sorted::after { content: "↓"; margin-left: 2px; color: var(--muted); font-size: 0.75em; }
+.bench-table th.is-sorted[aria-sort="ascending"]::after { content: "↑"; }
+/* 첫 열(후보)은 표가 옆으로 밀려도 왼쪽에 남는다 */
+.bench-table .who { position: sticky; left: 0; z-index: 1; text-align: left; background: var(--background); box-shadow: 1px 0 0 var(--rule); }
+.bench-table .who::before { content: ""; position: absolute; top: 0; bottom: 0; left: -1px; width: 2px; background: inherit; } /* 밀린 칸이 왼쪽 테두리 자리로 비치지 않게 덮는다 */
+.bench-table thead .who { background: var(--panel); }
+.bench-table tbody th { background: var(--background); border-bottom: 1px solid var(--rule); font-weight: 400; }
+
+.bench-note { color: var(--muted); font-size: 0.9rem !important; line-height: 1.7 !important; margin: 8px 0 0; }
+.bench-note--pick { color: var(--foreground); }
+
+/* 표 아래 측정 방법(하위 쪽 본문). 개요 그림은 넓은 판과 세로 판 두 장이고 화면 폭에 따라 하나만 보인다. */
+.bench-method { margin-top: 32px; }
+.bench-method .post-figure img { max-width: 100%; height: auto; }
+.bench-method .post-figure:has(img[src*="-mobile"]) { display: none; }
+@media (max-width: 600px) {
+  .bench-method .post-figure:has(img[src*="overview-ocr"]) { display: none; }
+  .bench-method .post-figure:has(img[src*="-mobile"]) { display: block; }
+}
+
+@media print {
+  .bench-tabs { display: none; }
+  .bench-js .bench-panel[data-panel] { display: block; }
+}

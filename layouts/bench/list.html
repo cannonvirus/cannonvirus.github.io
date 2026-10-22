@@ -1,0 +1,32 @@
+{{- /* 벤치 구역 첫 화면(/bench/). 글 머리(제목과 설명), 벤치마다 표와 그 하위 쪽 본문(측정 방법 그림과 열 정의), 공통 설명 순이다.
+       벤치 쪽에는 연재 글 링크를 두지 않는다(2026-10-22 사용자 요청).
+       블로그 글과 같은 머리, 본문 글꼴, 표 스타일을 쓴다(2026-10-22 사용자 요청으로 장식을 뺐다).
+       표는 data/bench/의 자료로 만들고, 공개 전 자료(partials/bench/visible.html)는 모두 뺀다.
+       벤치가 둘 이상이면 글자 탭이 생기고 탭 전환은 assets/bench.js가 한다. 스크립트가 없으면 표가 차례로 모두 보인다. */ -}}
+{{ define "main" }}
+{{ $boards := partial "bench/boards.html" . }}
+<article class="post bench-page">
+  <header class="post-head">
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="bench-desc">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="post-content post-body">
+    {{ if gt (len $boards) 1 }}
+    <div class="bench-tabs" role="tablist">
+      {{ range $i, $b := $boards }}<button type="button" class="bench-tab{{ if eq $i 0 }} is-on{{ end }}" role="tab" data-board="{{ .id }}" aria-selected="{{ eq $i 0 }}">{{ .tab }}</button>{{ end }}
+    </div>
+    {{ end }}
+
+    {{ range $i, $b := $boards }}
+    <section class="bench-panel{{ if eq $i 0 }} is-on{{ end }}" data-panel="{{ .id }}">
+      <h2>{{ with .page }}<a href="{{ (site.GetPage .).RelPermalink }}">{{ $b.title }}</a>{{ else }}{{ .title }}{{ end }}</h2>
+      {{ partial "bench/table.html" . }}
+      {{ with .page }}{{ with site.GetPage . }}<div class="bench-method">{{ .Content }}</div>{{ end }}{{ end }}
+    </section>
+    {{ end }}
+
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

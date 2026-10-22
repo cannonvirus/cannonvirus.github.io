@@ -63,7 +63,7 @@ markup:
 
 params:
   contentTypeName: posts
-  showMenuItems: 5 # 메뉴 5개(News·Projects·Tags·Search·GitHub)를 모두 펼쳐 둔다. 넘으면 "더 보기"로 접힌다.
+  showMenuItems: 6 # 메뉴 6개(News·Projects·Bench·Tags·Search·About)를 모두 펼쳐 둔다. 넘으면 "더 보기"로 접힌다.
   fullWidthTheme: false
   centerTheme: true
   autoCover: true
@@ -112,6 +112,10 @@ languages:
           name: Projects
           url: /projects/
           weight: 20
+        - identifier: bench # 로컬 AI 벤치 리더보드. content/bench/, data/bench/, layouts/bench/
+          name: Bench
+          url: /bench/
+          weight: 25
         - identifier: tags
           name: Tags
           url: /tags/

@@ -1,0 +1,11 @@
+{{- /* 벤치 자료 하나를 보일지 정한다. 자료의 public이 true이고, 연결 글(post)이 빌드에 있으며 초안이 아니어야 보인다.
+       운영 빌드는 초안을 만들지 않아 연결 글을 못 찾고, 미리보기(--buildDrafts)는 글을 찾지만 .Draft로 거른다. */ -}}
+{{- $ok := false -}}
+{{- if .public -}}
+  {{- with .post -}}
+    {{- with site.GetPage . }}{{ if not .Draft }}{{ $ok = true }}{{ end }}{{ end -}}
+  {{- else -}}
+    {{- $ok = true -}}
+  {{- end -}}
+{{- end -}}
+{{- return $ok -}}

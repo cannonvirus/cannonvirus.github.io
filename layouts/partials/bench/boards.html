@@ -1,0 +1,6 @@
+{{- /* 보일 벤치 자료(data/bench/*.json)를 order 순으로 돌려준다. 파일 이름이 id다. */ -}}
+{{- $list := slice -}}
+{{- range $id, $d := hugo.Data.bench -}}
+  {{- if partial "bench/visible.html" $d }}{{ $list = $list | append (merge $d (dict "id" $id)) }}{{ end -}}
+{{- end -}}
+{{- return sort $list "order" -}}
