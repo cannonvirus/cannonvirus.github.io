@@ -115,10 +115,12 @@ Endeavor: Deep Sea는 Grand Gamers Guild와 함께 냈고, A Feast for Odin 영�
 글자 F1은 쪽마다 공백을 뺀 글자를 개수까지 세어 정답과 견주고 쪽 평균을 낸다. 글자는 유니코드 NFKC로 맞추고 마크다운 기호와 HTML 태그를 지운 뒤 센다.
 
 $$
-|G_i \cap \hat{Y}_i| = \sum_{c} \min\big(G_i(c), \hat{Y}_i(c)\big), \quad
+\begin{gathered}
+|G_i \cap \hat{Y}_i| = \sum_{c} \min\big(G_i(c), \hat{Y}_i(c)\big) \\
 P_i = \frac{|G_i \cap \hat{Y}_i|}{|\hat{Y}_i|}, \quad
-R_i = \frac{|G_i \cap \hat{Y}_i|}{|G_i|}, \quad
+R_i = \frac{|G_i \cap \hat{Y}_i|}{|G_i|} \\
 F_1 = \frac{1}{N} \sum_{i=1}^{N} \frac{2 P_i R_i}{P_i + R_i}
+\end{gathered}
 $$
 
 \(G_i\)와 \(\hat{Y}_i\)는 쪽 \(i\)의 정답과 출력에서 공백을 뺀 글자 모음(같은 글자가 여러 번 들어갈 수 있다), \(G_i(c)\)는 글자 \(c\)의 개수, \(N\)은 세트의 쪽 수다.
@@ -128,8 +130,11 @@ $$
 카드 일치율은 정답 값이 출력 안에 들어 있는 카드의 비율이다. 대조군은 반 바퀴 떨어진 카드의 정답으로 같은 검사를 한 비율로, 숫자를 아무렇게나 많이 내도 맞는 정도다.
 
 $$
-A_f = \frac{1}{K} \sum_{k=1}^{K} \mathbb{1}\big[\, g_{k,f} \sqsubseteq \hat{y}_k \,\big], \qquad
-C_f = \frac{1}{|K_f'|} \sum_{k \in K_f'} \mathbb{1}\big[\, g_{k',f} \sqsubseteq \hat{y}_k \,\big], \quad k' = (k + \lfloor K/2 \rfloor) \bmod K
+\begin{gathered}
+A_f = \frac{1}{K} \sum_{k=1}^{K} \mathbb{1}\big[\, g_{k,f} \sqsubseteq \hat{y}_k \,\big] \\
+C_f = \frac{1}{|K_f'|} \sum_{k \in K_f'} \mathbb{1}\big[\, g_{k',f} \sqsubseteq \hat{y}_k \,\big] \\
+k' = (k + \lfloor K/2 \rfloor) \bmod K
+\end{gathered}
 $$
 
 \(g_{k,f}\)는 카드 \(k\)의 필드 \(f\) 정답, \(\hat{y}_k\)는 출력, \(K\)는 출력이 있는 카드 수, \(K_f'\)는 \(g_{k',f} \ne g_{k,f}\)인 카드다. \(\sqsubseteq\)는 이름이면 영문 소문자와 숫자만 남긴 부분 문자열, 번호와 비용이면 앞뒤가 숫자가 아닌 자리에 있음을 뜻한다.
@@ -318,8 +323,10 @@ Galactic Cruise 한국어 룰북 4, 5쪽은 구성물이 하나씩 모서리가 
 TEDS는 표를 HTML 나무 구조로 놓고, 예측 표를 정답 표로 바꾸려면 칸을 몇 번 더하고 지우고 고쳐야 하는지(나무 편집 거리) 센 뒤 표 크기로 나눠 1에서 뺀 값이다. 한 쪽에 표가 여럿이면 정답 표마다 예측 표를 하나씩 짝짓고, 쪽 점수를 세트 안에서 평균한다.
 
 $$
-\mathrm{TEDS}(T_a, T_b) = 1 - \frac{\mathrm{EditDist}(T_a, T_b)}{\max(|T_a|, |T_b|)}, \qquad
+\begin{gathered}
+\mathrm{TEDS}(T_a, T_b) = 1 - \frac{\mathrm{EditDist}(T_a, T_b)}{\max(|T_a|, |T_b|)} \\
 S = \frac{1}{M} \sum_{m=1}^{M} \mathrm{TEDS}\big(T_m, \hat{T}_{\pi(m)}\big)
+\end{gathered}
 $$
 
 \(\mathrm{EditDist}\)는 칸 추가, 삭제, 내용 수정의 비용 합, \(|T|\)는 나무의 마디 수, \(M\)은 쪽의 정답 표 수, \(\pi\)는 TEDS 합이 가장 크게 짝짓는 헝가리안 짝짓기이고 짝이 없는 정답 표의 TEDS는 0이다. 마크다운 표는 HTML로 바꿔 채점했다. ParseBench 순위표가 쓰는 GTRM은 채점기가 공개 표 세트에서만 돌아가서 이 글의 두 세트에는 값이 없다.
