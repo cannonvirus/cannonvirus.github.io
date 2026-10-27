@@ -1,5 +1,20 @@
 {{- /* 테마(themes/terminal)의 head.html을 덮어쓴다. 바꾼 것: 공유 이미지를 글마다 만든 그림(og-image.html)으로,
        트위터 카드를 큰 그림형(summary_large_image)으로, 테마 CSS 13개를 파일 하나로 묶어서. */ -}}
+{{- /* Google 애널리틱스(GA4) 태그. Google 안내대로 head 맨 앞에 둔다(2026-10-27 사용자 요청). 코드는 Google이 준 그대로다.
+       Hugo 템플릿은 HTML 주석을 지우므로 첫 줄 주석은 safeHTML로 내보낸다.
+       GoatCounter(analytics.html)와 같이 배포용 빌드에서만 싣고 로컬 미리보기(hugo server)에서는 싣지 않는다.
+       hugo.yaml에 services.googleAnalytics.id를 넣으면 아래 내장 태그가 하나 더 나오므로 그 값은 비워 둔다. */ -}}
+{{ if hugo.IsProduction -}}
+{{ "<!-- Google tag (gtag.js) -->" | safeHTML }}
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TJK2QSCJG1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TJK2QSCJG1');
+</script>
+{{ end -}}
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="{{ if .IsHome }}{{ $.Site.Params.Subtitle }}{{ else if .Description}}{{ .Description | plainify }}{{ else }}{{ .Summary | plainify }}{{ end }}" />
