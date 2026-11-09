@@ -1,6 +1,7 @@
 # 링크 검사(.github/workflows/links.yml)에서 뺄 주소. 한 줄에 정규식 하나.
 # 브라우저로는 열리지만 자동 검사를 막는(403) 사이트를 적는다.
 ^https://boardgamegeek\.com/
-# Substack 뉴스레터. 링크 검사에서 403을 받았으나 국내 회선의 브라우저와 lychee 요청은 200이다(2026-11-09 확인).
+# Substack 뉴스레터. cameronrwolfe.substack.com이 링크 검사에서 403을 받았으나 국내 회선의 브라우저와 lychee 요청은 200이다(2026-11-09 확인).
 # Cloudflare가 GitHub Actions 회선의 자동 요청을 막은 것으로 추정하며 원인은 확인하지 못했다.
-^https://cameronrwolfe\.substack\.com/
+# 같은 일을 피하려고 substack.com의 하위 도메인 주소를 모두 뺀다. 자기 도메인을 쓰는 Substack 글은 이 줄에 걸리지 않는다.
+^https://([a-z0-9-]+\.)+substack\.com/
